@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qf_lib.portfolio_construction.black_litterman.black_litterman &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -132,6 +134,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -175,7 +179,9 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">power</span><span class="p">,</span> <span class="n">sqrt</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span>
+
+<span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.qf_dataframe</span> <span class="kn">import</span> <span class="n">QFDataFrame</span>
+<span class="kn">from</span> <span class="nn">qf_lib.containers.series.qf_series</span> <span class="kn">import</span> <span class="n">QFSeries</span>
 
 
 <div class="viewcode-block" id="BlackLitterman"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.html#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman">[docs]</a><span class="k">class</span> <span class="nc">BlackLitterman</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -184,9 +190,9 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>
-<span class="sd">    hist_cov: DataFrame</span>
+<span class="sd">    hist_cov: QFDataFrame</span>
 <span class="sd">        covariance matrix of historical excess returns of assets; should be annualized</span>
-<span class="sd">    weights: Series</span>
+<span class="sd">    weights: QFSeries</span>
 <span class="sd">        weights of assets in the market cap index</span>
 <span class="sd">    sample_size: int</span>
 <span class="sd">        number of simple returns used to estimate the historical covariance</span>
@@ -194,7 +200,7 @@
 <span class="sd">        average sharpe ratio of the market (by default value of 0.5 is used)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hist_cov</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">weights</span><span class="p">:</span> <span class="n">Series</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sharpe</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hist_cov</span><span class="p">:</span> <span class="n">QFDataFrame</span><span class="p">,</span> <span class="n">weights</span><span class="p">:</span> <span class="n">QFSeries</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sharpe</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hist_cov</span> <span class="o">=</span> <span class="n">hist_cov</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_caltulate_tau</span><span class="p">(</span><span class="n">sample_size</span><span class="p">)</span>
@@ -302,7 +308,7 @@
         <span class="n">new_omega_elem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">view_vol</span> <span class="o">*</span> <span class="n">view_vol</span>  <span class="c1"># Omega corresponds to variance of view so use the vol^2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_views</span><span class="p">(</span><span class="n">new_p_row</span><span class="p">,</span> <span class="n">new_q_elem</span><span class="p">,</span> <span class="n">new_omega_elem</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BlackLitterman.calculate_prior"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.html#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_prior">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_prior</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Series</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]:</span>
+<div class="viewcode-block" id="BlackLitterman.calculate_prior"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.html#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_prior">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_prior</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">QFSeries</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function calculates the prior for the BL model:</span>
 <span class="sd">        - prior_mean = lambda * hist_cov * market_cap_weights</span>
@@ -310,7 +316,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        --------</span>
-<span class="sd">        Tuple[Series, DataFrame]</span>
+<span class="sd">        Tuple[QFSeries, QFDataFrame]</span>
 <span class="sd">            Tuple(prior_mean, prior_cov)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -319,7 +325,7 @@
         <span class="n">prior_cov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_cov</span>
         <span class="k">return</span> <span class="n">prior_mean</span><span class="p">,</span> <span class="n">prior_cov</span></div>
 
-<div class="viewcode-block" id="BlackLitterman.calculate_posterior"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.html#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_posterior">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_posterior</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Series</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">]:</span>
+<div class="viewcode-block" id="BlackLitterman.calculate_posterior"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.html#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_posterior">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_posterior</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">QFSeries</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate shape of posterior distribution including the views. It is calculated using a numerically stable formula</span>
 <span class="sd">        posterior_mean = prior_mean + tau * hist_cov * P&#39; * ( tau * P * hist_cov * P&#39; + Omega)^(-1) * (Q - P * prior_mean)</span>
@@ -327,7 +333,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        --------</span>
-<span class="sd">        Tuple[Series, DataFrame]</span>
+<span class="sd">        Tuple[QFSeries, QFDataFrame]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">prior_mean</span><span class="p">,</span> <span class="n">prior_sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_prior</span><span class="p">()</span>
@@ -418,28 +424,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

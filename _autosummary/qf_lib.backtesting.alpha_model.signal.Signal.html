@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Signal &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -38,7 +40,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Contract" href="qf_lib.backtesting.contract.contract.Contract.html" />
-    <link rel="prev" title="FuturesAlphaModelStrategy" href="qf_lib.backtesting.alpha_model.futures_alpha_model_strategy.FuturesAlphaModelStrategy.html" /> 
+    <link rel="prev" title="AlphaModelStrategy" href="qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -88,11 +90,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../backtesting.html">backtesting</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../backtesting.html#alpha-model">alpha_model</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.alpha_model.alpha_model.AlphaModelSettings.html">AlphaModelSettings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html">AlphaModel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.alpha_model.alpha_model_factory.AlphaModelFactory.html">AlphaModelFactory</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy.html">AlphaModelStrategy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.alpha_model.futures_alpha_model_strategy.FuturesAlphaModelStrategy.html">FuturesAlphaModelStrategy</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Signal</a></li>
 </ul>
 </li>
@@ -155,6 +154,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -168,7 +169,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -184,7 +185,7 @@
 <h1>Signal<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.backtesting.alpha_model.signal.Signal">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.alpha_model.signal.</code><code class="sig-name descname">Signal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a></span></em>, <em class="sig-param"><span class="n">suggested_exposure</span><span class="p">:</span> <span class="n">qf_lib.backtesting.alpha_model.exposure_enum.Exposure</span></em>, <em class="sig-param"><span class="n">fraction_at_risk</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">confidence</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">expected_move</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha_model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/alpha_model/signal.html#Signal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.alpha_model.signal.Signal" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.alpha_model.signal.</code><code class="sig-name descname">Signal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a></span></em>, <em class="sig-param"><span class="n">suggested_exposure</span><span class="p">:</span> <span class="n">qf_lib.backtesting.alpha_model.exposure_enum.Exposure</span></em>, <em class="sig-param"><span class="n">fraction_at_risk</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">confidence</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">expected_move</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha_model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/alpha_model/signal.html#Signal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.alpha_model.signal.Signal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Objects of this class are used in the portfolio construction process. They are returned by AlphaModels to
 determine the suggested trend direction as well as its strength</p>
@@ -214,37 +215,29 @@ By default set to 1.0 (maximum)</p></li>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.contract.contract.Contract.html" class="btn btn-neutral float-right" title="Contract" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.alpha_model.futures_alpha_model_strategy.FuturesAlphaModelStrategy.html" class="btn btn-neutral float-left" title="FuturesAlphaModelStrategy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.contract.contract.Contract.html" class="btn btn-neutral float-right" title="Contract" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy.html" class="btn btn-neutral float-left" title="AlphaModelStrategy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

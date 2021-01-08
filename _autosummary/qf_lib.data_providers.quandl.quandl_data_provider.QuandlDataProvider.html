@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>QuandlDataProvider &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -145,6 +147,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -158,7 +162,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -226,7 +230,7 @@ the specific future contracts.</p>
 
 <dl class="py method">
 <dt id="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.get_history">
-<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.QuandlTicker.html#qf_lib.common.tickers.tickers.QuandlTicker" title="qf_lib.common.tickers.tickers.QuandlTicker">qf_lib.common.tickers.tickers.QuandlTicker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.QuandlTicker.html#qf_lib.common.tickers.tickers.QuandlTicker" title="qf_lib.common.tickers.tickers.QuandlTicker">qf_lib.common.tickers.tickers.QuandlTicker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/data_providers/quandl/quandl_data_provider.html#QuandlDataProvider.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.get_history" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.QuandlTicker.html#qf_lib.common.tickers.tickers.QuandlTicker" title="qf_lib.common.tickers.tickers.QuandlTicker">qf_lib.common.tickers.tickers.QuandlTicker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.QuandlTicker.html#qf_lib.common.tickers.tickers.QuandlTicker" title="qf_lib.common.tickers.tickers.QuandlTicker">qf_lib.common.tickers.tickers.QuandlTicker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>datetime.datetime<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>datetime.datetime<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/data_providers/quandl/quandl_data_provider.html#QuandlDataProvider.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.get_history" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets historical attributes (fields) of different securities (tickers).</p>
 <p>All the duplicate fields and tickers will be removed (the first occurrence will remain). This is crucial
 for having the expected behavior with using label-based indices. E.g. let’s assume there is a duplicate ticker
@@ -265,7 +269,7 @@ If no data is available in the database or an non existing ticker was provided a
 
 <dl class="py method">
 <dt id="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.get_price">
-<code class="sig-name descname">get_price</code><span class="sig-paren">(</span><em class="sig-param">tickers: Union[qf_lib.common.tickers.tickers.QuandlTicker, Sequence[qf_lib.common.tickers.tickers.QuandlTicker]], fields: Union[qf_lib.common.enums.price_field.PriceField, Sequence[qf_lib.common.enums.price_field.PriceField]], start_date: datetime.datetime, end_date: datetime.datetime = None, frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/data_providers/quandl/quandl_data_provider.html#QuandlDataProvider.get_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.get_price" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_price</code><span class="sig-paren">(</span><em class="sig-param">tickers: Union[qf_lib.common.tickers.tickers.QuandlTicker, Sequence[qf_lib.common.tickers.tickers.QuandlTicker]], fields: Union[qf_lib.common.enums.price_field.PriceField, Sequence[qf_lib.common.enums.price_field.PriceField]], start_date: datetime.datetime, end_date: Optional[datetime.datetime] = None, frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/data_providers/quandl/quandl_data_provider.html#QuandlDataProvider.get_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.get_price" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets adjusted historical Prices (Open, High, Low, Close) and Volume</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -307,37 +311,29 @@ with 1 dimension: dates. All the containers will be indexed with PriceField when
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html" class="btn btn-neutral float-right" title="HaverDataProvider" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.data_providers.general_price_provider.GeneralPriceProvider.html" class="btn btn-neutral float-left" title="GeneralPriceProvider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html" class="btn btn-neutral float-right" title="HaverDataProvider" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.data_providers.general_price_provider.GeneralPriceProvider.html" class="btn btn-neutral float-left" title="GeneralPriceProvider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

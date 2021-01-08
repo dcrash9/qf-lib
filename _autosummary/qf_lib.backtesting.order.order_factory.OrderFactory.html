@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>OrderFactory &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -38,7 +40,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Order" href="qf_lib.backtesting.order.order.Order.html" />
-    <link rel="prev" title="PastSignalsGenerator" href="qf_lib.backtesting.monitoring.past_signals_generator.PastSignalsGenerator.html" /> 
+    <link rel="prev" title="SignalsRegister" href="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -152,6 +154,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -165,7 +169,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -245,7 +249,7 @@ If number is positive then asset will be bought. Otherwise it will be sold.</p><
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.order.order_factory.OrderFactory.percent_orders">
-<code class="sig-name descname">percent_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">percentages</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.percent_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.percent_orders" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">percent_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">percentages</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.percent_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.percent_orders" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a list of Orders by specifying the percentage of the current portfolio value which should be spent
 on each asset.</p>
 <dl class="field-list simple">
@@ -269,7 +273,7 @@ This is specified as a decimal value (e.g. 0.5 means 50%)</p></li>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.order.order_factory.OrderFactory.target_orders">
-<code class="sig-name descname">target_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_quantities</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">tolerance_quantities</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.target_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.target_orders" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">target_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_quantities</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">tolerance_quantities</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.target_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.target_orders" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a list of Orders from a dictionary of desired target number of shares (number of shares which should be
 present in the portfolio after executing the Order).</p>
 <p>If the position doesn’t already exist, the new Order is placed for the :target_quantity of shares.
@@ -306,7 +310,7 @@ If tolerance for a specific contract is not provided it is assumed to be 0</p></
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.order.order_factory.OrderFactory.target_percent_orders">
-<code class="sig-name descname">target_percent_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_percentages</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">tolerance_percentage</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.target_percent_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.target_percent_orders" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">target_percent_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_percentages</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">tolerance_percentage</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.target_percent_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.target_percent_orders" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an Order adjusting a position to a value equal to the given percentage of the portfolio.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -332,7 +336,7 @@ of target_value_orders.</p></li>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.order.order_factory.OrderFactory.target_value_orders">
-<code class="sig-name descname">target_value_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_values</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">tolerance_percentage</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.target_value_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.target_value_orders" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">target_value_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_values</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">tolerance_percentage</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.target_value_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.target_value_orders" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a list of Orders by specifying how much should be allocated in each asset after the Orders
 have been executed.</p>
 <p>For example if we’ve already have 10M invested in ‘SPY US Equity’ and you call this method with target value of 11M
@@ -369,7 +373,7 @@ if abs(target - actual) &gt; tolerance_percentage *  target value</p></li>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.order.order_factory.OrderFactory.value_orders">
-<code class="sig-name descname">value_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.value_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.value_orders" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">value_orders</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><span class="p">, </span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">execution_style</span><span class="p">:</span> <span class="n">qf_lib.backtesting.order.execution_style.ExecutionStyle</span></em>, <em class="sig-param"><span class="n">time_in_force</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.time_in_force.TimeInForce.html#qf_lib.backtesting.order.time_in_force.TimeInForce" title="qf_lib.backtesting.order.time_in_force.TimeInForce">qf_lib.backtesting.order.time_in_force.TimeInForce</a></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.order.order.Order.html#qf_lib.backtesting.order.order.Order" title="qf_lib.backtesting.order.order.Order">qf_lib.backtesting.order.order.Order</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/order/order_factory.html#OrderFactory.value_orders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.order.order_factory.OrderFactory.value_orders" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a list of Orders by specifying the amount of money which should be spent on each asset rather
 than the number of shares to buy/sell.</p>
 <dl class="field-list simple">
@@ -400,37 +404,29 @@ in which the asset is traded)</p></li>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.order.order.Order.html" class="btn btn-neutral float-right" title="Order" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.monitoring.past_signals_generator.PastSignalsGenerator.html" class="btn btn-neutral float-left" title="PastSignalsGenerator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.order.order.Order.html" class="btn btn-neutral float-right" title="Order" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html" class="btn btn-neutral float-left" title="SignalsRegister" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

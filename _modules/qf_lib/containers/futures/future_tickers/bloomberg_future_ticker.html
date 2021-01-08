@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qf_lib.containers.futures.future_tickers.bloomberg_future_ticker &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../../_static/jquery.js"></script>
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../../../../../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -117,6 +119,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -200,7 +204,7 @@
 <span class="sd">    days_before_exp_date: int</span>
 <span class="sd">        Number of days before the expiration day of each of the contract, when the “current” specific contract</span>
 <span class="sd">        should be substituted with the next consecutive one.</span>
-<span class="sd">    point_value: float</span>
+<span class="sd">    point_value: int</span>
 <span class="sd">        Used to define the size of the contract.</span>
 <span class="sd">    designated_contracts: str</span>
 <span class="sd">        It is a string, which represents all month codes, that are being downloaded and stored</span>
@@ -209,7 +213,7 @@
 <span class="sd">        March, June, September and December, even if contracts for any other months exist and are returned by the</span>
 <span class="sd">        BloombergDataProvider get_futures_chain_tickers function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">family_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">point_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">family_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">point_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                  <span class="n">designated_contracts</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;FGHJKMNQUVXZ&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">designated_contracts</span> <span class="o">=</span> <span class="n">designated_contracts</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">designated_contracts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -218,7 +222,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">family_id</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">,</span> <span class="n">point_value</span><span class="p">)</span>
 
         <span class="c1"># Used for the purpose of random specific ticker computation</span>
-        <span class="n">random_year_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;09&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;99&#39;</span><span class="p">,</span> <span class="s1">&#39;19&#39;</span><span class="p">]</span>
+        <span class="n">random_year_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;09&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;99&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_random_contract_codes</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">([</span><span class="n">month</span> <span class="o">+</span> <span class="n">year</span> <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">designated_contracts</span><span class="p">))</span>
                                              <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">random_year_codes</span><span class="p">])</span>
 
@@ -288,28 +292,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

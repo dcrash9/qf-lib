@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qf_lib.analysis.tearsheets.tearsheet_with_benchmark &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -132,6 +134,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -172,6 +176,7 @@
 
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
+<span class="kn">from</span> <span class="nn">qf_lib.common.utils.error_handling</span> <span class="kn">import</span> <span class="n">ErrorHandling</span>
 <span class="kn">from</span> <span class="nn">qf_lib.analysis.rolling_analysis.rolling_analysis</span> <span class="kn">import</span> <span class="n">RollingAnalysisFactory</span>
 <span class="kn">from</span> <span class="nn">qf_lib.analysis.tearsheets.abstract_tearsheet</span> <span class="kn">import</span> <span class="n">AbstractTearsheet</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.grid_proportion</span> <span class="kn">import</span> <span class="n">GridProportion</span>
@@ -186,7 +191,8 @@
 <span class="kn">from</span> <span class="nn">qf_lib.settings</span> <span class="kn">import</span> <span class="n">Settings</span>
 
 
-<div class="viewcode-block" id="TearsheetWithBenchmark"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.analysis.tearsheets.tearsheet_with_benchmark.TearsheetWithBenchmark.html#qf_lib.analysis.tearsheets.tearsheet_with_benchmark.TearsheetWithBenchmark">[docs]</a><span class="k">class</span> <span class="nc">TearsheetWithBenchmark</span><span class="p">(</span><span class="n">AbstractTearsheet</span><span class="p">):</span>
+<div class="viewcode-block" id="TearsheetWithBenchmark"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.analysis.tearsheets.tearsheet_with_benchmark.TearsheetWithBenchmark.html#qf_lib.analysis.tearsheets.tearsheet_with_benchmark.TearsheetWithBenchmark">[docs]</a><span class="nd">@ErrorHandling</span><span class="o">.</span><span class="n">class_error_logging</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">TearsheetWithBenchmark</span><span class="p">(</span><span class="n">AbstractTearsheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates a PDF report, which additionally contains a benchamrk.</span>
 
 <span class="sd">    Can be used with or without the benchmark</span>
@@ -245,12 +251,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">ParagraphElement</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">ParagraphElement</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_add_rolling_chart</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strategy_series</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_rolling_return_chart</span><span class="p">(</span><span class="n">series_list</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">ParagraphElement</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">ParagraphElement</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_add_rolling_chart</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">benchmark_series</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_rolling_vol_chart</span><span class="p">(</span><span class="n">series_list</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_ret_distribution_and_similarity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">grid</span> <span class="o">=</span> <span class="n">GridElement</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">PlottingMode</span><span class="o">.</span><span class="n">PDF</span><span class="p">,</span>
@@ -296,28 +302,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

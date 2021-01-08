@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>common &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,15 +33,14 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Aggregation" href="_autosummary/qf_lib.common.enums.aggregations.Aggregation.html" />
-    <link rel="prev" title="LiveTradingSession" href="_autosummary/qf_lib.backtesting.trading_session.live_trading_session.LiveTradingSession.html" /> 
+    <link rel="next" title="ExpirationDateField" href="_autosummary/qf_lib.common.enums.expiration_date_field.ExpirationDateField.html" />
+    <link rel="prev" title="BacktestTradingSessionBuilder" href="_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +54,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -89,11 +91,9 @@
 <li class="toctree-l1"><a class="reference internal" href="backtesting.html">backtesting</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">common</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#enums">enums</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.enums.aggregations.Aggregation.html">Aggregation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.enums.expiration_date_field.ExpirationDateField.html">ExpirationDateField</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.enums.frequency.Frequency.html">Frequency</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.enums.price_field.PriceField.html">PriceField</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.enums.trade_field.TradeField.html">TradeField</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#exceptions">exceptions</a><ul>
@@ -111,7 +111,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#tickers">tickers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.Ticker.html">Ticker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.BloombergTicker.html">BloombergTicker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.InternalDBTicker.html">InternalDBTicker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.HaverTicker.html">HaverTicker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.QuandlTicker.html">QuandlTicker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.CcyTicker.html">CcyTicker</a></li>
@@ -195,8 +194,6 @@
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.sqn.html">sqn</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.sqn_for100trades.html">sqn_for100trades</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.avg_nr_of_trades_per1y.html">avg_nr_of_trades_per1y</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.trade_based_cagr.html">trade_based_cagr</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.trade_based_max_drawdown.html">trade_based_max_drawdown</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.tail_events.tail_events.html">tail_events</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/qf_lib.common.utils.technical_analysis.utils.ta_series.html">ta_series</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_autosummary/qf_lib.common.utils.volatility.get_volatility.get_volatility.html">get_volatility</a></li>
@@ -254,6 +251,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -265,7 +264,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -287,20 +286,14 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.enums.aggregations.Aggregation.html#qf_lib.common.enums.aggregations.Aggregation" title="qf_lib.common.enums.aggregations.Aggregation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aggregations.Aggregation</span></code></a></p></td>
-<td><p>List of aggregations used for reporting.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.enums.expiration_date_field.ExpirationDateField.html#qf_lib.common.enums.expiration_date_field.ExpirationDateField" title="qf_lib.common.enums.expiration_date_field.ExpirationDateField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expiration_date_field.ExpirationDateField</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.enums.expiration_date_field.ExpirationDateField.html#qf_lib.common.enums.expiration_date_field.ExpirationDateField" title="qf_lib.common.enums.expiration_date_field.ExpirationDateField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expiration_date_field.ExpirationDateField</span></code></a></p></td>
 <td><p>Enumeration representing different expiration dates for futures contracts.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency.Frequency</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency.Frequency</span></code></a></p></td>
 <td><p>Frequency enumeration.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">price_field.PriceField</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">price_field.PriceField</span></code></a></p></td>
 <td><p>Represents one of the data fields that corresponds to OHLC and Volume.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.enums.trade_field.TradeField.html#qf_lib.common.enums.trade_field.TradeField" title="qf_lib.common.enums.trade_field.TradeField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trade_field.TradeField</span></code></a></p></td>
-<td><p>Represents data fields that are properties of the Trade.</p></td>
 </tr>
 </tbody>
 </table>
@@ -359,16 +352,13 @@
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.BloombergTicker.html#qf_lib.common.tickers.tickers.BloombergTicker" title="qf_lib.common.tickers.tickers.BloombergTicker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BloombergTicker</span></code></a></p></td>
 <td><p>Representation of bloomberg tickers.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.InternalDBTicker.html#qf_lib.common.tickers.tickers.InternalDBTicker" title="qf_lib.common.tickers.tickers.InternalDBTicker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InternalDBTicker</span></code></a></p></td>
-<td><p>Representation of tickers inside the database.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.HaverTicker.html#qf_lib.common.tickers.tickers.HaverTicker" title="qf_lib.common.tickers.tickers.HaverTicker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HaverTicker</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.HaverTicker.html#qf_lib.common.tickers.tickers.HaverTicker" title="qf_lib.common.tickers.tickers.HaverTicker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HaverTicker</span></code></a></p></td>
 <td><p>Haver tickers representation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.QuandlTicker.html#qf_lib.common.tickers.tickers.QuandlTicker" title="qf_lib.common.tickers.tickers.QuandlTicker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QuandlTicker</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.QuandlTicker.html#qf_lib.common.tickers.tickers.QuandlTicker" title="qf_lib.common.tickers.tickers.QuandlTicker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QuandlTicker</span></code></a></p></td>
 <td><p>Representation of Quandl tickers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.CcyTicker.html#qf_lib.common.tickers.tickers.CcyTicker" title="qf_lib.common.tickers.tickers.CcyTicker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CcyTicker</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.tickers.tickers.CcyTicker.html#qf_lib.common.tickers.tickers.CcyTicker" title="qf_lib.common.tickers.tickers.CcyTicker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CcyTicker</span></code></a></p></td>
 <td><p>Representation of Cryptocurrency tickers.</p></td>
 </tr>
 </tbody>
@@ -608,19 +598,13 @@
 <td><p>Converts simple return to the corresponding logarithmic return.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.sqn.html#qf_lib.common.utils.returns.sqn.sqn" title="qf_lib.common.utils.returns.sqn.sqn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">returns.sqn.sqn</span></code></a></p></td>
-<td><p>Calculates the SQN = mean return of trade / std(returns of trades)</p></td>
+<td><p>Calculates the SQN = mean return of trade / std(returns of trades).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.sqn_for100trades.html#qf_lib.common.utils.returns.sqn.sqn_for100trades" title="qf_lib.common.utils.returns.sqn.sqn_for100trades"><code class="xref py py-obj docutils literal notranslate"><span class="pre">returns.sqn.sqn_for100trades</span></code></a></p></td>
 <td><p>Calculates the SQN = mean return of trade / std(returns of trades) * sqrt(100)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.avg_nr_of_trades_per1y.html#qf_lib.common.utils.returns.sqn.avg_nr_of_trades_per1y" title="qf_lib.common.utils.returns.sqn.avg_nr_of_trades_per1y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">returns.sqn.avg_nr_of_trades_per1y</span></code></a></p></td>
 <td><p>Calculates average number of trades per year for a given data-frame of trades.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.trade_based_cagr.html#qf_lib.common.utils.returns.sqn.trade_based_cagr" title="qf_lib.common.utils.returns.sqn.trade_based_cagr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">returns.sqn.trade_based_cagr</span></code></a></p></td>
-<td><p>Calculates average number of trades per year for a given data-frame of trades.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.sqn.trade_based_max_drawdown.html#qf_lib.common.utils.returns.sqn.trade_based_max_drawdown" title="qf_lib.common.utils.returns.sqn.trade_based_max_drawdown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">returns.sqn.trade_based_max_drawdown</span></code></a></p></td>
-<td><p>Calculates the max drawdown on the series of returns of trades</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.common.utils.returns.tail_events.tail_events.html#qf_lib.common.utils.returns.tail_events.tail_events" title="qf_lib.common.utils.returns.tail_events.tail_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">returns.tail_events.tail_events</span></code></a></p></td>
 <td><p>Gets tail events of the benchmark and corresponding events in the examined timeseries.</p></td>
@@ -648,37 +632,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="_autosummary/qf_lib.common.enums.aggregations.Aggregation.html" class="btn btn-neutral float-right" title="Aggregation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="_autosummary/qf_lib.backtesting.trading_session.live_trading_session.LiveTradingSession.html" class="btn btn-neutral float-left" title="LiveTradingSession" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="_autosummary/qf_lib.common.enums.expiration_date_field.ExpirationDateField.html" class="btn btn-neutral float-right" title="ExpirationDateField" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html" class="btn btn-neutral float-left" title="BacktestTradingSessionBuilder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

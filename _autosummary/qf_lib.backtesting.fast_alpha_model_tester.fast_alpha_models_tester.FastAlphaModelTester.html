@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>FastAlphaModelTester &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -154,6 +156,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -167,7 +171,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -183,7 +187,7 @@
 <h1>FastAlphaModelTester<a class="headerlink" href="#fastalphamodeltester" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.backtesting.fast_alpha_model_tester.fast_alpha_models_tester.FastAlphaModelTester">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.fast_alpha_model_tester.fast_alpha_models_tester.</code><code class="sig-name descname">FastAlphaModelTester</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_type</span><span class="p">:</span> <span class="n">Type<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html#qf_lib.backtesting.alpha_model.alpha_model.AlphaModel" title="qf_lib.backtesting.alpha_model.alpha_model.AlphaModel">qf_lib.backtesting.alpha_model.alpha_model.AlphaModel</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">parameter_sets</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Tuple<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">data_handler</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler.html#qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler" title="qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler">qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler</a></span></em>, <em class="sig-param"><span class="n">timer</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.utils.dateutils.timer.SettableTimer.html#qf_lib.common.utils.dateutils.timer.SettableTimer" title="qf_lib.common.utils.dateutils.timer.SettableTimer">qf_lib.common.utils.dateutils.timer.SettableTimer</a></span></em>, <em class="sig-param"><span class="n">alpha_model_factory</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.alpha_model.alpha_model_factory.AlphaModelFactory.html#qf_lib.backtesting.alpha_model.alpha_model_factory.AlphaModelFactory" title="qf_lib.backtesting.alpha_model.alpha_model_factory.AlphaModelFactory">qf_lib.backtesting.alpha_model.alpha_model_factory.AlphaModelFactory</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/fast_alpha_model_tester/fast_alpha_models_tester.html#FastAlphaModelTester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.fast_alpha_model_tester.fast_alpha_models_tester.FastAlphaModelTester" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.fast_alpha_model_tester.fast_alpha_models_tester.</code><code class="sig-name descname">FastAlphaModelTester</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha_model_configs</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>qf_lib.backtesting.fast_alpha_model_tester.fast_alpha_models_tester.FastAlphaModelTesterConfig<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">contract_ticker_mapper</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper">qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper</a></span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">data_handler</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler.html#qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler" title="qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler">qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler</a></span></em>, <em class="sig-param"><span class="n">timer</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.utils.dateutils.timer.SettableTimer.html#qf_lib.common.utils.dateutils.timer.SettableTimer" title="qf_lib.common.utils.dateutils.timer.SettableTimer">qf_lib.common.utils.dateutils.timer.SettableTimer</a></span></em>, <em class="sig-param"><span class="n">n_jobs</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/fast_alpha_model_tester/fast_alpha_models_tester.html#FastAlphaModelTester"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.fast_alpha_model_tester.fast_alpha_models_tester.FastAlphaModelTester" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>ModelTester in which portfolio construction is simulated by always following the suggested Exposures from
 AlphaModels. All Tickers are traded with same weights (weights are constant across time).</p>
@@ -196,37 +200,29 @@ AlphaModels. All Tickers are traded with same weights (weights are constant acro
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler.html" class="btn btn-neutral float-right" title="FastDataHandler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.fast_alpha_model_tester.backtest_summary.BacktestSummaryElement.html" class="btn btn-neutral float-left" title="BacktestSummaryElement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler.FastDataHandler.html" class="btn btn-neutral float-right" title="FastDataHandler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.fast_alpha_model_tester.backtest_summary.BacktestSummaryElement.html" class="btn btn-neutral float-left" title="BacktestSummaryElement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

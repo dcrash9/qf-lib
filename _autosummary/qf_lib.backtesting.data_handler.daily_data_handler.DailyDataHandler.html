@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>DailyDataHandler &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -152,6 +154,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -165,7 +169,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -212,10 +216,10 @@
 </table>
 <dl class="py method">
 <dt id="qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_current_bar">
-<code class="sig-name descname">get_current_bar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>pandas.core.series.Series<span class="p">, </span>pandas.core.frame.DataFrame<span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_current_bar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_current_bar" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_current_bar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_current_bar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_current_bar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the current bar(s) for given Ticker(s). If the bar is not available yet (e.g. before the market close),
 None is returned.</p>
-<p>If the request for single Ticker was made, then the result is a pandas.Series indexed with PriceFields (OHLCV).
+<p>If the request for single Ticker was made, then the result is a QFSeries indexed with PriceFields (OHLCV).
 If the request for multiple Tickers was made, then the result has Tickers as an index and PriceFields
 as columns.</p>
 <p>Normally on working days the method will return non-empty bars in the time between (inclusive)
@@ -233,14 +237,14 @@ e.g. 12:00, the returned bars will contain Nones as values.</p>
 <dd class="field-even"><p>current bar</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pandas.Series, pandas.DataFrame</p>
+<dd class="field-odd"><p><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">QFSeries</a>, <a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">QFDataFrame</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_current_price">
-<code class="sig-name descname">get_current_price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>float<span class="p">, </span>pandas.core.series.Series<span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_current_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_current_price" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_current_price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>float<span class="p">, </span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_current_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_current_price" title="Permalink to this definition">¶</a></dt>
 <dd><p>Works just like get_last_available_price() but it can return NaNs if data is not available at the current
 moment (e.g. it returns NaN on a non-trading day or when current time is different than the time of MarketOpen
 or MarketClose).</p>
@@ -271,17 +275,17 @@ tickers were supplied).</p>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_history">
-<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_history" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>datetime.datetime<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_history" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs DataProvider.get_history(…) but before makes sure that the query doesn’t concern data from the future.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataProvider.get_history()</span></code></p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataProvider.get_history</span></code></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_last_available_price">
-<code class="sig-name descname">get_last_available_price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>float<span class="p">, </span>pandas.core.series.Series<span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_last_available_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_last_available_price" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_last_available_price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>float<span class="p">, </span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_last_available_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_last_available_price" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the latest available price for given assets (even if the full bar is not yet available).
 The frequency parameter is always casted into daily frequency, to represent the most recent price.</p>
 <p>If “now” is at or after the market OPEN already, then the OPEN price will be returned.
@@ -295,14 +299,14 @@ Always the latest available data will be returned (thus None or a Series of pd.n
 - last_prices.data contains latest available prices for given tickers</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float, pd.Series</p>
+<dd class="field-even"><p>float, <a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">QFSeries</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_price">
-<code class="sig-name descname">get_price</code><span class="sig-paren">(</span><em class="sig-param">tickers: Union[qf_lib.common.tickers.tickers.Ticker, Sequence[qf_lib.common.tickers.tickers.Ticker]], fields: Union[qf_lib.common.enums.price_field.PriceField, Sequence[qf_lib.common.enums.price_field.PriceField]], start_date: datetime.datetime, end_date: datetime.datetime = None, frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;</em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries" title="qf_lib.containers.series.prices_series.PricesSeries">qf_lib.containers.series.prices_series.PricesSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame.html#qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame" title="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame">qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_price" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_price</code><span class="sig-paren">(</span><em class="sig-param">tickers: Union[qf_lib.common.tickers.tickers.Ticker, Sequence[qf_lib.common.tickers.tickers.Ticker]], fields: Union[qf_lib.common.enums.price_field.PriceField, Sequence[qf_lib.common.enums.price_field.PriceField]], start_date: datetime.datetime, end_date: Optional[datetime.datetime] = None, frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;</em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries" title="qf_lib.containers.series.prices_series.PricesSeries">qf_lib.containers.series.prices_series.PricesSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame.html#qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame" title="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame">qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.get_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.get_price" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs DataProvider.get_price(…) but before makes sure that the query doesn’t concern data from
 the future.</p>
 <p>It accesses the latest fully available bar as of “today”, that is: if a bar wasn’t closed for today yet,
@@ -329,7 +333,7 @@ if no end_date was provided, by default the current date will be used</p></li>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.historical_price">
-<code class="sig-name descname">historical_price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">nr_of_bars</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries" title="qf_lib.containers.series.prices_series.PricesSeries">qf_lib.containers.series.prices_series.PricesSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame.html#qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame" title="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame">qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.historical_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.historical_price" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">historical_price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">nr_of_bars</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries" title="qf_lib.containers.series.prices_series.PricesSeries">qf_lib.containers.series.prices_series.PricesSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame.html#qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame" title="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame">qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/data_handler/daily_data_handler.html#DailyDataHandler.historical_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.data_handler.daily_data_handler.DailyDataHandler.historical_price" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the latest available data samples corresponding to the nr_of_bars.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -359,37 +363,29 @@ Note: while requesting more than one ticker, some tickers may have fewer than n_
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.data_handler.intraday_data_handler.IntradayDataHandler.html" class="btn btn-neutral float-right" title="IntradayDataHandler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.data_handler.data_handler.DataHandler.html" class="btn btn-neutral float-left" title="DataHandler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.data_handler.intraday_data_handler.IntradayDataHandler.html" class="btn btn-neutral float-right" title="IntradayDataHandler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.data_handler.data_handler.DataHandler.html" class="btn btn-neutral float-left" title="DataHandler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

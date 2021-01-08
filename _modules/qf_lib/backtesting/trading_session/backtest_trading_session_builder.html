@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qf_lib.backtesting.trading_session.backtest_trading_session_builder &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -132,6 +134,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -169,15 +173,14 @@
 <span class="c1">#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
 <span class="c1">#     See the License for the specific language governing permissions and</span>
 <span class="c1">#     limitations under the License.</span>
-
+<span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Dict</span>
 
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.alpha_model.alpha_model</span> <span class="kn">import</span> <span class="n">AlphaModel</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.broker.backtest_broker</span> <span class="kn">import</span> <span class="n">BacktestBroker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract_to_ticker_conversion.base</span> <span class="kn">import</span> <span class="n">ContractTickerMapper</span>
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract_to_ticker_conversion.bloomberg_mapper</span> <span class="kn">import</span> \
-    <span class="n">DummyBloombergContractTickerMapper</span>
+<span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper</span> <span class="kn">import</span> \
+    <span class="n">SimulatedBloombergContractTickerMapper</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.data_handler.daily_data_handler</span> <span class="kn">import</span> <span class="n">DailyDataHandler</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.data_handler.intraday_data_handler</span> <span class="kn">import</span> <span class="n">IntradayDataHandler</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.events.event_manager</span> <span class="kn">import</span> <span class="n">EventManager</span>
@@ -192,19 +195,17 @@
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.execution_handler.simulated_execution_handler</span> <span class="kn">import</span> <span class="n">SimulatedExecutionHandler</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.execution_handler.slippage.base</span> <span class="kn">import</span> <span class="n">Slippage</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.execution_handler.slippage.price_based_slippage</span> <span class="kn">import</span> <span class="n">PriceBasedSlippage</span>
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.abstract_monitor</span> <span class="kn">import</span> <span class="n">AbstractMonitor</span>
+<span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.backtest_monitor</span> <span class="kn">import</span> <span class="n">BacktestMonitorSettings</span><span class="p">,</span> <span class="n">BacktestMonitor</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.backtest_result</span> <span class="kn">import</span> <span class="n">BacktestResult</span>
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.dummy_monitor</span> <span class="kn">import</span> <span class="n">DummyMonitor</span>
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.light_backtest_monitor</span> <span class="kn">import</span> <span class="n">LightBacktestMonitor</span>
+<span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.signals_register</span> <span class="kn">import</span> <span class="n">SignalsRegister</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.order.order_factory</span> <span class="kn">import</span> <span class="n">OrderFactory</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.orders_filter.orders_filter</span> <span class="kn">import</span> <span class="n">OrdersFilter</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.portfolio.portfolio</span> <span class="kn">import</span> <span class="n">Portfolio</span>
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.position_sizer.initial_risk_position_sizer</span> <span class="kn">import</span> <span class="n">InitialRiskPositionSizer</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.position_sizer.position_sizer</span> <span class="kn">import</span> <span class="n">PositionSizer</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.position_sizer.simple_position_sizer</span> <span class="kn">import</span> <span class="n">SimplePositionSizer</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.trading_session.backtest_trading_session</span> <span class="kn">import</span> <span class="n">BacktestTradingSession</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
-<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">QuandlTicker</span><span class="p">,</span> <span class="n">Ticker</span><span class="p">,</span> <span class="n">BloombergTicker</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.utils.config_exporter</span> <span class="kn">import</span> <span class="n">ConfigExporter</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.dateutils.relative_delta</span> <span class="kn">import</span> <span class="n">RelativeDelta</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.dateutils.timer</span> <span class="kn">import</span> <span class="n">SettableTimer</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.logging.qf_parent_logger</span> <span class="kn">import</span> <span class="n">qf_logger</span>
@@ -224,7 +225,7 @@
 <span class="sd">    - backtest name is set to &quot;Backtest Results&quot;</span>
 <span class="sd">    - initial cash is set to 10000000</span>
 <span class="sd">    - montior type is set to LightBacktestMonitor</span>
-<span class="sd">    - DummyBloombergContractTickerMapper is used to map contracts to tickers</span>
+<span class="sd">    - SimulatedBloombergContractTickerMapper is used to map contracts to tickers</span>
 <span class="sd">    - no commissions are introduced (FixedCommissionModel(0.0))</span>
 <span class="sd">    - no slippage is introduced (PriceBasedSlippage(0.0))</span>
 <span class="sd">    - SimplePositionSizer is used</span>
@@ -251,15 +252,20 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span> <span class="o">=</span> <span class="s2">&quot;Backtest Results&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span> <span class="o">=</span> <span class="mi">10000000</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_type</span> <span class="o">=</span> <span class="n">LightBacktestMonitor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_benchmark_tms</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_settings</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span> <span class="o">=</span> <span class="n">DummyBloombergContractTickerMapper</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model</span> <span class="o">=</span> <span class="n">FixedCommissionModel</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model</span> <span class="o">=</span> <span class="n">PriceBasedSlippage</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">data_provider</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span> <span class="o">=</span> <span class="n">SimulatedBloombergContractTickerMapper</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_type</span> <span class="o">=</span> <span class="n">FixedCommissionModel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;commission&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_type</span> <span class="o">=</span> <span class="n">PriceBasedSlippage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;slippage_rate&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;max_volume_share_limit&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_type</span> <span class="o">=</span> <span class="n">SimplePositionSizer</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_args</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filter_types_params</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: List[Tuple[Type[OrdersFilter], Dict]]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span> <span class="o">=</span> <span class="n">data_provider</span>
@@ -275,7 +281,8 @@
         <span class="n">MarketCloseEvent</span><span class="o">.</span><span class="n">set_trigger_time</span><span class="p">({</span><span class="s2">&quot;hour&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;minute&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;microsecond&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
         <span class="n">AfterMarketCloseEvent</span><span class="o">.</span><span class="n">set_trigger_time</span><span class="p">({</span><span class="s2">&quot;hour&quot;</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span> <span class="s2">&quot;minute&quot;</span><span class="p">:</span> <span class="mi">00</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;microsecond&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_backtest_name"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_backtest_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_backtest_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_backtest_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets backtest name.</span>
 
 <span class="sd">        Parameters</span>
@@ -283,10 +290,11 @@
 <span class="sd">        name: str</span>
 <span class="sd">            new backtest name</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">char</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;/</span><span class="se">\\</span><span class="s1">?%*:|&quot;&lt;&gt;&#39;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span> <span class="o">=</span> <span class="n">name</span></div>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">char</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s1">&#39;/</span><span class="se">\\</span><span class="s1">?%*:|&quot;&lt;&gt;&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span> <span class="o">=</span> <span class="n">name</span>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_frequency"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_frequency">[docs]</a>    <span class="k">def</span> <span class="nf">set_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="n">Frequency</span><span class="p">):</span>
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="n">Frequency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the frequency of the backtest. Based on this either DailyDataHandler or</span>
 <span class="sd">        IntradayDataHandler is chosen.</span>
 
@@ -295,9 +303,10 @@
 <span class="sd">        frequency: Frequency</span>
 <span class="sd">            frequency of the data and prices</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_frequency</span> <span class="o">=</span> <span class="n">frequency</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_frequency</span> <span class="o">=</span> <span class="n">frequency</span>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_scheduling_time_delay"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_scheduling_time_delay">[docs]</a>    <span class="k">def</span> <span class="nf">set_scheduling_time_delay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_delay</span><span class="p">:</span> <span class="n">RelativeDelta</span><span class="p">):</span>
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_scheduling_time_delay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_delay</span><span class="p">:</span> <span class="n">RelativeDelta</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the scheduling delay.</span>
 
 <span class="sd">        Parameters</span>
@@ -305,9 +314,10 @@
 <span class="sd">        time_delay: RelativeDelta</span>
 <span class="sd">            scheduling time delay</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduling_time_delay</span> <span class="o">=</span> <span class="n">time_delay</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scheduling_time_delay</span> <span class="o">=</span> <span class="n">time_delay</span>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_initial_cash"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_initial_cash">[docs]</a>    <span class="k">def</span> <span class="nf">set_initial_cash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_cash</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_initial_cash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_cash</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the initial cash value.</span>
 
 <span class="sd">        Parameters</span>
@@ -315,36 +325,10 @@
 <span class="sd">        initial_cash: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">initial_cash</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span> <span class="ow">and</span> <span class="n">initial_cash</span> <span class="o">&gt;</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span> <span class="o">=</span> <span class="n">initial_cash</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span> <span class="o">=</span> <span class="n">initial_cash</span>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_alpha_model_backtest_name"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_alpha_model_backtest_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_alpha_model_backtest_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AlphaModel</span><span class="p">],</span> <span class="n">param_set</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Ticker</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the alpha model backtest name.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        -----------</span>
-<span class="sd">        model_type: Type[AlphaModel]</span>
-<span class="sd">            type of the alpha model</span>
-<span class="sd">        param_set: Tuple</span>
-<span class="sd">            params of the model, included in the name creation</span>
-<span class="sd">        tickers: List[Ticker]</span>
-<span class="sd">            list of tickers</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">))</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">param_set</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tickers</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">tickers</span><span class="p">:</span>
-                <span class="n">ticker_str</span> <span class="o">=</span> <span class="n">ticker</span><span class="o">.</span><span class="n">as_string</span><span class="p">()</span>
-
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">QuandlTicker</span><span class="p">):</span>
-                    <span class="n">ticker_str</span> <span class="o">=</span> <span class="n">ticker_str</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">BloombergTicker</span><span class="p">):</span>
-                    <span class="n">ticker_str</span> <span class="o">=</span> <span class="n">ticker_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-                <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">ticker_str</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span> <span class="o">=</span> <span class="n">name</span></div>
-
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_data_provider"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_data_provider">[docs]</a>    <span class="k">def</span> <span class="nf">set_data_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_provider</span><span class="p">:</span> <span class="n">DataProvider</span><span class="p">):</span>
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_data_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_provider</span><span class="p">:</span> <span class="n">DataProvider</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the data provider.</span>
 
 <span class="sd">        Parameters</span>
@@ -353,18 +337,21 @@
 <span class="sd">            data provider used to download data and prices</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span> <span class="o">=</span> <span class="n">data_provider</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model</span><span class="o">.</span><span class="n">set_data_provider</span><span class="p">(</span><span class="n">data_provider</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_monitor_type"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_monitor_type">[docs]</a>    <span class="k">def</span> <span class="nf">set_monitor_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monitor_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractMonitor</span><span class="p">]):</span>
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_monitor_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monitor_settings</span><span class="p">:</span> <span class="n">BacktestMonitorSettings</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets type of the monitor.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        -----------</span>
-<span class="sd">        monitor_type: Type[AbstractMonitor]</span>
-<span class="sd">            type of the monitor</span>
+<span class="sd">        monitor_settings:</span>
+<span class="sd">            object defining the outputs that we want the BacktestMonitor to generate</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">monitor_type</span><span class="p">,</span> <span class="n">AbstractMonitor</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_type</span> <span class="o">=</span> <span class="n">monitor_type</span></div>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">monitor_settings</span><span class="p">)</span> <span class="ow">is</span> <span class="n">BacktestMonitorSettings</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Monitor settings of different type &quot;</span>
+                               <span class="s2">&quot;than BacktestMonitorSettings: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">monitor_settings</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_settings</span> <span class="o">=</span> <span class="n">monitor_settings</span>
 
 <div class="viewcode-block" id="BacktestTradingSessionBuilder.set_benchmark_tms"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_benchmark_tms">[docs]</a>    <span class="k">def</span> <span class="nf">set_benchmark_tms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">benchmark_tms</span><span class="p">:</span> <span class="n">QFSeries</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the benchmark timeseries. If set, the TearsheetWithBenchamrk will be generated.</span>
@@ -376,7 +363,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_benchmark_tms</span> <span class="o">=</span> <span class="n">benchmark_tms</span></div>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_contract_ticker_mapper"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_contract_ticker_mapper">[docs]</a>    <span class="k">def</span> <span class="nf">set_contract_ticker_mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract_ticker_mapper</span><span class="p">:</span> <span class="n">ContractTickerMapper</span><span class="p">):</span>
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_contract_ticker_mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract_ticker_mapper</span><span class="p">:</span> <span class="n">ContractTickerMapper</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the mapping between contracts and tickers.</span>
 
 <span class="sd">        Parameters</span>
@@ -384,49 +372,112 @@
 <span class="sd">        contract_ticker_mapper: ContractTickerMapper</span>
 <span class="sd">            mapping between contracts and tickers</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span> <span class="o">=</span> <span class="n">contract_ticker_mapper</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span> <span class="o">=</span> <span class="n">contract_ticker_mapper</span>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_commission_model"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_commission_model">[docs]</a>    <span class="k">def</span> <span class="nf">set_commission_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commission_model</span><span class="p">:</span> <span class="n">CommissionModel</span><span class="p">):</span>
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_commission_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commission_model_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">CommissionModel</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets commission model.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        -----------</span>
-<span class="sd">        commission_model: CommissionModel</span>
-<span class="sd">            object representing the commission model</span>
+<span class="sd">        commission_model_type: Type[CommissionModel]</span>
+<span class="sd">            type of the commission model</span>
+<span class="sd">        kwargs:</span>
+<span class="sd">            all keyword parameters necessary to initialize the chosen commission model</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model</span> <span class="o">=</span> <span class="n">commission_model</span></div>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Verify if all required parameters were passed to the function. All the parameters that are necessary for</span>
+            <span class="c1"># the CommissionModel constructor will be passed along with the kwargs</span>
+            <span class="n">commission_model_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">CommissionModel</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="n">commission_model_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">commission_model_type</span><span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">commission_model_params</span><span class="p">)</span>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_slippage_model"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_slippage_model">[docs]</a>    <span class="k">def</span> <span class="nf">set_slippage_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slippage_model</span><span class="p">:</span> <span class="n">Slippage</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the slippage model.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_type</span> <span class="o">=</span> <span class="n">commission_model_type</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The Commission Model could not be set correctly - </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_slippage_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slippage_model_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Slippage</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the slippage model. The parameters to initialize the Slippage should be passed as keyword arguments.</span>
+<span class="sd">        Parameters corresponding to data provider and contract ticker mapper should not be provided, as they are</span>
+<span class="sd">        setup by the backtest trading session builder. For example to set slippage model to price based slippage with</span>
+<span class="sd">        slippage_rate = 0.1 the following command should be called on the session builder:</span>
+<span class="sd">        builder.set_slippage_model(PriceBasedSlippage, slippage_rate=0.1)</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        -----------</span>
-<span class="sd">        slippage_model: Slippage</span>
-<span class="sd">            object representing the slippage model</span>
+<span class="sd">        slippage_model_type: Type[Slippage]</span>
+<span class="sd">            type of the slippage model</span>
+<span class="sd">        kwargs:</span>
+<span class="sd">            all keyword parameters which are necessary to initialize the chosen slippage model</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model</span> <span class="o">=</span> <span class="n">slippage_model</span></div>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Verify if all required parameters were passed to the function. All the parameters that are necessary for</span>
+            <span class="c1"># the Slippage constructor will be passed along with the kwargs</span>
+            <span class="n">slippage_model_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">Slippage</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="n">slippage_model_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">slippage_model_type</span><span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">slippage_model_params</span><span class="p">)</span>
 
-<div class="viewcode-block" id="BacktestTradingSessionBuilder.set_position_sizer"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.html#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_position_sizer">[docs]</a>    <span class="k">def</span> <span class="nf">set_position_sizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position_sizer_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">PositionSizer</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the position sizer.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_type</span> <span class="o">=</span> <span class="n">slippage_model_type</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The Slippage Model could not be set correctly - </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_position_sizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position_sizer_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">PositionSizer</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the position sizer. The parameters to initialize the PositionSizer should be passed as keyword</span>
+<span class="sd">        arguments. Parameters corresponding to the broker, data handler, contract ticker mapper or signals register</span>
+<span class="sd">        should not be provided, as all these parameters are setup by the backtest trading session builder.</span>
+<span class="sd">        For example to set position sizer with initial risk = 0.3 and tolerance percentage = 0.1 the following command</span>
+<span class="sd">        should be called on the session builder:</span>
+
+<span class="sd">        builder.set_position_sizer(InitialRiskWithVolumePositionSizer, initial_risk=0.3, tolerance_percentage=0.1)</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        -----------</span>
 <span class="sd">        position_sizer_type: Type[PositionSizer]</span>
 <span class="sd">            type of position sizer</span>
 <span class="sd">        kwargs:</span>
-<span class="sd">            all parameters which are necessary to initialize the chosen position sizer</span>
+<span class="sd">            all keyword parameters which are necessary to initialize the chosen position sizer</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">position_sizer_type</span> <span class="ow">is</span> <span class="n">SimplePositionSizer</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="n">position_sizer_type</span> <span class="ow">is</span> <span class="n">InitialRiskPositionSizer</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_type</span> <span class="o">=</span> <span class="n">position_sizer_type</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Verify if all required parameters were passed to the function. All the parameters that are necessary for</span>
+            <span class="c1"># the PositionSizer constructor will be passed along with the kwargs</span>
+            <span class="n">position_sizer_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">PositionSizer</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="n">position_sizer_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">position_sizer_type</span><span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">position_sizer_params</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_args</span> <span class="o">=</span> <span class="n">args</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_type</span> <span class="o">=</span> <span class="n">position_sizer_type</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The Position Sizer could not be set correctly - </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">append_config</span>
     <span class="k">def</span> <span class="nf">add_orders_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orders_filter_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">OrdersFilter</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filter_types_params</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">orders_filter_type</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+        <span class="sd">&quot;&quot;&quot;Adds orders filter to the pipeline. Ths parameters to initialize the OrdersFilter should be passed as keyword</span>
+<span class="sd">        arguments. Parameters corresponding to data handler and contract ticker mapper should not be provided, as</span>
+<span class="sd">        they are setup by the backtest trading session builder. For example to set orders filter with</span>
+<span class="sd">        volume_percentage_limit = 0.3 the following command should be called on the session builder:</span>
+
+<span class="sd">        builder.add_orders_filter(VolumeOrdersFilter, volume_percentage_limit=0.3)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        orders_filter_type: Type[OrdersFilter]</span>
+<span class="sd">            type of position sizer</span>
+<span class="sd">        kwargs:</span>
+<span class="sd">            all keyword parameters which are necessary to initialize the chosen orders filter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Verify if all required parameters were passed to the function. All the parameters that are necessary for</span>
+            <span class="c1"># the OrdersFilter constructor will be passed along with the kwargs</span>
+            <span class="n">orders_filter_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">OrdersFilter</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="n">orders_filter_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">orders_filter_type</span><span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">orders_filter_params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filter_types_params</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">orders_filter_type</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;The Orders Filter could not be added to the pipeline - </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_create_event_manager</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span> <span class="n">notifiers</span><span class="p">:</span> <span class="n">Notifiers</span><span class="p">):</span>
@@ -473,11 +524,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_events_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_event_manager</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_notifiers</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_data_handler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">)</span>
+        <span class="n">signals_register</span> <span class="o">=</span> <span class="n">SignalsRegister</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_result</span> <span class="o">=</span> <span class="n">BacktestResult</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_result</span> <span class="o">=</span> <span class="n">BacktestResult</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span>
+                                               <span class="n">end_date</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_setup</span><span class="p">()</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_setup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_execution_handler</span> <span class="o">=</span> <span class="n">SimulatedExecutionHandler</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_notifiers</span><span class="o">.</span><span class="n">scheduler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model</span><span class="p">,</span>
@@ -489,7 +544,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_broker</span> <span class="o">=</span> <span class="n">BacktestBroker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execution_handler</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span> <span class="o">=</span> <span class="n">OrderFactory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_setup</span><span class="p">(</span><span class="n">signals_register</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filter_setup</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
@@ -533,57 +588,61 @@
             <span class="n">monitor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span><span class="p">,</span>
             <span class="n">broker</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_broker</span><span class="p">,</span>
             <span class="n">order_factory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span><span class="p">,</span>
-            <span class="n">frequency</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_frequency</span>
+            <span class="n">frequency</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_frequency</span><span class="p">,</span>
+            <span class="n">backtest_result</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_backtest_result</span>
         <span class="p">)</span>
+
         <span class="k">return</span> <span class="n">ts</span></div>
 
-    <span class="k">def</span> <span class="nf">_monitor_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_type</span> <span class="ow">is</span> <span class="n">DummyMonitor</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">DummyMonitor</span><span class="p">()</span>
-        <span class="n">monitor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backtest_result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_settings</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pdf_exporter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_excel_exporter</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_benchmark_tms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">monitor</span><span class="o">.</span><span class="n">set_benchmark</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_benchmark_tms</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_monitor_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BacktestMonitor</span><span class="p">:</span>
+        <span class="n">monitor</span> <span class="o">=</span> <span class="n">BacktestMonitor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backtest_result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_settings</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pdf_exporter</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">_excel_exporter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_settings</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_benchmark_tms</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">monitor</span>
 
-    <span class="k">def</span> <span class="nf">_position_sizer_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_position_sizer_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">:</span> <span class="n">SignalsRegister</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_type</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span>
-            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_args</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_orders_filter_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">orders_filters</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">orders_filter_type</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filter_types_params</span><span class="p">:</span>
             <span class="n">orders_filter</span> <span class="o">=</span> <span class="n">orders_filter_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">orders_filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">orders_filter</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">orders_filters</span></div>
+        <span class="k">return</span> <span class="n">orders_filters</span>
+
+    <span class="k">def</span> <span class="nf">_slippage_model_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_type</span><span class="p">(</span><span class="n">data_provider</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span><span class="p">,</span>
+                                         <span class="n">contract_ticker_mapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span>
+                                         <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_commission_model_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_type</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_kwargs</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

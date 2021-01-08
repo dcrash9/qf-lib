@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>LiveTradingMonitor &mdash; QF Lib  documentation</title>
+  <title>SignalsRegister &mdash; QF Lib  documentation</title>
   
 
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,15 +33,14 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="PastSignalsGenerator" href="qf_lib.backtesting.monitoring.past_signals_generator.PastSignalsGenerator.html" />
-    <link rel="prev" title="LightBacktestMonitor" href="qf_lib.backtesting.monitoring.light_backtest_monitor.LightBacktestMonitor.html" /> 
+    <link rel="next" title="OrderFactory" href="qf_lib.backtesting.order.order_factory.OrderFactory.html" />
+    <link rel="prev" title="BacktestResult" href="qf_lib.backtesting.monitoring.backtest_result.BacktestResult.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -97,9 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor.html">AbstractMonitor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.backtest_monitor.BacktestMonitor.html">BacktestMonitor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.backtest_result.BacktestResult.html">BacktestResult</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.light_backtest_monitor.LightBacktestMonitor.html">LightBacktestMonitor</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">LiveTradingMonitor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.past_signals_generator.PastSignalsGenerator.html">PastSignalsGenerator</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SignalsRegister</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../backtesting.html#order">order</a></li>
@@ -155,6 +155,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,12 +165,12 @@
         
           <li><a href="../backtesting.html">backtesting</a> &raquo;</li>
         
-      <li>LiveTradingMonitor</li>
+      <li>SignalsRegister</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -180,13 +182,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="livetradingmonitor">
-<h1>LiveTradingMonitor<a class="headerlink" href="#livetradingmonitor" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="signalsregister">
+<h1>SignalsRegister<a class="headerlink" href="#signalsregister" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="qf_lib.backtesting.monitoring.live_trading_monitor.LiveTradingMonitor">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.monitoring.live_trading_monitor.</code><code class="sig-name descname">LiveTradingMonitor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">notifiers</span><span class="p">:</span> <span class="n">qf_lib.backtesting.events.notifiers.Notifiers</span></em>, <em class="sig-param"><span class="n">container</span><span class="p">:</span> <span class="n">dic.container.Container</span></em>, <em class="sig-param"><span class="n">settings_for_live_trading</span><span class="p">:</span> <span class="n">qf_lib.backtesting.monitoring.settings_for_live_trading.LiveTradingSettings</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/monitoring/live_trading_monitor.html#LiveTradingMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.monitoring.live_trading_monitor.LiveTradingMonitor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.backtesting.monitoring.dummy_monitor.DummyMonitor</span></code></p>
-<p>This Monitor will be used to monitor live trading activities</p>
+<dt id="qf_lib.backtesting.monitoring.signals_register.SignalsRegister">
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.monitoring.signals_register.</code><code class="sig-name descname">SignalsRegister</code><a class="reference internal" href="../_modules/qf_lib/backtesting/monitoring/signals_register.html#SignalsRegister"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.monitoring.signals_register.SignalsRegister" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used to save signals processed by the Position Sizer and to be able to later to analyze all signals generated by
+the model and to present them in a readable form.</p>
 <p><strong>Methods:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -194,15 +197,34 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.monitoring.live_trading_monitor.LiveTradingMonitor.end_of_day_update" title="qf_lib.backtesting.monitoring.live_trading_monitor.LiveTradingMonitor.end_of_day_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_of_day_update</span></code></a>([timestamp])</p></td>
-<td><p>Generate daily pdf with backtest monitoring and past signals excel file and sends it by email</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.monitoring.signals_register.SignalsRegister.get_signals" title="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.get_signals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_signals</span></code></a>()</p></td>
+<td><p>Returns a QFDataFrame with all generated signals.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.monitoring.signals_register.SignalsRegister.save_signals" title="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.save_signals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_signals</span></code></a>(signals, date)</p></td>
+<td><p>Add the provided signals to the list of all cached signals.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
-<dt id="qf_lib.backtesting.monitoring.live_trading_monitor.LiveTradingMonitor.end_of_day_update">
-<code class="sig-name descname">end_of_day_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timestamp</span><span class="p">:</span> <span class="n">datetime.datetime</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/monitoring/live_trading_monitor.html#LiveTradingMonitor.end_of_day_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.monitoring.live_trading_monitor.LiveTradingMonitor.end_of_day_update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate daily pdf with backtest monitoring and past signals excel file and sends it by email</p>
+<dt id="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.get_signals">
+<code class="sig-name descname">get_signals</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><a class="reference internal" href="../_modules/qf_lib/backtesting/monitoring/signals_register.html#SignalsRegister.get_signals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.monitoring.signals_register.SignalsRegister.get_signals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a QFDataFrame with all generated signals. The columns names consist of ticker names (in the following
+form: <a class="reference external" href="mailto:NameOfTicker&#37;&#52;&#48;Model">NameOfTicker<span>&#64;</span>Model</a>) and the rows are indexed by the time of signals generation (Signal objects do not
+store the timestamp).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>QFDataFrame with all generated signals</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">QFDataFrame</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.save_signals">
+<code class="sig-name descname">save_signals</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">signals</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.alpha_model.signal.Signal.html#qf_lib.backtesting.alpha_model.signal.Signal" title="qf_lib.backtesting.alpha_model.signal.Signal">qf_lib.backtesting.alpha_model.signal.Signal</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/monitoring/signals_register.html#SignalsRegister.save_signals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.monitoring.signals_register.SignalsRegister.save_signals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the provided signals to the list of all cached signals.</p>
 </dd></dl>
 
 </dd></dl>
@@ -214,37 +236,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.monitoring.past_signals_generator.PastSignalsGenerator.html" class="btn btn-neutral float-right" title="PastSignalsGenerator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.monitoring.light_backtest_monitor.LightBacktestMonitor.html" class="btn btn-neutral float-left" title="LightBacktestMonitor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.order.order_factory.OrderFactory.html" class="btn btn-neutral float-right" title="OrderFactory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.monitoring.backtest_result.BacktestResult.html" class="btn btn-neutral float-left" title="BacktestResult" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

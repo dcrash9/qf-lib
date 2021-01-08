@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>InitialRiskPositionSizer &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -153,6 +155,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -166,7 +170,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -182,7 +186,7 @@
 <h1>InitialRiskPositionSizer<a class="headerlink" href="#initialriskpositionsizer" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.backtesting.position_sizer.initial_risk_position_sizer.InitialRiskPositionSizer">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.position_sizer.initial_risk_position_sizer.</code><code class="sig-name descname">InitialRiskPositionSizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">broker</span><span class="p">:</span> <span class="n">qf_lib.backtesting.broker.broker.Broker</span></em>, <em class="sig-param"><span class="n">data_handler</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.data_handler.data_handler.DataHandler.html#qf_lib.backtesting.data_handler.data_handler.DataHandler" title="qf_lib.backtesting.data_handler.data_handler.DataHandler">qf_lib.backtesting.data_handler.data_handler.DataHandler</a></span></em>, <em class="sig-param"><span class="n">order_factory</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.order_factory.OrderFactory.html#qf_lib.backtesting.order.order_factory.OrderFactory" title="qf_lib.backtesting.order.order_factory.OrderFactory">qf_lib.backtesting.order.order_factory.OrderFactory</a></span></em>, <em class="sig-param"><span class="n">contract_ticker_mapper</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper">qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper</a></span></em>, <em class="sig-param"><span class="n">initial_risk</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">max_target_percentage</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tolerance_percentage</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/position_sizer/initial_risk_position_sizer.html#InitialRiskPositionSizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.position_sizer.initial_risk_position_sizer.InitialRiskPositionSizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.position_sizer.initial_risk_position_sizer.</code><code class="sig-name descname">InitialRiskPositionSizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">broker</span><span class="p">:</span> <span class="n">qf_lib.backtesting.broker.broker.Broker</span></em>, <em class="sig-param"><span class="n">data_handler</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.data_handler.data_handler.DataHandler.html#qf_lib.backtesting.data_handler.data_handler.DataHandler" title="qf_lib.backtesting.data_handler.data_handler.DataHandler">qf_lib.backtesting.data_handler.data_handler.DataHandler</a></span></em>, <em class="sig-param"><span class="n">order_factory</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.order.order_factory.OrderFactory.html#qf_lib.backtesting.order.order_factory.OrderFactory" title="qf_lib.backtesting.order.order_factory.OrderFactory">qf_lib.backtesting.order.order_factory.OrderFactory</a></span></em>, <em class="sig-param"><span class="n">contract_ticker_mapper</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper">qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper</a></span></em>, <em class="sig-param"><span class="n">signals_register</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html#qf_lib.backtesting.monitoring.signals_register.SignalsRegister" title="qf_lib.backtesting.monitoring.signals_register.SignalsRegister">qf_lib.backtesting.monitoring.signals_register.SignalsRegister</a></span></em>, <em class="sig-param"><span class="n">initial_risk</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">max_target_percentage</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tolerance_percentage</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/position_sizer/initial_risk_position_sizer.html#InitialRiskPositionSizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.position_sizer.initial_risk_position_sizer.InitialRiskPositionSizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="qf_lib.backtesting.position_sizer.position_sizer.PositionSizer.html#qf_lib.backtesting.position_sizer.position_sizer.PositionSizer" title="qf_lib.backtesting.position_sizer.position_sizer.PositionSizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.backtesting.position_sizer.position_sizer.PositionSizer</span></code></a></p>
 <p>This PositionSizer converts signals to orders using Initial Risk value that is predefined in the position sizer.
 Each signal will be sized based on fraction_at_risk.
@@ -213,37 +217,29 @@ target percentages</p></li>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer.html" class="btn btn-neutral float-right" title="FixedPortfolioPercentagePositionSizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.position_sizer.simple_position_sizer.SimplePositionSizer.html" class="btn btn-neutral float-left" title="SimplePositionSizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer.html" class="btn btn-neutral float-right" title="FixedPortfolioPercentagePositionSizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.position_sizer.simple_position_sizer.SimplePositionSizer.html" class="btn btn-neutral float-left" title="SimplePositionSizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

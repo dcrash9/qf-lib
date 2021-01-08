@@ -1,6 +1,0 @@
-﻿trade_based_cagr
-================================================
-
-.. currentmodule:: qf_lib.common.utils.returns.sqn
-
-.. autofunction:: trade_based_cagr

@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qf_lib.data_providers.bloomberg.bloomberg_data_provider &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -132,6 +134,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -178,7 +182,7 @@
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.expiration_date_field</span> <span class="kn">import</span> <span class="n">ExpirationDateField</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.price_field</span> <span class="kn">import</span> <span class="n">PriceField</span>
-<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">BloombergTicker</span><span class="p">,</span> <span class="n">tickers_as_strings</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">BloombergTicker</span><span class="p">,</span> <span class="n">tickers_as_strings</span><span class="p">,</span> <span class="n">Ticker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.logging.qf_parent_logger</span> <span class="kn">import</span> <span class="n">qf_logger</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.miscellaneous.to_list_conversion</span> <span class="kn">import</span> <span class="n">convert_to_list</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.qf_dataframe</span> <span class="kn">import</span> <span class="n">QFDataFrame</span>
@@ -495,6 +499,9 @@
         <span class="n">tickers</span> <span class="o">=</span> <span class="p">[</span><span class="n">BloombergTicker</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;Member Ticker and Exchange Code&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; Equity&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">fields</span> <span class="ow">in</span> <span class="n">ticker_data</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">tickers</span></div>
 
+<div class="viewcode-block" id="BloombergDataProvider.get_unique_tickers"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_unique_tickers">[docs]</a>    <span class="k">def</span> <span class="nf">get_unique_tickers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">universe_ticker</span><span class="p">:</span> <span class="n">Ticker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Ticker</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;BloombergDataProvider does not provide historical tickers_universe data&quot;</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="BloombergDataProvider.get_tabular_data"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tabular_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_tabular_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="n">BloombergTicker</span><span class="p">,</span> <span class="n">field</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provides current tabular data from Bloomberg.</span>
@@ -540,28 +547,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

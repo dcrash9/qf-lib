@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>BacktestPosition &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -153,6 +155,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -166,7 +170,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -182,8 +186,29 @@
 <h1>BacktestPosition<a class="headerlink" href="#backtestposition" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.portfolio.backtest_position.</code><code class="sig-name descname">BacktestPosition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contract</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a></span></em>, <em class="sig-param"><span class="n">start_time</span><span class="p">:</span> <span class="n">datetime.datetime</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.portfolio.backtest_position.</code><code class="sig-name descname">BacktestPosition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contract</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.backtesting.portfolio.position.Position</span></code></p>
+<p><strong>Attributes:</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.end_time" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.end_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_time</span></code></a></p></td>
+<td><p>Time of the position closing (None in case if the position is still open).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.start_time" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.start_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_time</span></code></a></p></td>
+<td><p>Time of the position creation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_pnl" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_pnl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_pnl</span></code></a></p></td>
+<td><p>Total pnl including all commissions and fees.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.unrealised_pnl" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.unrealised_pnl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unrealised_pnl</span></code></a></p></td>
+<td><p>Unrealised profit or loss associated with a transaction expressed in currency units Does not include transaction costs and commissions</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Methods:</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -191,14 +216,14 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.avg_price_per_unit" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.avg_price_per_unit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avg_price_per_unit</span></code></a>()</p></td>
-<td><p>For the long position it tells us what was the average price paid to acquire one share of the position.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.check_if_transaction_generates_trade" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.check_if_transaction_generates_trade"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_if_transaction_generates_trade</span></code></a>(transaction)</p></td>
-<td><p>In case if the given transaction would result in a trade, the potential trade is returned.</p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.market_value" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.market_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">market_value</span></code></a>()</p></td>
 <td><p>It tells us what is the Market Value of the position.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.quantity" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.quantity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantity</span></code></a>()</p></td>
+<td><p>Number of shares or contracts held currently in the portfolio.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_commission" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_commission"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_commission</span></code></a>()</p></td>
+<td><p>Sum of all commissions of transactions.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_exposure" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_exposure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_exposure</span></code></a>()</p></td>
 <td><p>It tells us what is the total exposure of the position to the market in currency units</p></td>
@@ -211,72 +236,10 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Attributes:</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.unrealised_pnl" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.unrealised_pnl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unrealised_pnl</span></code></a></p></td>
-<td><p>Unrealised profit or loss associated with a transcation expressed in currency units Does not include transaction costs and commissions</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.is_closed" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.is_closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_closed</span></code></a></p></td>
-<td><p>Determines if the positions has been closed</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.transactions" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.transactions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transactions</span></code></a></p></td>
-<td><p>List of all transactions for the asset</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.current_price" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.current_price"><code class="xref py py-obj docutils literal notranslate"><span class="pre">current_price</span></code></a></p></td>
-<td><p>Current price of the asset used for market value calculation.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.direction" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">direction</span></code></a></p></td>
-<td><p>Long = 1, Short = -1, Not defined = 0</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.start_time" title="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.start_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_time</span></code></a></p></td>
-<td><p>Time of the position creation</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.avg_price_per_unit">
-<code class="sig-name descname">avg_price_per_unit</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition.avg_price_per_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.avg_price_per_unit" title="Permalink to this definition">¶</a></dt>
-<dd><p>For the long position it tells us what was the average price paid to acquire one share of the position.
-For short positions it tells us what was the average value we received for one share of the position.
-return calculates share weighted average of the price without any transaction costs</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.check_if_transaction_generates_trade">
-<code class="sig-name descname">check_if_transaction_generates_trade</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transaction</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.portfolio.transaction.Transaction.html#qf_lib.backtesting.portfolio.transaction.Transaction" title="qf_lib.backtesting.portfolio.transaction.Transaction">qf_lib.backtesting.portfolio.transaction.Transaction</a></span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.portfolio.trade.Trade.html#qf_lib.backtesting.portfolio.trade.Trade" title="qf_lib.backtesting.portfolio.trade.Trade">qf_lib.backtesting.portfolio.trade.Trade</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition.check_if_transaction_generates_trade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.check_if_transaction_generates_trade" title="Permalink to this definition">¶</a></dt>
-<dd><p>In case if the given transaction would result in a trade, the potential trade is returned.
-In other case the function returns None.</p>
-<p>Trade is defined as a transaction that goes in the direction of making your position smaller.
-For example selling part or entire long position is a trade, buying back part or entire short position is a
-trade, buying additional shares of existing long position is NOT a trade</p>
-</dd></dl>
-
 <dl class="py attribute">
-<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.current_price">
-<code class="sig-name descname">current_price</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.current_price" title="Permalink to this definition">¶</a></dt>
-<dd><p>Current price of the asset used for market value calculation. Includes the Bid-Ask spread</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.direction">
-<code class="sig-name descname">direction</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Long = 1, Short = -1, Not defined = 0</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Direction of the position</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.is_closed">
-<code class="sig-name descname">is_closed</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.is_closed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determines if the positions has been closed</p>
+<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.end_time">
+<code class="sig-name descname">end_time</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.end_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time of the position closing (None in case if the position is still open).</p>
 </dd></dl>
 
 <dl class="py method">
@@ -297,15 +260,28 @@ It also represents the cash we could receive when we liquidate the position</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.quantity">
+<code class="sig-name descname">quantity</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition.quantity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of shares or contracts held currently in the portfolio. Positive value means this is a Long position
+Negative value corresponds to a Short position.</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.start_time">
 <code class="sig-name descname">start_time</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.start_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>Time of the position creation</p>
+<dd><p>Time of the position creation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_commission">
+<code class="sig-name descname">total_commission</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition.total_commission"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_commission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sum of all commissions of transactions.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_exposure">
-<em class="property">abstract </em><code class="sig-name descname">total_exposure</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition.total_exposure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_exposure" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">total_exposure</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition.total_exposure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_exposure" title="Permalink to this definition">¶</a></dt>
 <dd><p>It tells us what is the total exposure of the position to the market in currency units</p>
 <dl class="simple">
 <dt>For cash securities (Equities, Bonds, ETFs, etc)</dt><dd><p>It represents the value of the position (quantity * price)</p>
@@ -313,6 +289,12 @@ It also represents the cash we could receive when we liquidate the position</p>
 <dt>For margin securities (Futures, Options)</dt><dd><p>It represents Notional of the position (quantity * price * contract_size)</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_pnl">
+<em class="property">property </em><code class="sig-name descname">total_pnl</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_pnl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total pnl including all commissions and fees.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -332,16 +314,10 @@ quantity and commission.</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.transactions">
-<code class="sig-name descname">transactions</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.transactions" title="Permalink to this definition">¶</a></dt>
-<dd><p>List of all transactions for the asset</p>
-</dd></dl>
-
 <dl class="py method">
 <dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.unrealised_pnl">
 <em class="property">property </em><code class="sig-name descname">unrealised_pnl</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.unrealised_pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unrealised profit or loss associated with a transcation expressed in currency units
+<dd><p>Unrealised profit or loss associated with a transaction expressed in currency units
 Does not include transaction costs and commissions</p>
 </dd></dl>
 
@@ -362,37 +338,29 @@ This method should be called every time we have have a new price</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.portfolio.trade.Trade.html" class="btn btn-neutral float-right" title="Trade" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.portfolio.portfolio.Portfolio.html" class="btn btn-neutral float-left" title="Portfolio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.portfolio.trade.Trade.html" class="btn btn-neutral float-right" title="Trade" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.portfolio.portfolio.Portfolio.html" class="btn btn-neutral float-left" title="Portfolio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

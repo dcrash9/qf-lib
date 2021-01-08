@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>ConeChartOOS &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -158,6 +160,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -171,7 +175,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -187,7 +191,7 @@
 <h1>ConeChartOOS<a class="headerlink" href="#conechartoos" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.plotting.charts.cone_chart_oos.</code><code class="sig-name descname">ConeChartOOS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oos_series</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a></span></em>, <em class="sig-param"><span class="n">is_mean_return</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">is_sigma</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">cone_opacity</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.3</span></em>, <em class="sig-param"><span class="n">cone_stds</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1.0, 2.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/plotting/charts/cone_chart_oos.html#ConeChartOOS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.plotting.charts.cone_chart_oos.</code><code class="sig-name descname">ConeChartOOS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">oos_series</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a></span></em>, <em class="sig-param"><span class="n">is_mean_return</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">is_sigma</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">cone_opacity</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.3</span></em>, <em class="sig-param"><span class="n">cone_stds</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">(1.0, 2.0)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/plotting/charts/cone_chart_oos.html#ConeChartOOS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="qf_lib.plotting.charts.chart.Chart.html#qf_lib.plotting.charts.chart.Chart" title="qf_lib.plotting.charts.chart.Chart"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.plotting.charts.chart.Chart</span></code></a></p>
 <p>While using a simple cone (e.g. LineChart with Cone decorator) the results of the evaluation may be very different
 depending on the live_start_date. To be immune to this, ConeChart plots only the ends of simple cones which start
@@ -222,7 +226,7 @@ will be 1 day.</p>
 </table>
 <dl class="py method">
 <dt id="qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS.apply_data_element_decorators">
-<code class="sig-name descname">apply_data_element_decorators</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_element_decorators</span><span class="p">:</span> <span class="n">List<span class="p">[</span>DataElementDecorator<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/plotting/charts/cone_chart_oos.html#ConeChartOOS.apply_data_element_decorators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS.apply_data_element_decorators" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">apply_data_element_decorators</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_element_decorators</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="qf_lib.plotting.decorators.data_element_decorator.DataElementDecorator.html#qf_lib.plotting.decorators.data_element_decorator.DataElementDecorator" title="qf_lib.plotting.decorators.data_element_decorator.DataElementDecorator">qf_lib.plotting.decorators.data_element_decorator.DataElementDecorator</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/plotting/charts/cone_chart_oos.html#ConeChartOOS.apply_data_element_decorators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS.apply_data_element_decorators" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots all DataElementDecorators added to a chart. This function should set <cite>legend_artist</cite> field in each
 plotted DataElementDecorator (if applicable).</p>
 <dl class="field-list simple">
@@ -234,7 +238,7 @@ plotted DataElementDecorator (if applicable).</p>
 
 <dl class="py method">
 <dt id="qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS.plot">
-<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">figsize</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span>float<span class="p">, </span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/plotting/charts/cone_chart_oos.html#ConeChartOOS.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">figsize</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Tuple<span class="p">[</span>float<span class="p">, </span>float<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/plotting/charts/cone_chart_oos.html#ConeChartOOS.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.plotting.charts.cone_chart_oos.ConeChartOOS.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the chart. The underlying figure stays hidden until the show() method is called.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -253,37 +257,29 @@ to matplotlib’s <code class="docutils literal notranslate"><span class="pre">p
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.plotting.charts.dist_chart.DistChart.html" class="btn btn-neutral float-right" title="DistChart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.plotting.charts.cone_chart.ConeChart.html" class="btn btn-neutral float-left" title="ConeChart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.plotting.charts.dist_chart.DistChart.html" class="btn btn-neutral float-right" title="DistChart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.plotting.charts.cone_chart.ConeChart.html" class="btn btn-neutral float-left" title="ConeChart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

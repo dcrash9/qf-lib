@@ -1,9 +1,0 @@
-﻿AlphaModelSettings
-=============================================================
-
-.. currentmodule:: qf_lib.backtesting.alpha_model.alpha_model
-
-.. autoclass:: AlphaModelSettings
-	:show-inheritance:
-	:autosummary:
-	:members:

@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>KellyPortfolio &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -150,6 +152,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -179,7 +183,7 @@
 <h1>KellyPortfolio<a class="headerlink" href="#kellyportfolio" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.portfolio_construction.portfolio_models.kelly_portfolio.KellyPortfolio">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.portfolio_construction.portfolio_models.kelly_portfolio.</code><code class="sig-name descname">KellyPortfolio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cov_matrix</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a></span></em>, <em class="sig-param"><span class="n">mean_returns</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a></span></em>, <em class="sig-param"><span class="n">upper_constraint</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>Sequence<span class="p">[</span>float<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/portfolio_construction/portfolio_models/kelly_portfolio.html#KellyPortfolio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.portfolio_construction.portfolio_models.kelly_portfolio.KellyPortfolio" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.portfolio_construction.portfolio_models.kelly_portfolio.</code><code class="sig-name descname">KellyPortfolio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cov_matrix</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a></span></em>, <em class="sig-param"><span class="n">mean_returns</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a></span></em>, <em class="sig-param"><span class="n">upper_constraint</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>float<span class="p">, </span>Sequence<span class="p">[</span>float<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/portfolio_construction/portfolio_models/kelly_portfolio.html#KellyPortfolio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.portfolio_construction.portfolio_models.kelly_portfolio.KellyPortfolio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="qf_lib.portfolio_construction.portfolio_models.portfolio.Portfolio.html#qf_lib.portfolio_construction.portfolio_models.portfolio.Portfolio" title="qf_lib.portfolio_construction.portfolio_models.portfolio.Portfolio"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.portfolio_construction.portfolio_models.portfolio.Portfolio</span></code></a></p>
 <p>Class used for constructing a portfolio based on Kelly’s criterion.</p>
 <p><strong>Methods:</strong></p>
@@ -200,7 +204,7 @@
 </table>
 <dl class="py method">
 <dt id="qf_lib.portfolio_construction.portfolio_models.kelly_portfolio.KellyPortfolio.get_weights">
-<code class="sig-name descname">get_weights</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.series.Series<a class="reference internal" href="../_modules/qf_lib/portfolio_construction/portfolio_models/kelly_portfolio.html#KellyPortfolio.get_weights"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.portfolio_construction.portfolio_models.kelly_portfolio.KellyPortfolio.get_weights" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_weights</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><a class="reference internal" href="../_modules/qf_lib/portfolio_construction/portfolio_models/kelly_portfolio.html#KellyPortfolio.get_weights"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.portfolio_construction.portfolio_models.kelly_portfolio.KellyPortfolio.get_weights" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p></p>
@@ -220,37 +224,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.portfolio_construction.portfolio_models.max_diversification_portfolio.MaxDiversificationPortfolio.html" class="btn btn-neutral float-right" title="MaxDiversificationPortfolio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.portfolio_construction.portfolio_models.equal_risk_contribution_portfolio.EqualRiskContributionPortfolio.html" class="btn btn-neutral float-left" title="EqualRiskContributionPortfolio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.portfolio_construction.portfolio_models.max_diversification_portfolio.MaxDiversificationPortfolio.html" class="btn btn-neutral float-right" title="MaxDiversificationPortfolio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.portfolio_construction.portfolio_models.equal_risk_contribution_portfolio.EqualRiskContributionPortfolio.html" class="btn btn-neutral float-left" title="EqualRiskContributionPortfolio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

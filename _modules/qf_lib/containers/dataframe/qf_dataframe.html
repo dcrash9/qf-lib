@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qf_lib.containers.dataframe.qf_dataframe &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -117,6 +119,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -352,18 +356,18 @@
         <span class="n">smoothed_df</span> <span class="o">=</span> <span class="n">cast_dataframe</span><span class="p">(</span><span class="n">smoothed_df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">smoothed_df</span></div>
 
-<div class="viewcode-block" id="QFDataFrame.total_cumulative_return"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.total_cumulative_return">[docs]</a>    <span class="k">def</span> <span class="nf">total_cumulative_return</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+<div class="viewcode-block" id="QFDataFrame.total_cumulative_return"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.total_cumulative_return">[docs]</a>    <span class="k">def</span> <span class="nf">total_cumulative_return</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QFSeries&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculates total cumulative return for each column.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        pandas.Series</span>
+<span class="sd">        QFSeries</span>
 <span class="sd">            Series containing total cumulative return for each column of the original DataFrame.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">series_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor_sliced</span>
         <span class="n">series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">series_type</span><span class="o">.</span><span class="n">total_cumulative_return</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">series</span> <span class="o">=</span> <span class="n">cast_series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="n">cast_series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">series_type</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">series</span></div>
 
@@ -378,15 +382,12 @@
 
     <span class="k">def</span> <span class="nf">_get_iterator_for_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result_values</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates iterator suitable to be used with pandas.apply function. The first element is returned twice</span>
-<span class="sd">        by the iterator, because pandas apply function is always run twice on the first value to determine whether</span>
-<span class="sd">        it can take a fast or slow code path (see pandas.DataFrame.apply documentation).</span>
+<span class="sd">        Creates iterator suitable to be used with pandas.apply function.</span>
+<span class="sd">        As since pandas 1.1.0 apply and applymap on DataFrame evaluates first row/column only once there is no need to</span>
+<span class="sd">        iterate over the first element twice in the generator.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result_values</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="n">result_values</span> <span class="o">=</span> <span class="n">result_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="n">result_values</span><span class="p">:</span>
-            <span class="n">result_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">result_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">result_values</span>
 
         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">result_values</span><span class="p">)</span>
 
@@ -495,8 +496,8 @@
             <span class="n">dates_and_values</span> <span class="o">=</span> <span class="p">[(</span><span class="n">date</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">results_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
             <span class="n">dates</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">dates_and_values</span><span class="p">)</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">QFSeries</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
 
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="QFDataFrame.get_frequency"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.get_frequency">[docs]</a>    <span class="k">def</span> <span class="nf">get_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Frequency</span><span class="p">]:</span>
@@ -523,28 +524,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qf_lib.backtesting.fast_alpha_model_tester.initial_risk_stats &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -132,6 +134,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -177,6 +181,7 @@
 
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.returns.max_drawdown</span> <span class="kn">import</span> <span class="n">max_drawdown</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.cast_dataframe</span> <span class="kn">import</span> <span class="n">cast_dataframe</span>
+<span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.qf_dataframe</span> <span class="kn">import</span> <span class="n">QFDataFrame</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.simple_returns_dataframe</span> <span class="kn">import</span> <span class="n">SimpleReturnsDataFrame</span>
 
 
@@ -190,7 +195,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_max_accepted_dd</span> <span class="o">=</span> <span class="n">max_accepted_dd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_target_return</span> <span class="o">=</span> <span class="n">target_return</span>
 
-<div class="viewcode-block" id="InitialRiskStatsFactory.make_stats"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.fast_alpha_model_tester.initial_risk_stats.InitialRiskStatsFactory.html#qf_lib.backtesting.fast_alpha_model_tester.initial_risk_stats.InitialRiskStatsFactory.make_stats">[docs]</a>    <span class="k">def</span> <span class="nf">make_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_risks</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">scenarios_list</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="InitialRiskStatsFactory.make_stats"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.fast_alpha_model_tester.initial_risk_stats.InitialRiskStatsFactory.html#qf_lib.backtesting.fast_alpha_model_tester.initial_risk_stats.InitialRiskStatsFactory.make_stats">[docs]</a>    <span class="k">def</span> <span class="nf">make_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_risks</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">scenarios_list</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">QFDataFrame</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">QFDataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates a pandas.DataFrame showing how many strategies failed (reached certain draw down level) and how many</span>
 <span class="sd">        of them succeeded (that is: reached the target return and not failed on the way).</span>
@@ -200,7 +205,7 @@
 <span class="sd">        initial_risks: Sequence[float]</span>
 <span class="sd">            list of initial_risk parameters where initial_risk is a float number</span>
 <span class="sd">        scenarios_list: Sequence[pandas.DataFrame]</span>
-<span class="sd">            list with scenarios (pd.DataFrame) where each DataFrame corresponds to one initial_risk value</span>
+<span class="sd">            list with scenarios (QFDataFrame) where each DataFrame corresponds to one initial_risk value</span>
 <span class="sd">            Each DataFrame has columns corresponding to different scenarios and its indexed by Trades&#39; ordinal number.</span>
 <span class="sd">            Its values are returns of Trades.</span>
 
@@ -210,7 +215,7 @@
 <span class="sd">            DataFrame indexed with initial_risk values and with columns FAILED (fraction of scenarios that failed)</span>
 <span class="sd">            and SUCCEEDED (fraction of scenarios that met the objective and didn&#39;t fail on the way)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">QFDataFrame</span><span class="p">(</span>
             <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">initial_risks</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">FAILED</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUCCEEDED</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">init_risk</span><span class="p">,</span> <span class="n">scenarios</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initial_risks</span><span class="p">,</span> <span class="n">scenarios_list</span><span class="p">):</span>
@@ -237,28 +242,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

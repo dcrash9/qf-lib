@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>qf_lib.containers.futures.futures_chain &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -132,6 +134,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -176,13 +180,13 @@
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.price_field</span> <span class="kn">import</span> <span class="n">PriceField</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.miscellaneous.to_list_conversion</span> <span class="kn">import</span> <span class="n">convert_to_list</span>
-<span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.cast_dataframe</span> <span class="kn">import</span> <span class="n">cast_dataframe</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.prices_dataframe</span> <span class="kn">import</span> <span class="n">PricesDataFrame</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.futures.future_contract</span> <span class="kn">import</span> <span class="n">FutureContract</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.futures.future_tickers.future_ticker</span> <span class="kn">import</span> <span class="n">FutureTicker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.futures.futures_adjustment_method</span> <span class="kn">import</span> <span class="n">FuturesAdjustmentMethod</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.prices_series</span> <span class="kn">import</span> <span class="n">PricesSeries</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.qf_series</span> <span class="kn">import</span> <span class="n">QFSeries</span>
+<span class="kn">from</span> <span class="nn">qf_lib.data_providers.helpers</span> <span class="kn">import</span> <span class="n">cast_data_array_to_proper_type</span>
 
 
 <div class="viewcode-block" id="FuturesChain"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.containers.futures.futures_chain.FuturesChain.html#qf_lib.containers.futures.futures_chain.FuturesChain">[docs]</a><span class="k">class</span> <span class="nc">FuturesChain</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
@@ -193,7 +197,8 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ------------</span>
 <span class="sd">    future_ticker: FutureTicker</span>
-<span class="sd">        The FutureTicker used to download the futures contracts, further chained and joined in order to obtain the result of get_price function.</span>
+<span class="sd">        The FutureTicker used to download the futures contracts, further chained and joined in order to obtain the</span>
+<span class="sd">         result of get_price function.</span>
 <span class="sd">    data_provider: DataProvider</span>
 <span class="sd">        Reference to the data provider, necessary to download latest prices, returned by the get_price function.</span>
 <span class="sd">    method: FuturesAdjustmentMethod</span>
@@ -365,7 +370,9 @@
 
         <span class="c1"># Shift the index and data according to the start time and end time values. We shift the number of days by 1,</span>
         <span class="c1"># so that the days_before_exp_date=1 will use the prices on the expiration date from the newer contract.</span>
-        <span class="n">shifted_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="p">(</span><span class="n">days_before_exp_date</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">shifted_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="p">(</span><span class="n">days_before_exp_date</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">shifted_index</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">PricesDataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
 
         <span class="c1"># We use the backfill search for locating the start time, because we will additionally consider the time range</span>
         <span class="c1"># between start_time and the found starting expiry date time</span>
@@ -545,7 +552,7 @@
                 <span class="n">data</span> <span class="o">=</span> <span class="n">futures_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">future_ticker</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">futures_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">future_ticker</span><span class="p">,</span> <span class="p">:]</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">cast_dataframe</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">(),</span> <span class="n">PricesDataFrame</span><span class="p">)</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">cast_data_array_to_proper_type</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">use_prices_types</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
             <span class="c1"># Check if data is empty (some contract may have no price within the given time range) - if so do not</span>
             <span class="c1"># add it to the FuturesChain</span>
@@ -565,28 +572,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

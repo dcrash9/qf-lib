@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>BacktestResult &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,14 +33,13 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="LightBacktestMonitor" href="qf_lib.backtesting.monitoring.light_backtest_monitor.LightBacktestMonitor.html" />
+    <link rel="next" title="SignalsRegister" href="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html" />
     <link rel="prev" title="BacktestMonitor" href="qf_lib.backtesting.monitoring.backtest_monitor.BacktestMonitor.html" /> 
 </head>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -97,9 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor.html">AbstractMonitor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.backtest_monitor.BacktestMonitor.html">BacktestMonitor</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">BacktestResult</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.light_backtest_monitor.LightBacktestMonitor.html">LightBacktestMonitor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.live_trading_monitor.LiveTradingMonitor.html">LiveTradingMonitor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.past_signals_generator.PastSignalsGenerator.html">PastSignalsGenerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html">SignalsRegister</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../backtesting.html#order">order</a></li>
@@ -155,6 +155,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -168,7 +170,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -184,7 +186,7 @@
 <h1>BacktestResult<a class="headerlink" href="#backtestresult" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.backtesting.monitoring.backtest_result.BacktestResult">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.monitoring.backtest_result.</code><code class="sig-name descname">BacktestResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">portfolio</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.portfolio.portfolio.Portfolio.html#qf_lib.backtesting.portfolio.portfolio.Portfolio" title="qf_lib.backtesting.portfolio.portfolio.Portfolio">qf_lib.backtesting.portfolio.portfolio.Portfolio</a></span></em>, <em class="sig-param"><span class="n">backtest_name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/monitoring/backtest_result.html#BacktestResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.monitoring.backtest_result.BacktestResult" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.monitoring.backtest_result.</code><code class="sig-name descname">BacktestResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">portfolio</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.portfolio.portfolio.Portfolio.html#qf_lib.backtesting.portfolio.portfolio.Portfolio" title="qf_lib.backtesting.portfolio.portfolio.Portfolio">qf_lib.backtesting.portfolio.portfolio.Portfolio</a></span></em>, <em class="sig-param"><span class="n">signals_register</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html#qf_lib.backtesting.monitoring.signals_register.SignalsRegister" title="qf_lib.backtesting.monitoring.signals_register.SignalsRegister">qf_lib.backtesting.monitoring.signals_register.SignalsRegister</a></span></em>, <em class="sig-param"><span class="n">backtest_name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>datetime.datetime<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>datetime.datetime<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/monitoring/backtest_result.html#BacktestResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.monitoring.backtest_result.BacktestResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>BacktestResult is a class providing simple data model containing information about the backtest:
 for example it contains a portfolio with its timeseries and trades. It can also gather additional information</p>
@@ -197,37 +199,29 @@ for example it contains a portfolio with its timeseries and trades. It can also 
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.monitoring.light_backtest_monitor.LightBacktestMonitor.html" class="btn btn-neutral float-right" title="LightBacktestMonitor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.monitoring.backtest_monitor.BacktestMonitor.html" class="btn btn-neutral float-left" title="BacktestMonitor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html" class="btn btn-neutral float-right" title="SignalsRegister" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.monitoring.backtest_monitor.BacktestMonitor.html" class="btn btn-neutral float-left" title="BacktestMonitor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>GeneralPriceProvider &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -145,6 +147,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -158,7 +162,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -174,7 +178,7 @@
 <h1>GeneralPriceProvider<a class="headerlink" href="#generalpriceprovider" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.data_providers.general_price_provider.GeneralPriceProvider">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.data_providers.general_price_provider.</code><code class="sig-name descname">GeneralPriceProvider</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bloomberg</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider">qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">quandl</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider" title="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider">qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">haver</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html#qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider" title="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider">qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cryptocurrency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html#qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider" title="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider">qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/data_providers/general_price_provider.html#GeneralPriceProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.general_price_provider.GeneralPriceProvider" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.data_providers.general_price_provider.</code><code class="sig-name descname">GeneralPriceProvider</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bloomberg</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider">qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">quandl</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider" title="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider">qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">haver</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html#qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider" title="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider">qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cryptocurrency</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html#qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider" title="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider">qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/data_providers/general_price_provider.html#GeneralPriceProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.general_price_provider.GeneralPriceProvider" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="qf_lib.data_providers.data_provider.DataProvider.html#qf_lib.data_providers.data_provider.DataProvider" title="qf_lib.data_providers.data_provider.DataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.data_providers.data_provider.DataProvider</span></code></a></p>
 <p>The main class that should be used in order to access prices of financial instruments.</p>
 <p><strong>Methods:</strong></p>
@@ -223,7 +227,7 @@ Contracts</p>
 
 <dl class="py method">
 <dt id="qf_lib.data_providers.general_price_provider.GeneralPriceProvider.get_history">
-<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param">tickers: Union[qf_lib.common.tickers.tickers.Ticker, Sequence[qf_lib.common.tickers.tickers.Ticker]], fields: Union[str, Sequence[str]], start_date: datetime.datetime, end_date: datetime.datetime = None, frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;, **kwargs</em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/data_providers/general_price_provider.html#GeneralPriceProvider.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.general_price_provider.GeneralPriceProvider.get_history" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param">tickers: Union[qf_lib.common.tickers.tickers.Ticker, Sequence[qf_lib.common.tickers.tickers.Ticker]], fields: Union[str, Sequence[str]], start_date: datetime.datetime, end_date: Optional[datetime.datetime] = None, frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;, **kwargs</em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/data_providers/general_price_provider.html#GeneralPriceProvider.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.general_price_provider.GeneralPriceProvider.get_history" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the functionality of DataProvider using duck-typing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -251,7 +255,7 @@ dimensionality will be returned.</p>
 
 <dl class="py method">
 <dt id="qf_lib.data_providers.general_price_provider.GeneralPriceProvider.get_price">
-<code class="sig-name descname">get_price</code><span class="sig-paren">(</span><em class="sig-param">tickers: Union[qf_lib.common.tickers.tickers.Ticker, Sequence[qf_lib.common.tickers.tickers.Ticker]], fields: Union[qf_lib.common.enums.price_field.PriceField, Sequence[qf_lib.common.enums.price_field.PriceField]], start_date: datetime.datetime, end_date: datetime.datetime = None, frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;</em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>None<span class="p">, </span><a class="reference internal" href="qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries" title="qf_lib.containers.series.prices_series.PricesSeries">qf_lib.containers.series.prices_series.PricesSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame.html#qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame" title="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame">qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/data_providers/general_price_provider.html#GeneralPriceProvider.get_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.general_price_provider.GeneralPriceProvider.get_price" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_price</code><span class="sig-paren">(</span><em class="sig-param">tickers: Union[qf_lib.common.tickers.tickers.Ticker, Sequence[qf_lib.common.tickers.tickers.Ticker]], fields: Union[qf_lib.common.enums.price_field.PriceField, Sequence[qf_lib.common.enums.price_field.PriceField]], start_date: datetime.datetime, end_date: Optional[datetime.datetime] = None, frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;</em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>None<span class="p">, </span><a class="reference internal" href="qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries" title="qf_lib.containers.series.prices_series.PricesSeries">qf_lib.containers.series.prices_series.PricesSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame.html#qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame" title="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame">qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/data_providers/general_price_provider.html#GeneralPriceProvider.get_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.general_price_provider.GeneralPriceProvider.get_price" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the functionality of AbstractPriceDataProvider using duck-typing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -289,37 +293,29 @@ data of lower dimensionality will be returned.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html" class="btn btn-neutral float-right" title="QuandlDataProvider" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider.html" class="btn btn-neutral float-left" title="PrefetchingDataProvider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html" class="btn btn-neutral float-right" title="QuandlDataProvider" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider.html" class="btn btn-neutral float-left" title="PrefetchingDataProvider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

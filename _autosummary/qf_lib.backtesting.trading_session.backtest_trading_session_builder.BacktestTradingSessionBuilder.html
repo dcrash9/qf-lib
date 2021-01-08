@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>BacktestTradingSessionBuilder &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,14 +33,13 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="LiveTradingSession" href="qf_lib.backtesting.trading_session.live_trading_session.LiveTradingSession.html" />
+    <link rel="next" title="common" href="../common.html" />
     <link rel="prev" title="BacktestTradingSession" href="qf_lib.backtesting.trading_session.backtest_trading_session.BacktestTradingSession.html" /> 
 </head>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -101,7 +103,6 @@
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.trading_session.trading_session.TradingSession.html">TradingSession</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.trading_session.backtest_trading_session.BacktestTradingSession.html">BacktestTradingSession</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">BacktestTradingSessionBuilder</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.trading_session.live_trading_session.LiveTradingSession.html">LiveTradingSession</a></li>
 </ul>
 </li>
 </ul>
@@ -153,6 +154,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -166,7 +169,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -190,7 +193,7 @@ By default it uses the following settings:</p>
 <li><p>backtest name is set to “Backtest Results”</p></li>
 <li><p>initial cash is set to 10000000</p></li>
 <li><p>montior type is set to LightBacktestMonitor</p></li>
-<li><p>DummyBloombergContractTickerMapper is used to map contracts to tickers</p></li>
+<li><p>SimulatedBloombergContractTickerMapper is used to map contracts to tickers</p></li>
 <li><p>no commissions are introduced (FixedCommissionModel(0.0))</p></li>
 <li><p>no slippage is introduced (PriceBasedSlippage(0.0))</p></li>
 <li><p>SimplePositionSizer is used</p></li>
@@ -219,41 +222,8 @@ By default it uses the following settings:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.build" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.build"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build</span></code></a>(start_date, end_date)</p></td>
 <td><p>Builds a backtest trading session.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_alpha_model_backtest_name" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_alpha_model_backtest_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_alpha_model_backtest_name</span></code></a>(model_type, …)</p></td>
-<td><p>Sets the alpha model backtest name.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_backtest_name" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_backtest_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_backtest_name</span></code></a>(name)</p></td>
-<td><p>Sets backtest name.</p></td>
-</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_benchmark_tms" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_benchmark_tms"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_benchmark_tms</span></code></a>(benchmark_tms)</p></td>
 <td><p>Sets the benchmark timeseries.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_commission_model" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_commission_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_commission_model</span></code></a>(commission_model)</p></td>
-<td><p>Sets commission model.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_contract_ticker_mapper" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_contract_ticker_mapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_contract_ticker_mapper</span></code></a>(…)</p></td>
-<td><p>Sets the mapping between contracts and tickers.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_data_provider" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_data_provider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_data_provider</span></code></a>(data_provider)</p></td>
-<td><p>Sets the data provider.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_frequency" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_frequency</span></code></a>(frequency)</p></td>
-<td><p>Sets the frequency of the backtest.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_initial_cash" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_initial_cash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_initial_cash</span></code></a>(initial_cash)</p></td>
-<td><p>Sets the initial cash value.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_monitor_type" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_monitor_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_monitor_type</span></code></a>(monitor_type)</p></td>
-<td><p>Sets type of the monitor.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_position_sizer" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_position_sizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_position_sizer</span></code></a>(position_sizer_type, …)</p></td>
-<td><p>Sets the position sizer.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_scheduling_time_delay" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_scheduling_time_delay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_scheduling_time_delay</span></code></a>(time_delay)</p></td>
-<td><p>Sets the scheduling delay.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_slippage_model" title="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_slippage_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_slippage_model</span></code></a>(slippage_model)</p></td>
-<td><p>Sets the slippage model.</p></td>
 </tr>
 </tbody>
 </table>
@@ -278,141 +248,12 @@ By default it uses the following settings:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_alpha_model_backtest_name">
-<code class="sig-name descname">set_alpha_model_backtest_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_type</span><span class="p">:</span> <span class="n">Type<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html#qf_lib.backtesting.alpha_model.alpha_model.AlphaModel" title="qf_lib.backtesting.alpha_model.alpha_model.AlphaModel">qf_lib.backtesting.alpha_model.alpha_model.AlphaModel</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">param_set</span><span class="p">:</span> <span class="n">Tuple</span></em>, <em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_alpha_model_backtest_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_alpha_model_backtest_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the alpha model backtest name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model_type</strong> (<em>Type</em><em>[</em><a class="reference internal" href="qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html#qf_lib.backtesting.alpha_model.alpha_model.AlphaModel" title="qf_lib.backtesting.alpha_model.alpha_model.AlphaModel"><em>AlphaModel</em></a><em>]</em>) – type of the alpha model</p></li>
-<li><p><strong>param_set</strong> (<em>Tuple</em>) – params of the model, included in the name creation</p></li>
-<li><p><strong>tickers</strong> (<em>List</em><em>[</em><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker"><em>Ticker</em></a><em>]</em>) – list of tickers</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_backtest_name">
-<code class="sig-name descname">set_backtest_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_backtest_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_backtest_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets backtest name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – new backtest name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_benchmark_tms">
 <code class="sig-name descname">set_benchmark_tms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">benchmark_tms</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_benchmark_tms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_benchmark_tms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the benchmark timeseries. If set, the TearsheetWithBenchamrk will be generated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>benchmark_tms</strong> (<a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries"><em>QFSeries</em></a>) – timeseries of the benchmark</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_commission_model">
-<code class="sig-name descname">set_commission_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">commission_model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.execution_handler.commission_models.commission_model.CommissionModel.html#qf_lib.backtesting.execution_handler.commission_models.commission_model.CommissionModel" title="qf_lib.backtesting.execution_handler.commission_models.commission_model.CommissionModel">qf_lib.backtesting.execution_handler.commission_models.commission_model.CommissionModel</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_commission_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_commission_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets commission model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>commission_model</strong> (<a class="reference internal" href="qf_lib.backtesting.execution_handler.commission_models.commission_model.CommissionModel.html#qf_lib.backtesting.execution_handler.commission_models.commission_model.CommissionModel" title="qf_lib.backtesting.execution_handler.commission_models.commission_model.CommissionModel"><em>CommissionModel</em></a>) – object representing the commission model</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_contract_ticker_mapper">
-<code class="sig-name descname">set_contract_ticker_mapper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contract_ticker_mapper</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper">qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_contract_ticker_mapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_contract_ticker_mapper" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the mapping between contracts and tickers.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>contract_ticker_mapper</strong> (<a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper"><em>ContractTickerMapper</em></a>) – mapping between contracts and tickers</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_data_provider">
-<code class="sig-name descname">set_data_provider</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_provider</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.data_providers.data_provider.DataProvider.html#qf_lib.data_providers.data_provider.DataProvider" title="qf_lib.data_providers.data_provider.DataProvider">qf_lib.data_providers.data_provider.DataProvider</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_data_provider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_data_provider" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the data provider.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>data_provider</strong> (<a class="reference internal" href="qf_lib.data_providers.data_provider.DataProvider.html#qf_lib.data_providers.data_provider.DataProvider" title="qf_lib.data_providers.data_provider.DataProvider"><em>DataProvider</em></a>) – data provider used to download data and prices</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_frequency">
-<code class="sig-name descname">set_frequency</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_frequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_frequency" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the frequency of the backtest. Based on this either DailyDataHandler or
-IntradayDataHandler is chosen.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>frequency</strong> (<a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency"><em>Frequency</em></a>) – frequency of the data and prices</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_initial_cash">
-<code class="sig-name descname">set_initial_cash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">initial_cash</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_initial_cash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_initial_cash" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the initial cash value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>initial_cash</strong> (<em>int</em>) – </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_monitor_type">
-<code class="sig-name descname">set_monitor_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">monitor_type</span><span class="p">:</span> <span class="n">Type<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor.html#qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor" title="qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor">qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_monitor_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_monitor_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets type of the monitor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>monitor_type</strong> (<em>Type</em><em>[</em><a class="reference internal" href="qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor.html#qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor" title="qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor"><em>AbstractMonitor</em></a><em>]</em>) – type of the monitor</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_position_sizer">
-<code class="sig-name descname">set_position_sizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">position_sizer_type</span><span class="p">:</span> <span class="n">Type<span class="p">[</span><a class="reference internal" href="qf_lib.backtesting.position_sizer.position_sizer.PositionSizer.html#qf_lib.backtesting.position_sizer.position_sizer.PositionSizer" title="qf_lib.backtesting.position_sizer.position_sizer.PositionSizer">qf_lib.backtesting.position_sizer.position_sizer.PositionSizer</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_position_sizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_position_sizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the position sizer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>position_sizer_type</strong> (<em>Type</em><em>[</em><a class="reference internal" href="qf_lib.backtesting.position_sizer.position_sizer.PositionSizer.html#qf_lib.backtesting.position_sizer.position_sizer.PositionSizer" title="qf_lib.backtesting.position_sizer.position_sizer.PositionSizer"><em>PositionSizer</em></a><em>]</em>) – type of position sizer</p></li>
-<li><p><strong>kwargs</strong> – all parameters which are necessary to initialize the chosen position sizer</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_scheduling_time_delay">
-<code class="sig-name descname">set_scheduling_time_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_delay</span><span class="p">:</span> <span class="n">qf_lib.common.utils.dateutils.relative_delta.RelativeDelta</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_scheduling_time_delay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_scheduling_time_delay" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the scheduling delay.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>time_delay</strong> (<em>RelativeDelta</em>) – scheduling time delay</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_slippage_model">
-<code class="sig-name descname">set_slippage_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">slippage_model</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.execution_handler.slippage.base.Slippage.html#qf_lib.backtesting.execution_handler.slippage.base.Slippage" title="qf_lib.backtesting.execution_handler.slippage.base.Slippage">qf_lib.backtesting.execution_handler.slippage.base.Slippage</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/trading_session/backtest_trading_session_builder.html#BacktestTradingSessionBuilder.set_slippage_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.trading_session.backtest_trading_session_builder.BacktestTradingSessionBuilder.set_slippage_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the slippage model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>slippage_model</strong> (<a class="reference internal" href="qf_lib.backtesting.execution_handler.slippage.base.Slippage.html#qf_lib.backtesting.execution_handler.slippage.base.Slippage" title="qf_lib.backtesting.execution_handler.slippage.base.Slippage"><em>Slippage</em></a>) – object representing the slippage model</p>
 </dd>
 </dl>
 </dd></dl>
@@ -426,37 +267,29 @@ IntradayDataHandler is chosen.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.trading_session.live_trading_session.LiveTradingSession.html" class="btn btn-neutral float-right" title="LiveTradingSession" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.trading_session.backtest_trading_session.BacktestTradingSession.html" class="btn btn-neutral float-left" title="BacktestTradingSession" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../common.html" class="btn btn-neutral float-right" title="common" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.trading_session.backtest_trading_session.BacktestTradingSession.html" class="btn btn-neutral float-left" title="BacktestTradingSession" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

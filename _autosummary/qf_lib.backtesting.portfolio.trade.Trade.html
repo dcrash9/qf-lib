@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Trade &mdash; QF Lib  documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+            <a href="../index.html" class="icon icon-home"> QF Lib
           
 
           
@@ -153,6 +155,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -166,7 +170,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
     
@@ -182,84 +186,26 @@
 <h1>Trade<a class="headerlink" href="#trade" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.backtesting.portfolio.trade.Trade">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.portfolio.trade.</code><code class="sig-name descname">Trade</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_time</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_time</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">contract</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a></span></em>, <em class="sig-param"><span class="n">quantity</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">entry_price</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">exit_price</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">commission</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">risk_as_percent</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">nan</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/trade.html#Trade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.trade.Trade" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.portfolio.trade.</code><code class="sig-name descname">Trade</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_time</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_time</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">contract</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a></span></em>, <em class="sig-param"><span class="n">pnl</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">commission</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">direction</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">percentage_pnl</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">nan</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/trade.html#Trade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.trade.Trade" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Trade represents a pair of transactions that go in the opposite directions.
-For example we buy 10 shares of X and then we sell 3 shares of X. This creates a trade when we buy and sell 3
-shares of X</p>
+<p>Trade is a logical unit representing getting exposure to the market (long or short) finished by closing the
+position. Trade begins with new position opened and finishes when the position is closed.
+Note: For futures contracts, automated rolling of the contract will result in closing the existing exposure on the
+specific ticker, and therefore will generate a trade.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>start_time</strong> (<em>datetime</em>) – moment when we opened the position corresponding to this trade</p></li>
-<li><p><strong>end_time</strong> (<em>datetime</em>) – moment when we close the trade</p></li>
-<li><p><strong>contract</strong> (<a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract"><em>Contract</em></a>) – contract defining the security</p></li>
-<li><p><strong>quantity</strong> (<em>int</em>) – number of shares traded</p></li>
-<li><p><strong>entry_price</strong> (<em>float</em>) – price at which the instrument has been bought (excluding all fees and commission)</p></li>
-<li><p><strong>exit_price</strong> (<em>float</em>) – price at which the trade was closed (excluding all fees and commission)</p></li>
-<li><p><strong>commission</strong> (<em>float</em>) – all the transaction costs related to the trade.
-It includes the cost of opening the position and also cost of reducing it.
-commission is expressed in currency units</p></li>
-<li><p><strong>risk_as_percent</strong> (<em>float</em>) – max percentage risk that we aim to have on this instrument.
-for example it could be the the percentage that is used to calculate the stop price.</p></li>
+<li><p><strong>start_time</strong> (<em>datetime</em>) – Moment when we opened the position corresponding to this trade.</p></li>
+<li><p><strong>end_time</strong> (<em>datetime</em>) – Moment when we close the trade.</p></li>
+<li><p><strong>contract</strong> (<a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract"><em>Contract</em></a>) – Contract defining the security.</p></li>
+<li><p><strong>pnl</strong> (<em>float</em>) – Profit or loss associated with a trade expressed in currency units including transaction costs and commissions.</p></li>
+<li><p><strong>commission</strong> (<em>float</em>) – All the transaction costs related to the trade. It includes the cost of opening the position and also cost
+of reducing it. Expressed in currency units.</p></li>
+<li><p><strong>direction</strong> (<em>int</em>) – Direction of the position: Long = 1, Short = -1. Defined by the initial transaction.</p></li>
+<li><p><strong>percentage_pnl</strong> (<em>float</em>) – Total pnl divided by the most recent value of the portfolio.</p></li>
 </ul>
 </dd>
 </dl>
-<p><strong>Methods:</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.trade.Trade.define_risk" title="qf_lib.backtesting.portfolio.trade.Trade.define_risk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">define_risk</span></code></a>(risk_as_percent)</p></td>
-<td><p>If not known up front (in the constructor), the risk percentage can be defined later on.</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Attributes:</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.trade.Trade.pnl" title="qf_lib.backtesting.portfolio.trade.Trade.pnl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pnl</span></code></a></p></td>
-<td><p>Profit or loss associated with a trade expressed in currency units including transaction costs and commissions</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.trade.Trade.r_multiply" title="qf_lib.backtesting.portfolio.trade.Trade.r_multiply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">r_multiply</span></code></a></p></td>
-<td><p>R multiply is the ratio of (profit or loss) to (total risk)</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.portfolio.trade.Trade.total_risk" title="qf_lib.backtesting.portfolio.trade.Trade.total_risk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">total_risk</span></code></a></p></td>
-<td><p>total risk associated with a trade expressed in currency units.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py method">
-<dt id="qf_lib.backtesting.portfolio.trade.Trade.define_risk">
-<code class="sig-name descname">define_risk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">risk_as_percent</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/trade.html#Trade.define_risk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.trade.Trade.define_risk" title="Permalink to this definition">¶</a></dt>
-<dd><p>If not known up front (in the constructor), the risk percentage can be defined later on.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.portfolio.trade.Trade.pnl">
-<em class="property">property </em><code class="sig-name descname">pnl</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.trade.Trade.pnl" title="Permalink to this definition">¶</a></dt>
-<dd><p>Profit or loss associated with a trade expressed in currency units
-including transaction costs and commissions</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.portfolio.trade.Trade.r_multiply">
-<em class="property">property </em><code class="sig-name descname">r_multiply</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.trade.Trade.r_multiply" title="Permalink to this definition">¶</a></dt>
-<dd><p>R multiply is the ratio of (profit or loss) to (total risk)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.backtesting.portfolio.trade.Trade.total_risk">
-<em class="property">property </em><code class="sig-name descname">total_risk</code><a class="headerlink" href="#qf_lib.backtesting.portfolio.trade.Trade.total_risk" title="Permalink to this definition">¶</a></dt>
-<dd><p>total risk associated with a trade expressed in currency units.
-It is the maximum loss that we expect to get while holding ‘self.quantity’ units of ‘self.contract’</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -269,37 +215,29 @@ It is the maximum loss that we expect to get while holding ‘self.quantity’ u
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="qf_lib.backtesting.portfolio.transaction.Transaction.html" class="btn btn-neutral float-right" title="Transaction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.html" class="btn btn-neutral float-left" title="BacktestPosition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="qf_lib.backtesting.portfolio.transaction.Transaction.html" class="btn btn-neutral float-right" title="Transaction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.html" class="btn btn-neutral float-left" title="BacktestPosition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020
+        &#169; Copyright 2020.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
