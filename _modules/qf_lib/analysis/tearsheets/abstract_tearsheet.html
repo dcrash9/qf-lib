@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.analysis.tearsheets.abstract_tearsheet &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -182,7 +178,6 @@
 
 <span class="kn">from</span> <span class="nn">qf_lib.analysis.common.abstract_document</span> <span class="kn">import</span> <span class="n">AbstractDocument</span>
 <span class="kn">from</span> <span class="nn">qf_lib.analysis.timeseries_analysis.timeseries_analysis</span> <span class="kn">import</span> <span class="n">TimeseriesAnalysis</span>
-<span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.plotting_mode</span> <span class="kn">import</span> <span class="n">PlottingMode</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.volatility.get_volatility</span> <span class="kn">import</span> <span class="n">get_volatility</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.prices_series</span> <span class="kn">import</span> <span class="n">PricesSeries</span>
@@ -191,9 +186,7 @@
 <span class="kn">from</span> <span class="nn">qf_lib.documents_utils.document_exporting.element.grid</span> <span class="kn">import</span> <span class="n">GridElement</span>
 <span class="kn">from</span> <span class="nn">qf_lib.documents_utils.document_exporting.pdf_exporter</span> <span class="kn">import</span> <span class="n">PDFExporter</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.charts.cone_chart</span> <span class="kn">import</span> <span class="n">ConeChart</span>
-<span class="kn">from</span> <span class="nn">qf_lib.plotting.charts.returns_heatmap_chart</span> <span class="kn">import</span> <span class="n">ReturnsHeatmapChart</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.helpers.create_return_quantiles</span> <span class="kn">import</span> <span class="n">create_return_quantiles</span>
-<span class="kn">from</span> <span class="nn">qf_lib.plotting.helpers.create_returns_bar_chart</span> <span class="kn">import</span> <span class="n">create_returns_bar_chart</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.helpers.create_skewness_chart</span> <span class="kn">import</span> <span class="n">create_skewness_chart</span>
 <span class="kn">from</span> <span class="nn">qf_lib.settings</span> <span class="kn">import</span> <span class="n">Settings</span>
 
@@ -234,18 +227,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">ChartElement</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_large_perf_chart</span><span class="p">(</span><span class="n">series_list</span><span class="p">),</span>
                                                <span class="n">figsize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">full_image_size</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_add_returns_statistics_charts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_new_grid</span><span class="p">()</span>
-
-        <span class="c1"># Monthly returns heatmap</span>
-        <span class="n">heatmap_chart</span> <span class="o">=</span> <span class="n">ReturnsHeatmapChart</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strategy_series</span><span class="p">)</span>
-        <span class="n">grid</span><span class="o">.</span><span class="n">add_chart</span><span class="p">(</span><span class="n">heatmap_chart</span><span class="p">)</span>
-
-        <span class="c1"># Annual returns bar chart</span>
-        <span class="n">annual_ret_chart</span> <span class="o">=</span> <span class="n">create_returns_bar_chart</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strategy_series</span><span class="p">)</span>
-        <span class="n">grid</span><span class="o">.</span><span class="n">add_chart</span><span class="p">(</span><span class="n">annual_ret_chart</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">_add_cone_and_quantiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_new_grid</span><span class="p">()</span>
         <span class="c1"># Cone chart</span>
@@ -285,7 +266,7 @@
 
     <span class="k">def</span> <span class="nf">_add_rolling_vol_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeseries_list</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">volatility</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">get_volatility</span><span class="p">(</span><span class="n">PricesSeries</span><span class="p">(</span><span class="n">window</span><span class="p">),</span> <span class="n">Frequency</span><span class="o">.</span><span class="n">DAILY</span><span class="p">,</span> <span class="n">annualise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">get_volatility</span><span class="p">(</span><span class="n">PricesSeries</span><span class="p">(</span><span class="n">window</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency</span><span class="p">,</span> <span class="n">annualise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_rolling_chart</span><span class="p">(</span><span class="n">timeseries_list</span><span class="p">,</span> <span class="n">volatility</span><span class="p">,</span> <span class="s2">&quot;Volatility&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">ChartElement</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">full_image_size</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">))</span>
@@ -319,25 +300,28 @@
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

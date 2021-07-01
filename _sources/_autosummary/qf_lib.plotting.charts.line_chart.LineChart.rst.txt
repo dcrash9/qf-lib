@@ -1,4 +1,4 @@
-﻿LineChart
+LineChart
 ===========================================
 
 .. currentmodule:: qf_lib.plotting.charts.line_chart

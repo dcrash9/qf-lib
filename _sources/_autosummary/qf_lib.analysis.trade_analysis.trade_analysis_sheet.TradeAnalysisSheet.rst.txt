@@ -1,4 +1,4 @@
-﻿TradeAnalysisSheet
+TradeAnalysisSheet
 ======================================================================
 
 .. currentmodule:: qf_lib.analysis.trade_analysis.trade_analysis_sheet

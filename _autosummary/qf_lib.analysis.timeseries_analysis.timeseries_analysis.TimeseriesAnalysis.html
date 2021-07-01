@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>TimeseriesAnalysis &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -54,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> QF Lib
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,19 +84,26 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../analysis.html">analysis</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.common.abstract_document.AbstractDocument.html">AbstractDocument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.backtests_overfitting.backtest_overfitting_sheet.BacktestOverfittingSheet.html">BacktestOverfittingSheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.backtests_overfitting.overfitting_analysis.OverfittingAnalysis.html">OverfittingAnalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.breakout_strength.trend_strength_sheet.TrendStrengthSheet.html">TrendStrengthSheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.tearsheets.abstract_tearsheet.AbstractTearsheet.html">AbstractTearsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.tearsheets.current_positions_sheet.CurrentPositionsSheet.html">CurrentPositionsSheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.tearsheets.portfolio_analysis_sheet.PortfolioAnalysisSheet.html">PortfolioAnalysisSheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.tearsheets.strategy_monitoring_document.StrategyMonitoringDocument.html">StrategyMonitoringDocument</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.tearsheets.tearsheet_with_benchmark.TearsheetWithBenchmark.html">TearsheetWithBenchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.tearsheets.tearsheet_without_benchmark.TearsheetWithoutBenchmark.html">TearsheetWithoutBenchmark</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">TimeseriesAnalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.trade_analysis.trades_generator.TradesGenerator.html">TradesGenerator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.trade_analysis.trade_analysis_sheet.TradeAnalysisSheet.html">TradeAnalysisSheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.signals_analysis.signals_plotter.SignalsPlotter.html">SignalsPlotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.exposure_analysis.exposure_generator.ExposureGenerator.html">ExposureGenerator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.exposure_analysis.exposure_sheet.ExposureSheet.html">ExposureSheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.analysis.exposure_analysis.exposure_settings.ExposureSettings.html">ExposureSettings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
@@ -148,8 +154,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -175,7 +179,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="timeseriesanalysis">
+  <section id="timeseriesanalysis">
 <h1>TimeseriesAnalysis<a class="headerlink" href="#timeseriesanalysis" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis">
@@ -211,15 +215,7 @@ It contains the following fields:</p>
 <li><p>kurtosis</p></li>
 <li><p>kelly</p></li>
 </ul>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>returns_timeseries</strong> (<a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries"><em>QFSeries</em></a>) – Analysed timeseries. It should be PriceSeries, SimpleReturnSeries or LogReturnSeries</p></li>
-<li><p><strong>frequency</strong> (<a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency"><em>Frequency</em></a>) – Corresponds to the frequency od data samples in the seres.</p></li>
-</ul>
-</dd>
-</dl>
-<p><strong>Methods:</strong></p>
+<p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -241,14 +237,22 @@ It contains the following fields:</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.populate_table" title="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.populate_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">populate_table</span></code></a>(table[, name])</p></td>
 <td><p>Adds the data calculated in this analysis to the specified table.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.table_for_df" title="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.table_for_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_for_df</span></code></a>(df[, frequency])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.table_for_df" title="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.table_for_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_for_df</span></code></a>(df, frequency)</p></td>
 <td><p>Returns a table similar to the one below:</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.values_in_table" title="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.values_in_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values_in_table</span></code></a>(ta_collection[, asset_names])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.values_in_table" title="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.values_in_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values_in_table</span></code></a>(ta_collection, …)</p></td>
 <td><p>Returns a string with all the measures in a form of table of the following format:</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>returns_timeseries</strong> (<a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries"><em>QFSeries</em></a>) – Analysed timeseries. It should be PriceSeries, SimpleReturnSeries or LogReturnSeries</p></li>
+<li><p><strong>frequency</strong> (<a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency"><em>Frequency</em></a>) – Corresponds to the frequency od data samples in the seres.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.get_measures">
 <code class="sig-name descname">get_measures</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>str<span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/analysis/timeseries_analysis/timeseries_analysis.html#TimeseriesAnalysis.get_measures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.get_measures" title="Permalink to this definition">¶</a></dt>
@@ -310,7 +314,7 @@ Asset3              66.26       29.19       20.74       14.86       15.54 …
 
 <dl class="py method">
 <dt id="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.values_in_table">
-<em class="property">static </em><code class="sig-name descname">values_in_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ta_collection</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis" title="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis">qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis" title="qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis">qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">asset_names</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/qf_lib/analysis/timeseries_analysis/timeseries_analysis.html#TimeseriesAnalysis.values_in_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.values_in_table" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">values_in_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ta_collection</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>TimeseriesAnalysis<span class="p">, </span>Sequence<span class="p">[</span>TimeseriesAnalysis<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">asset_names</span><span class="p">:</span> <span class="n">Union[None, str, Sequence[str]]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/qf_lib/analysis/timeseries_analysis/timeseries_analysis.html#TimeseriesAnalysis.values_in_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.analysis.timeseries_analysis.timeseries_analysis.TimeseriesAnalysis.values_in_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a string with all the measures in a form of table of the following format:</p>
 <blockquote>
 <div><p>Asset1    Asset2  …</p>
@@ -331,36 +335,44 @@ Nice_nameN    value12   value22 … unitN</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="qf_lib.analysis.trade_analysis.trades_generator.TradesGenerator.html" class="btn btn-neutral float-right" title="TradesGenerator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="qf_lib.analysis.tearsheets.tearsheet_without_benchmark.TearsheetWithoutBenchmark.html" class="btn btn-neutral float-left" title="TearsheetWithoutBenchmark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="qf_lib.analysis.trade_analysis.trades_generator.TradesGenerator.html" class="btn btn-neutral float-right" title="TradesGenerator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qf_lib.analysis.tearsheets.tearsheet_without_benchmark.TearsheetWithoutBenchmark.html" class="btn btn-neutral float-left" title="TearsheetWithoutBenchmark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

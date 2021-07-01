@@ -1,4 +1,4 @@
-﻿cagr
+cagr
 =====================================
 
 .. currentmodule:: qf_lib.common.utils.returns.cagr

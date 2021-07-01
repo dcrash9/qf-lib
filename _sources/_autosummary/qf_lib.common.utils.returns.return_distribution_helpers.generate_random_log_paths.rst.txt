@@ -1,4 +1,4 @@
-﻿generate_random_log_paths
+generate_random_log_paths
 =================================================================================
 
 .. currentmodule:: qf_lib.common.utils.returns.return_distribution_helpers

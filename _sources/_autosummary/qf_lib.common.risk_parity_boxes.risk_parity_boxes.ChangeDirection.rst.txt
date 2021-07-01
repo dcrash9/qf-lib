@@ -1,4 +1,4 @@
-﻿ChangeDirection
+ChangeDirection
 =================================================================
 
 .. currentmodule:: qf_lib.common.risk_parity_boxes.risk_parity_boxes

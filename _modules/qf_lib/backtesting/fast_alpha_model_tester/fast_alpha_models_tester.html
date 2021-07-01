@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.backtesting.fast_alpha_model_tester.fast_alpha_models_tester &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -232,8 +228,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model_parameters_names</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">modeled_params</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
 
-        <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">param</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_parameters_names</span> <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> \
-               <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_parameters_names</span><span class="p">),</span> <span class="s2">&quot;The modeled_params need to be passed in the kwargs&quot;</span>
+        <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">param</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_parameters_names</span> <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_parameters_names</span><span class="p">),</span> <span class="s2">&quot;The modeled_params need to be passed in the kwargs&quot;</span>
 
     <span class="k">def</span> <span class="nf">generate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_handler</span><span class="p">:</span> <span class="n">DataHandler</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">data_handler</span><span class="o">=</span><span class="n">data_handler</span><span class="p">)</span>
@@ -297,8 +293,7 @@
                 <span class="n">contract</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="o">.</span><span class="n">ticker_to_contract</span><span class="p">(</span><span class="n">ticker</span><span class="p">)</span>
                 <span class="n">tickers_to_contracts</span><span class="p">[</span><span class="n">ticker</span><span class="p">]</span> <span class="o">=</span> <span class="n">contract</span>
             <span class="k">except</span> <span class="n">NoValidTickerException</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No valid ticker for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">ticker</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">FutureTicker</span><span class="p">)</span> <span class="k">else</span> <span class="n">ticker</span><span class="o">.</span><span class="n">as_string</span><span class="p">()))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No valid ticker for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">tickers_to_contracts</span>
 
@@ -444,11 +439,18 @@
         <span class="n">trade_exposure</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">trade_start_price</span> <span class="o">=</span> <span class="kc">None</span>
 
+        <span class="c1"># If the first exposure is nan - skip it</span>
+        <span class="n">first_exposure</span> <span class="o">=</span> <span class="n">historical_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">first_exposure</span><span class="p">):</span>
+            <span class="n">historical_data</span> <span class="o">=</span> <span class="n">historical_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
         <span class="k">for</span> <span class="n">curr_date</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">historical_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
             <span class="n">curr_exposure</span><span class="p">,</span> <span class="n">curr_price</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span>
 
-            <span class="c1"># skipping the nan exposures (the first one is sure to be nan)</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">curr_exposure</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">curr_price</span><span class="p">):</span>
+            <span class="c1"># skipping the nan Open prices</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">curr_price</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Open price is None, cannot create trade on </span><span class="si">{}</span><span class="s2"> for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">curr_date</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">ticker</span><span class="p">)))</span>
                 <span class="k">continue</span>
 
             <span class="n">out_of_the_market</span> <span class="o">=</span> <span class="n">trade_exposure</span> <span class="ow">is</span> <span class="kc">None</span>
@@ -538,25 +540,28 @@
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

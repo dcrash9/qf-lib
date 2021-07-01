@@ -1,4 +1,4 @@
-﻿BarValuesDecorator
+BarValuesDecorator
 ==================================================================
 
 .. currentmodule:: qf_lib.plotting.decorators.bar_values_decorator

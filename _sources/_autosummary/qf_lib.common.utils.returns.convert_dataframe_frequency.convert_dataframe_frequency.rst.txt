@@ -1,4 +1,4 @@
-﻿convert_dataframe_frequency
+convert_dataframe_frequency
 ===================================================================================
 
 .. currentmodule:: qf_lib.common.utils.returns.convert_dataframe_frequency

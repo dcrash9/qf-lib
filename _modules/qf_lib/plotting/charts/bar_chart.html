@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.plotting.charts.bar_chart &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -174,7 +170,6 @@
 <span class="c1">#     See the License for the specific language governing permissions and</span>
 <span class="c1">#     limitations under the License.</span>
 
-<span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span>
 
@@ -213,7 +208,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orientation</span><span class="p">:</span> <span class="n">Orientation</span><span class="p">,</span> <span class="n">stacked</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">index_translator</span><span class="p">:</span> <span class="n">IndexTranslator</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">thickness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">start_x</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_x</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">thickness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">start_x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">upper_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">lower_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_settings</span><span class="p">):</span>
         <span class="n">Chart</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">end_x</span><span class="p">,</span> <span class="n">upper_y</span><span class="p">,</span> <span class="n">lower_y</span><span class="p">)</span>
 
@@ -303,32 +298,40 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># The left parameter specifies the x coordinate of where each bar should start (it&#39;s a list of values)</span>
                 <span class="n">bars</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">last_positions</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_thickness</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_settings</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">bars</span></div>
+        <span class="k">return</span> <span class="n">bars</span>
+
+    <span class="k">def</span> <span class="nf">_trim_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="c1"># do not trim data using index as it does not make sense for bar chart</span>
+        <span class="c1"># default behaviour of this function in Chart might cause data removal.</span>
+        <span class="k">return</span> <span class="n">data</span></div>
 </pre></div>
 
            </div>
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

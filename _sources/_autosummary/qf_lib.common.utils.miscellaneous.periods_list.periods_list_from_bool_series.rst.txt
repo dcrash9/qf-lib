@@ -1,4 +1,4 @@
-﻿periods_list_from_bool_series
+periods_list_from_bool_series
 ============================================================================
 
 .. currentmodule:: qf_lib.common.utils.miscellaneous.periods_list

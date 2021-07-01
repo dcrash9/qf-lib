@@ -1,4 +1,4 @@
-﻿QFDataArray
+QFDataArray
 ===========================================
 
 .. currentmodule:: qf_lib.containers.qf_data_array

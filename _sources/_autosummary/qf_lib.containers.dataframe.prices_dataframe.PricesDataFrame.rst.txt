@@ -1,4 +1,4 @@
-﻿PricesDataFrame
+PricesDataFrame
 ============================================================
 
 .. currentmodule:: qf_lib.containers.dataframe.prices_dataframe

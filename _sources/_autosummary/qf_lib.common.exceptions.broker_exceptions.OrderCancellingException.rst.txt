@@ -1,4 +1,4 @@
-﻿OrderCancellingException
+OrderCancellingException
 ===================================================================
 
 .. currentmodule:: qf_lib.common.exceptions.broker_exceptions

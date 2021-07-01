@@ -1,4 +1,4 @@
-﻿DataCoordinate
+DataCoordinate
 ====================================================
 
 .. currentmodule:: qf_lib.plotting.decorators.coordinate

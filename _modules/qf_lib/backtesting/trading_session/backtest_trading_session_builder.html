@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.backtesting.trading_session.backtest_trading_session_builder &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -197,7 +193,8 @@
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.execution_handler.slippage.price_based_slippage</span> <span class="kn">import</span> <span class="n">PriceBasedSlippage</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.backtest_monitor</span> <span class="kn">import</span> <span class="n">BacktestMonitorSettings</span><span class="p">,</span> <span class="n">BacktestMonitor</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.backtest_result</span> <span class="kn">import</span> <span class="n">BacktestResult</span>
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.monitoring.signals_register</span> <span class="kn">import</span> <span class="n">SignalsRegister</span>
+<span class="kn">from</span> <span class="nn">qf_lib.backtesting.signals.backtest_signals_register</span> <span class="kn">import</span> <span class="n">BacktestSignalsRegister</span>
+<span class="kn">from</span> <span class="nn">qf_lib.backtesting.signals.signals_register</span> <span class="kn">import</span> <span class="n">SignalsRegister</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.order.order_factory</span> <span class="kn">import</span> <span class="n">OrderFactory</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.orders_filter.orders_filter</span> <span class="kn">import</span> <span class="n">OrdersFilter</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.portfolio.portfolio</span> <span class="kn">import</span> <span class="n">Portfolio</span>
@@ -236,7 +233,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ------------</span>
-<span class="sd">    data_provider: GeneralPriceProvider</span>
+<span class="sd">    data_provider: DataProvider</span>
 <span class="sd">        data provider used to download all fields and prices used during trading</span>
 <span class="sd">    settings: Settings</span>
 <span class="sd">        object containing all necessary settings, used for example for connection purposes</span>
@@ -252,6 +249,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span> <span class="o">=</span> <span class="s2">&quot;Backtest Results&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span> <span class="o">=</span> <span class="mi">10000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initial_risk</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_benchmark_tms</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_settings</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -268,6 +266,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filter_types_params</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: List[Tuple[Type[OrdersFilter], Dict]]</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_signals_register</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span> <span class="o">=</span> <span class="n">data_provider</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_settings</span> <span class="o">=</span> <span class="n">settings</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pdf_exporter</span> <span class="o">=</span> <span class="n">pdf_exporter</span>
@@ -328,6 +327,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span> <span class="o">=</span> <span class="n">initial_cash</span>
 
     <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_initial_risk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_risk</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the initial risk value.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        initial_risk: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initial_risk</span> <span class="o">=</span> <span class="n">initial_risk</span>
+
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
     <span class="k">def</span> <span class="nf">set_data_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_provider</span><span class="p">:</span> <span class="n">DataProvider</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the data provider.</span>
 
@@ -337,6 +346,17 @@
 <span class="sd">            data provider used to download data and prices</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span> <span class="o">=</span> <span class="n">data_provider</span>
+
+    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
+    <span class="k">def</span> <span class="nf">set_signals_register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">:</span> <span class="n">SignalsRegister</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the signals register.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        signals_register: DataProvider</span>
+<span class="sd">            signals register used to record signals by the position sizer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_signals_register</span> <span class="o">=</span> <span class="n">signals_register</span>
 
     <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
     <span class="k">def</span> <span class="nf">set_monitor_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monitor_settings</span><span class="p">:</span> <span class="n">BacktestMonitorSettings</span><span class="p">):</span>
@@ -524,11 +544,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_events_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_event_manager</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_notifiers</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_data_handler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">)</span>
-        <span class="n">signals_register</span> <span class="o">=</span> <span class="n">SignalsRegister</span><span class="p">()</span>
+        <span class="n">signals_register</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_signals_register</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_signals_register</span> <span class="k">else</span> <span class="n">BacktestSignalsRegister</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_result</span> <span class="o">=</span> <span class="n">BacktestResult</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span>
-                                               <span class="n">end_date</span><span class="p">)</span>
+                                               <span class="n">end_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_risk</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_setup</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_setup</span><span class="p">()</span>
@@ -624,25 +645,28 @@
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

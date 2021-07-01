@@ -1,4 +1,4 @@
-﻿cvar
+cvar
 =====================================
 
 .. currentmodule:: qf_lib.common.utils.returns.cvar

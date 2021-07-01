@@ -1,4 +1,4 @@
-﻿annualise_total_return
+annualise_total_return
 =========================================================================
 
 .. currentmodule:: qf_lib.common.utils.returns.annualise_total_return

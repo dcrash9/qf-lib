@@ -1,4 +1,4 @@
-﻿IB_Bloomberg_ContractTickerMapper
+IB_Bloomberg_ContractTickerMapper
 ===============================================================================================================
 
 .. currentmodule:: qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper

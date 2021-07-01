@@ -1,4 +1,4 @@
-﻿HTMLExporter
+HTMLExporter
 ====================================================================
 
 .. currentmodule:: qf_lib.documents_utils.document_exporting.html_exporter

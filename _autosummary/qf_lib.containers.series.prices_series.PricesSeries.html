@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>PricesSeries &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -54,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> QF Lib
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
@@ -149,8 +148,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -164,7 +161,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -176,14 +173,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pricesseries">
+  <section id="pricesseries">
 <h1>PricesSeries<a class="headerlink" href="#pricesseries" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.containers.series.prices_series.PricesSeries">
 <em class="property">class </em><code class="sig-prename descclassname">qf_lib.containers.series.prices_series.</code><code class="sig-name descname">PricesSeries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">copy</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">fastpath</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/containers/series/prices_series.html#PricesSeries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.series.prices_series.PricesSeries" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.containers.series.qf_series.QFSeries</span></code></a></p>
 <p>Series of prices (for example prices of the SPY).</p>
-<p><strong>Methods:</strong></p>
+<p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -193,7 +190,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.series.prices_series.PricesSeries.to_log_returns" title="qf_lib.containers.series.prices_series.PricesSeries.to_log_returns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_log_returns</span></code></a>()</p></td>
 <td><p>Converts timeseries to the timeseries of logarithmic returns.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.containers.series.prices_series.PricesSeries.to_prices" title="qf_lib.containers.series.prices_series.PricesSeries.to_prices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_prices</span></code></a>([initial_price, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.containers.series.prices_series.PricesSeries.to_prices" title="qf_lib.containers.series.prices_series.PricesSeries.to_prices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_prices</span></code></a>(initial_price, suggested_initial_date)</p></td>
 <td><p>Converts a timeseries into series of prices.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.series.prices_series.PricesSeries.to_simple_returns" title="qf_lib.containers.series.prices_series.PricesSeries.to_simple_returns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_simple_returns</span></code></a>()</p></td>
@@ -221,7 +218,7 @@ won’t be present.</p>
 
 <dl class="py method">
 <dt id="qf_lib.containers.series.prices_series.PricesSeries.to_prices">
-<code class="sig-name descname">to_prices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">initial_price</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">suggested_initial_date</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>datetime.datetime<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; [‘PricesSeries’]<a class="reference internal" href="../_modules/qf_lib/containers/series/prices_series.html#PricesSeries.to_prices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.series.prices_series.PricesSeries.to_prices" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">to_prices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">initial_price</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">suggested_initial_date</span><span class="p">:</span> <span class="n">datetime.datetime</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; [‘PricesSeries’]<a class="reference internal" href="../_modules/qf_lib/containers/series/prices_series.html#PricesSeries.to_prices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.series.prices_series.PricesSeries.to_prices" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a timeseries into series of prices. The timeseries of prices returned will have an extra date
 at the beginning (in comparison to the returns’ timeseries). The difference between the extra
 date and the rest of the dates can be inferred from the returns’ timeseries or can be calculated using
@@ -269,36 +266,44 @@ be present.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="qf_lib.containers.series.returns_series.ReturnsSeries.html" class="btn btn-neutral float-right" title="ReturnsSeries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="qf_lib.containers.series.qf_series.QFSeries.html" class="btn btn-neutral float-left" title="QFSeries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="qf_lib.containers.series.returns_series.ReturnsSeries.html" class="btn btn-neutral float-right" title="ReturnsSeries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qf_lib.containers.series.qf_series.QFSeries.html" class="btn btn-neutral float-left" title="QFSeries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-﻿convert_to_list
+convert_to_list
 ====================================================================
 
 .. currentmodule:: qf_lib.common.utils.miscellaneous.to_list_conversion

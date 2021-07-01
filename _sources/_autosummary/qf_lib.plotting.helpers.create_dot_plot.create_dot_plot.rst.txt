@@ -1,4 +1,4 @@
-﻿create_dot_plot
+create_dot_plot
 =======================================================
 
 .. currentmodule:: qf_lib.plotting.helpers.create_dot_plot

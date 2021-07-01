@@ -1,4 +1,4 @@
-﻿create_return_quantiles
+create_return_quantiles
 =======================================================================
 
 .. currentmodule:: qf_lib.plotting.helpers.create_return_quantiles

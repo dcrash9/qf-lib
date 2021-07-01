@@ -1,4 +1,4 @@
-﻿DocumentExporter
+DocumentExporter
 ============================================================================
 
 .. currentmodule:: qf_lib.documents_utils.document_exporting.document_exporter

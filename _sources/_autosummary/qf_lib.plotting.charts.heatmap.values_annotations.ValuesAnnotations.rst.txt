@@ -1,4 +1,4 @@
-﻿ValuesAnnotations
+ValuesAnnotations
 ===================================================================
 
 .. currentmodule:: qf_lib.plotting.charts.heatmap.values_annotations

@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>IndexTranslator &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -54,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> QF Lib
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
@@ -160,8 +159,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -175,7 +172,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -187,11 +184,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="indextranslator">
+  <section id="indextranslator">
 <h1>IndexTranslator<a class="headerlink" href="#indextranslator" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.plotting.helpers.index_translator.IndexTranslator">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.plotting.helpers.index_translator.</code><code class="sig-name descname">IndexTranslator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">labels_to_locations_dict</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Mapping<span class="p">[</span>str<span class="p">, </span>numbers.Number<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/plotting/helpers/index_translator.html#IndexTranslator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.plotting.helpers.index_translator.IndexTranslator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.plotting.helpers.index_translator.</code><code class="sig-name descname">IndexTranslator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">labels_to_locations_dict</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span>str<span class="p">, </span>numbers.Number<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/plotting/helpers/index_translator.html#IndexTranslator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.plotting.helpers.index_translator.IndexTranslator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Object which automatically translates label-indexed data into number-indexed data.</p>
 <dl class="field-list simple">
@@ -200,20 +197,20 @@
 and unique values.</p>
 </dd>
 </dl>
-<p><strong>Methods:</strong></p>
+<p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.plotting.helpers.index_translator.IndexTranslator.inv_translate" title="qf_lib.plotting.helpers.index_translator.IndexTranslator.inv_translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inv_translate</span></code></a>(translated_values)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.plotting.helpers.index_translator.IndexTranslator.inv_translate" title="qf_lib.plotting.helpers.index_translator.IndexTranslator.inv_translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inv_translate</span></code></a>(translated_values, …)</p></td>
 <td><p>Translates numeric coordinate into label.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.plotting.helpers.index_translator.IndexTranslator.setup_ticks_and_labels" title="qf_lib.plotting.helpers.index_translator.IndexTranslator.setup_ticks_and_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_ticks_and_labels</span></code></a>(chart)</p></td>
 <td><p>Setups ticks’ locations and labels in the given chart if it used IndexTranslator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.plotting.helpers.index_translator.IndexTranslator.translate" title="qf_lib.plotting.helpers.index_translator.IndexTranslator.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>(values)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.plotting.helpers.index_translator.IndexTranslator.translate" title="qf_lib.plotting.helpers.index_translator.IndexTranslator.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code></a>(values, Sequence[str]])</p></td>
 <td><p>Translates label into numeric coordinate.</p></td>
 </tr>
 </tbody>
@@ -263,36 +260,44 @@ it may modify the state of the translator (it may introduce a new translation).<
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../indicators.html" class="btn btn-neutral float-right" title="indicators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="qf_lib.plotting.helpers.create_skewness_chart.create_skewness_chart.html" class="btn btn-neutral float-left" title="create_skewness_chart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="../indicators.html" class="btn btn-neutral float-right" title="indicators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qf_lib.plotting.helpers.create_skewness_chart.create_skewness_chart.html" class="btn btn-neutral float-left" title="create_skewness_chart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

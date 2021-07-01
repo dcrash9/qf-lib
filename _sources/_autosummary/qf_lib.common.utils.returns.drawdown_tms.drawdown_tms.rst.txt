@@ -1,4 +1,4 @@
-﻿drawdown_tms
+drawdown_tms
 =====================================================
 
 .. currentmodule:: qf_lib.common.utils.returns.drawdown_tms

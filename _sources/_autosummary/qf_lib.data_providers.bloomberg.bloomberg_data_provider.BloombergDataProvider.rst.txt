@@ -1,4 +1,4 @@
-﻿BloombergDataProvider
+BloombergDataProvider
 =============================================================================
 
 .. currentmodule:: qf_lib.data_providers.bloomberg.bloomberg_data_provider

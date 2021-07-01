@@ -1,4 +1,4 @@
-﻿AxesFormatterDecorator
+AxesFormatterDecorator
 ==========================================================================
 
 .. currentmodule:: qf_lib.plotting.decorators.axes_formatter_decorator

@@ -1,4 +1,4 @@
-﻿create_returns_bar_chart
+create_returns_bar_chart
 =========================================================================
 
 .. currentmodule:: qf_lib.plotting.helpers.create_returns_bar_chart

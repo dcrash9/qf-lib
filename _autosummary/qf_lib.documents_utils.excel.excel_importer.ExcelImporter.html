@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>ExcelImporter &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -54,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> QF Lib
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
@@ -143,8 +142,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -158,7 +155,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -170,21 +167,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="excelimporter">
+  <section id="excelimporter">
 <h1>ExcelImporter<a class="headerlink" href="#excelimporter" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.documents_utils.excel.excel_importer.ExcelImporter">
 <em class="property">class </em><code class="sig-prename descclassname">qf_lib.documents_utils.excel.excel_importer.</code><code class="sig-name descname">ExcelImporter</code><a class="reference internal" href="../_modules/qf_lib/documents_utils/excel/excel_importer.html#ExcelImporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.documents_utils.excel.excel_importer.ExcelImporter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class used for importing Series and DataFrames from the Excel files.</p>
-<p><strong>Methods:</strong></p>
+<p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_cell" title="qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_cell</span></code></a>(file_path, cell_address[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_cell" title="qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_cell"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_cell</span></code></a>(file_path, cell_address, sheet_name)</p></td>
 <td><p>Imports a container of given type (e.g.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_container" title="qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_container"><code class="xref py py-obj docutils literal notranslate"><span class="pre">import_container</span></code></a>(file_path, starting_cell, …)</p></td>
@@ -194,7 +191,7 @@
 </table>
 <dl class="py method">
 <dt id="qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_cell">
-<code class="sig-name descname">import_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cell_address</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">sheet_name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>int<span class="p">, </span>float<span class="p">, </span>str<span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/documents_utils/excel/excel_importer.html#ExcelImporter.import_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_cell" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">import_cell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cell_address</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">sheet_name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>int<span class="p">, </span>float<span class="p">, </span>str<span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/documents_utils/excel/excel_importer.html#ExcelImporter.import_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Imports a container of given type (e.g. Series/DataFrame) from the Excel file of a given name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -216,7 +213,7 @@ is used.</p></li>
 
 <dl class="py method">
 <dt id="qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_container">
-<code class="sig-name descname">import_container</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">starting_cell</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ending_cell</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">container_type</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>type<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sheet_name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">include_index</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_column_names</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/documents_utils/excel/excel_importer.html#ExcelImporter.import_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_container" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">import_container</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">starting_cell</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ending_cell</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">container_type</span><span class="p">:</span> <span class="n">type</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sheet_name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">include_index</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_column_names</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/documents_utils/excel/excel_importer.html#ExcelImporter.import_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.documents_utils.excel.excel_importer.ExcelImporter.import_container" title="Permalink to this definition">¶</a></dt>
 <dd><p>Imports a container of given type (e.g. Series/DataFrame) from the Excel file of a given name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -245,36 +242,44 @@ column</p></li>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="qf_lib.documents_utils.email_publishing.email_publisher.EmailPublisher.html" class="btn btn-neutral float-right" title="EmailPublisher" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="qf_lib.documents_utils.document_exporting.html_exporter.HTMLExporter.html" class="btn btn-neutral float-left" title="HTMLExporter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="qf_lib.documents_utils.email_publishing.email_publisher.EmailPublisher.html" class="btn btn-neutral float-right" title="EmailPublisher" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qf_lib.documents_utils.document_exporting.html_exporter.HTMLExporter.html" class="btn btn-neutral float-left" title="HTMLExporter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-﻿avg_drawdown_duration
+avg_drawdown_duration
 =======================================================================
 
 .. currentmodule:: qf_lib.common.utils.returns.avg_drawdown_duration

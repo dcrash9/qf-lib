@@ -1,4 +1,4 @@
-﻿sqn_for100trades
+sqn_for100trades
 ================================================
 
 .. currentmodule:: qf_lib.common.utils.returns.sqn

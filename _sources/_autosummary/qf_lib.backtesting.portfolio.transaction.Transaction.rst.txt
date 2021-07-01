@@ -1,4 +1,4 @@
-﻿Transaction
+Transaction
 ====================================================
 
 .. currentmodule:: qf_lib.backtesting.portfolio.transaction

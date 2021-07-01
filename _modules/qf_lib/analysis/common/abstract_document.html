@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.analysis.common.abstract_document &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -178,9 +174,11 @@
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
 <span class="kn">from</span> <span class="nn">qf_lib.analysis.timeseries_analysis.timeseries_analysis</span> <span class="kn">import</span> <span class="n">TimeseriesAnalysis</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.plotting_mode</span> <span class="kn">import</span> <span class="n">PlottingMode</span>
-<span class="kn">from</span> <span class="nn">qf_lib.common.utils.miscellaneous.constants</span> <span class="kn">import</span> <span class="n">BUSINESS_DAYS_PER_YEAR</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.utils.returns.drawdown_tms</span> <span class="kn">import</span> <span class="n">drawdown_tms</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.volatility.get_volatility</span> <span class="kn">import</span> <span class="n">get_volatility</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.prices_series</span> <span class="kn">import</span> <span class="n">PricesSeries</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.qf_series</span> <span class="kn">import</span> <span class="n">QFSeries</span>
@@ -190,17 +188,17 @@
 <span class="kn">from</span> <span class="nn">qf_lib.documents_utils.document_exporting.element.table</span> <span class="kn">import</span> <span class="n">Table</span>
 <span class="kn">from</span> <span class="nn">qf_lib.documents_utils.document_exporting.pdf_exporter</span> <span class="kn">import</span> <span class="n">PDFExporter</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.charts.line_chart</span> <span class="kn">import</span> <span class="n">LineChart</span>
-<span class="kn">from</span> <span class="nn">qf_lib.plotting.charts.underwater_chart</span> <span class="kn">import</span> <span class="n">UnderwaterChart</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.axes_formatter_decorator</span> <span class="kn">import</span> <span class="n">AxesFormatterDecorator</span><span class="p">,</span> <span class="n">PercentageFormatter</span>
-<span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.axes_label_decorator</span> <span class="kn">import</span> <span class="n">AxesLabelDecorator</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.axes_position_decorator</span> <span class="kn">import</span> <span class="n">AxesPositionDecorator</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.data_element_decorator</span> <span class="kn">import</span> <span class="n">DataElementDecorator</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.legend_decorator</span> <span class="kn">import</span> <span class="n">LegendDecorator</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.line_decorators</span> <span class="kn">import</span> <span class="n">HorizontalLineDecorator</span>
 <span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.title_decorator</span> <span class="kn">import</span> <span class="n">TitleDecorator</span>
-<span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.top_drawdown_decorator</span> <span class="kn">import</span> <span class="n">TopDrawdownDecorator</span>
+<span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.underwater_decorator</span> <span class="kn">import</span> <span class="n">UnderwaterDecorator</span>
 <span class="kn">from</span> <span class="nn">qf_lib.settings</span> <span class="kn">import</span> <span class="n">Settings</span>
 <span class="kn">from</span> <span class="nn">qf_lib.starting_dir</span> <span class="kn">import</span> <span class="n">get_starting_dir_abs_path</span>
+<span class="kn">from</span> <span class="nn">qf_lib.plotting.decorators.fill_between_decorator</span> <span class="kn">import</span> <span class="n">FillBetweenDecorator</span>
+<span class="kn">from</span> <span class="nn">qf_lib.documents_utils.document_exporting.element.chart</span> <span class="kn">import</span> <span class="n">ChartElement</span>
 
 
 <div class="viewcode-block" id="AbstractDocument"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.analysis.common.abstract_document.AbstractDocument.html#qf_lib.analysis.common.abstract_document.AbstractDocument">[docs]</a><span class="k">class</span> <span class="nc">AbstractDocument</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
@@ -223,7 +221,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">full_image_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">)</span>
 
         <span class="c1"># position is linked to the position of axis in tearsheet.mplstyle</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">full_image_axis_position</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.915</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">)</span>  <span class="c1"># (left, bottom, width, height)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full_image_axis_position</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">)</span>  <span class="c1"># (left, bottom, width, height)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">half_image_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dpi</span> <span class="o">=</span> <span class="mi">400</span>
 
@@ -249,20 +247,30 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">PageHeaderElement</span><span class="p">(</span><span class="n">logo_path</span><span class="p">,</span> <span class="n">company_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_get_underwater_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">:</span> <span class="n">QFSeries</span><span class="p">):</span>
-        <span class="n">underwater_chart</span> <span class="o">=</span> <span class="n">UnderwaterChart</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">rotate_x_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">underwater_chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">TopDrawdownDecorator</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-        <span class="n">underwater_chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">AxesLabelDecorator</span><span class="p">(</span><span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;Drawdown&quot;</span><span class="p">))</span>
-        <span class="n">underwater_chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">TitleDecorator</span><span class="p">(</span><span class="s2">&quot;Drawdown&quot;</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">_get_underwater_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">:</span> <span class="n">QFSeries</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Drawdown&quot;</span><span class="p">,</span> <span class="n">benchmark_series</span><span class="p">:</span> <span class="n">QFSeries</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                              <span class="n">rotate_x_axis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="n">underwater_chart</span> <span class="o">=</span> <span class="n">LineChart</span><span class="p">(</span><span class="n">start_x</span><span class="o">=</span><span class="n">series</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end_x</span><span class="o">=</span><span class="n">series</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">log_scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                     <span class="n">rotate_x_axis</span><span class="o">=</span><span class="n">rotate_x_axis</span><span class="p">)</span>
+        <span class="n">underwater_chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">UnderwaterDecorator</span><span class="p">(</span><span class="n">series</span><span class="p">))</span>
+        <span class="n">underwater_chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">TitleDecorator</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">benchmark_series</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">legend</span> <span class="o">=</span> <span class="n">LegendDecorator</span><span class="p">()</span>
+            <span class="n">benchmark_dd</span> <span class="o">=</span> <span class="n">PricesSeries</span><span class="p">(</span><span class="n">drawdown_tms</span><span class="p">(</span><span class="n">benchmark_series</span><span class="p">))</span>
+            <span class="n">benchmark_dd</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">benchmark_dd_elem</span> <span class="o">=</span> <span class="n">DataElementDecorator</span><span class="p">(</span><span class="n">benchmark_dd</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">legend</span><span class="o">.</span><span class="n">add_entry</span><span class="p">(</span><span class="n">benchmark_dd_elem</span><span class="p">,</span> <span class="s2">&quot;Benchmark DD&quot;</span><span class="p">)</span>
+            <span class="n">underwater_chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">benchmark_dd_elem</span><span class="p">)</span>
+            <span class="n">underwater_chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">legend</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">underwater_chart</span>
 
     <span class="k">def</span> <span class="nf">_get_large_perf_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series_list</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_perf_chart</span><span class="p">(</span><span class="n">series_list</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_perf_chart</span><span class="p">(</span><span class="n">series_list</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_small_perf_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series_list</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_perf_chart</span><span class="p">(</span><span class="n">series_list</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_perf_chart</span><span class="p">(</span><span class="n">series_list</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__get_perf_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series_list</span><span class="p">,</span> <span class="n">is_large_chart</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_perf_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series_list</span><span class="p">,</span> <span class="n">is_large_chart</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Strategy Performance&quot;</span><span class="p">):</span>
         <span class="n">strategy</span> <span class="o">=</span> <span class="n">series_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_prices</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># the main strategy should be the first series</span>
         <span class="n">log_scale</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">strategy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="k">else</span> <span class="kc">False</span>  <span class="c1"># use log scale for returns above 1 000 %</span>
 
@@ -283,7 +291,7 @@
             <span class="n">legend</span><span class="o">.</span><span class="n">add_entry</span><span class="p">(</span><span class="n">series_elem</span><span class="p">,</span> <span class="n">strategy_tms</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
         <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">legend</span><span class="p">)</span>
-        <span class="n">title_decorator</span> <span class="o">=</span> <span class="n">TitleDecorator</span><span class="p">(</span><span class="s2">&quot;Strategy Performance&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+        <span class="n">title_decorator</span> <span class="o">=</span> <span class="n">TitleDecorator</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">title_decorator</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">chart</span>
@@ -333,27 +341,28 @@
 
         <span class="n">position_decorator</span> <span class="o">=</span> <span class="n">AxesPositionDecorator</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">full_image_axis_position</span><span class="p">)</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">position_decorator</span><span class="p">)</span>
-        <span class="n">title_str</span> <span class="o">=</span> <span class="s2">&quot;Rolling Stats [</span><span class="si">{}</span><span class="s2"> samples]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rolling_window_len</span><span class="p">)</span>
+        <span class="n">title_str</span> <span class="o">=</span> <span class="s2">&quot;Rolling Stats [</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> samples]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rolling_window_len</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span>
 
         <span class="n">title_decorator</span> <span class="o">=</span> <span class="n">TitleDecorator</span><span class="p">(</span><span class="n">title_str</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">title_decorator</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">chart</span>
 
     <span class="k">def</span> <span class="nf">_get_rolling_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeseries_list</span><span class="p">,</span> <span class="n">rolling_function</span><span class="p">,</span> <span class="n">function_name</span><span class="p">):</span>
-        <span class="n">days_rolling</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">BUSINESS_DAYS_PER_YEAR</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># 6M rolling</span>
-        <span class="n">step</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">days_rolling</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">timeseries_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_frequency</span><span class="p">()</span>
+        <span class="n">timeseries_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">tms</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">to_prices</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">tms</span> <span class="ow">in</span> <span class="n">timeseries_list</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">timeseries_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+
+        <span class="n">rolling_window_len</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># 6M rolling</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># 2M shift</span>
 
         <span class="n">legend</span> <span class="o">=</span> <span class="n">LegendDecorator</span><span class="p">()</span>
-        <span class="n">chart</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tms</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">timeseries_list</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">chart</span> <span class="o">=</span> <span class="n">LineChart</span><span class="p">(</span><span class="n">start_x</span><span class="o">=</span><span class="n">tms</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end_x</span><span class="o">=</span><span class="n">tms</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">line_decorator</span> <span class="o">=</span> <span class="n">HorizontalLineDecorator</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;h_line&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">line_decorator</span><span class="p">)</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">LineChart</span><span class="p">(</span><span class="n">start_x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end_x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">line_decorator</span> <span class="o">=</span> <span class="n">HorizontalLineDecorator</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;h_line&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">line_decorator</span><span class="p">)</span>
 
-            <span class="n">tms</span> <span class="o">=</span> <span class="n">tms</span><span class="o">.</span><span class="n">to_prices</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">rolling</span> <span class="o">=</span> <span class="n">tms</span><span class="o">.</span><span class="n">rolling_window</span><span class="p">(</span><span class="n">days_rolling</span><span class="p">,</span> <span class="n">rolling_function</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">tms</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">rolling</span> <span class="o">=</span> <span class="n">tms</span><span class="o">.</span><span class="n">rolling_window</span><span class="p">(</span><span class="n">rolling_window_len</span><span class="p">,</span> <span class="n">rolling_function</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
             <span class="n">rolling_element</span> <span class="o">=</span> <span class="n">DataElementDecorator</span><span class="p">(</span><span class="n">rolling</span><span class="p">)</span>
             <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">rolling_element</span><span class="p">)</span>
             <span class="n">legend</span><span class="o">.</span><span class="n">add_entry</span><span class="p">(</span><span class="n">rolling_element</span><span class="p">,</span> <span class="n">tms</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -363,7 +372,7 @@
 
         <span class="n">position_decorator</span> <span class="o">=</span> <span class="n">AxesPositionDecorator</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">full_image_axis_position</span><span class="p">)</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">position_decorator</span><span class="p">)</span>
-        <span class="n">title_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> - Rolling Stats [</span><span class="si">{}</span><span class="s2"> days]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">function_name</span><span class="p">,</span> <span class="n">days_rolling</span><span class="p">)</span>
+        <span class="n">title_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> - Rolling Stats [</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> samples]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">function_name</span><span class="p">,</span> <span class="n">rolling_window_len</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span>
 
         <span class="n">title_decorator</span> <span class="o">=</span> <span class="n">TitleDecorator</span><span class="p">(</span><span class="n">title_str</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
         <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">title_decorator</span><span class="p">)</span>
@@ -374,32 +383,63 @@
 
         <span class="k">for</span> <span class="n">ta</span> <span class="ow">in</span> <span class="n">ta_list</span><span class="p">:</span>
             <span class="n">ta</span><span class="o">.</span><span class="n">populate_table</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">table</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_relative_performance_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strategy_tms</span><span class="p">:</span> <span class="n">QFSeries</span><span class="p">,</span> <span class="n">benchmark_tms</span><span class="p">:</span> <span class="n">QFSeries</span><span class="p">,</span>
+                                        <span class="n">chart_title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Relative Performance&quot;</span><span class="p">,</span>
+                                        <span class="n">legend_subtitle</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Strategy - Benchmark&quot;</span><span class="p">):</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">strategy_tms</span><span class="o">.</span><span class="n">to_simple_returns</span><span class="p">()</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">benchmark_tms</span><span class="o">.</span><span class="n">to_simple_returns</span><span class="p">(),</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">diff</span><span class="o">.</span><span class="n">to_prices</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">LineChart</span><span class="p">(</span><span class="n">start_x</span><span class="o">=</span><span class="n">diff</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end_x</span><span class="o">=</span><span class="n">diff</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">log_scale</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">position_decorator</span> <span class="o">=</span> <span class="n">AxesPositionDecorator</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">full_image_axis_position</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">position_decorator</span><span class="p">)</span>
+
+        <span class="n">line_decorator</span> <span class="o">=</span> <span class="n">HorizontalLineDecorator</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;h_line&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">line_decorator</span><span class="p">)</span>
+        <span class="n">legend</span> <span class="o">=</span> <span class="n">LegendDecorator</span><span class="p">()</span>
+
+        <span class="n">series_elem</span> <span class="o">=</span> <span class="n">DataElementDecorator</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">series_elem</span><span class="p">)</span>
+        <span class="n">legend</span><span class="o">.</span><span class="n">add_entry</span><span class="p">(</span><span class="n">series_elem</span><span class="p">,</span> <span class="n">legend_subtitle</span><span class="p">)</span>
+
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">legend</span><span class="p">)</span>
+        <span class="n">title_decorator</span> <span class="o">=</span> <span class="n">TitleDecorator</span><span class="p">(</span><span class="n">chart_title</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">title_decorator</span><span class="p">)</span>
+
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">AxesFormatterDecorator</span><span class="p">(</span><span class="n">y_major</span><span class="o">=</span><span class="n">PercentageFormatter</span><span class="p">(</span><span class="s2">&quot;.0f&quot;</span><span class="p">)))</span>
+
+        <span class="n">fill_decorator</span> <span class="o">=</span> <span class="n">FillBetweenDecorator</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_decorator</span><span class="p">(</span><span class="n">fill_decorator</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">add_element</span><span class="p">(</span><span class="n">ChartElement</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">full_image_size</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dpi</span><span class="p">))</span></div>
 </pre></div>
 
            </div>
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

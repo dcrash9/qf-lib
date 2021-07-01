@@ -1,4 +1,4 @@
-﻿ScenariosGenerator
+ScenariosGenerator
 =================================================================================
 
 .. currentmodule:: qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator

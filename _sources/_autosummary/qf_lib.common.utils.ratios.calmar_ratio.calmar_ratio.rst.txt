@@ -1,4 +1,4 @@
-﻿calmar_ratio
+calmar_ratio
 ====================================================
 
 .. currentmodule:: qf_lib.common.utils.ratios.calmar_ratio

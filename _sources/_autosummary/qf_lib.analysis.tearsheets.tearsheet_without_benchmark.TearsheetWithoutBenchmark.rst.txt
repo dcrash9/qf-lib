@@ -1,4 +1,4 @@
-﻿TearsheetWithoutBenchmark
+TearsheetWithoutBenchmark
 ================================================================================
 
 .. currentmodule:: qf_lib.analysis.tearsheets.tearsheet_without_benchmark

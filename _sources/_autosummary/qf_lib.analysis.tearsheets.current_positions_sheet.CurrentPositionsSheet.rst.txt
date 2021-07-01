@@ -1,4 +1,4 @@
-﻿CurrentPositionsSheet
+CurrentPositionsSheet
 ========================================================================
 
 .. currentmodule:: qf_lib.analysis.tearsheets.current_positions_sheet

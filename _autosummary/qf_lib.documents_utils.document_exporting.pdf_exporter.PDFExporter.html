@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>PDFExporter &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -54,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> QF Lib
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
@@ -143,8 +142,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -158,7 +155,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -170,7 +167,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pdfexporter">
+  <section id="pdfexporter">
 <h1>PDFExporter<a class="headerlink" href="#pdfexporter" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.documents_utils.document_exporting.pdf_exporter.PDFExporter">
@@ -179,7 +176,7 @@
 <p>Stores elements such as the ParagraphElement and ChartElement in order to build a PDF based on them once they
 have all been added. If there is a “document_css_directory” attribute set in the Settings, then CSS files from that
 directory will be applied for styling the output page. Otherwise the default styling will be applied.</p>
-<p><strong>Methods:</strong></p>
+<p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -196,7 +193,7 @@ directory will be applied for styling the output page. Otherwise the default sty
 </table>
 <dl class="py method">
 <dt id="qf_lib.documents_utils.document_exporting.pdf_exporter.PDFExporter.generate">
-<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">documents</span><span class="p">:</span> <span class="n">List<span class="p">[</span>qf_lib.documents_utils.document_exporting.document.Document<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">export_dir</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">include_table_of_contents</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">css_file_names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/qf_lib/documents_utils/document_exporting/pdf_exporter.html#PDFExporter.generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.documents_utils.document_exporting.pdf_exporter.PDFExporter.generate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">documents</span><span class="p">:</span> <span class="n">List<span class="p">[</span>qf_lib.documents_utils.document_exporting.document.Document<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">export_dir</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">include_table_of_contents</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">css_file_names</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/qf_lib/documents_utils/document_exporting/pdf_exporter.html#PDFExporter.generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.documents_utils.document_exporting.pdf_exporter.PDFExporter.generate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merged all documents into one and then exports the merged document to a PDF file in the given directory.</p>
 <p>Allows defining of multiple css files. The base css file will be applied first, followed sequentially
 by files defined in css_file_names.</p>
@@ -231,36 +228,44 @@ e.g: ‘default_cssmain”</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="qf_lib.documents_utils.document_exporting.html_exporter.HTMLExporter.html" class="btn btn-neutral float-right" title="HTMLExporter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="qf_lib.documents_utils.document_exporting.document_exporter.DocumentExporter.html" class="btn btn-neutral float-left" title="DocumentExporter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="qf_lib.documents_utils.document_exporting.html_exporter.HTMLExporter.html" class="btn btn-neutral float-right" title="HTMLExporter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qf_lib.documents_utils.document_exporting.document_exporter.DocumentExporter.html" class="btn btn-neutral float-left" title="DocumentExporter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

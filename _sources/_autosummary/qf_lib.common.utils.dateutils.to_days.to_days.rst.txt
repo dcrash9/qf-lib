@@ -1,4 +1,4 @@
-﻿to_days
+to_days
 =============================================
 
 .. currentmodule:: qf_lib.common.utils.dateutils.to_days

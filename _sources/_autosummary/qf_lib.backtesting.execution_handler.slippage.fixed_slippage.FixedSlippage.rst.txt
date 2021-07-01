@@ -1,4 +1,4 @@
-﻿FixedSlippage
+FixedSlippage
 ==========================================================================
 
 .. currentmodule:: qf_lib.backtesting.execution_handler.slippage.fixed_slippage

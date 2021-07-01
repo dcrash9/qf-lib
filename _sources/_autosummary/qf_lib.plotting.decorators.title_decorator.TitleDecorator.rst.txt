@@ -1,4 +1,4 @@
-﻿TitleDecorator
+TitleDecorator
 =========================================================
 
 .. currentmodule:: qf_lib.plotting.decorators.title_decorator

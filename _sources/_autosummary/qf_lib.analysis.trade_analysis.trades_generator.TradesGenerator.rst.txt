@@ -1,4 +1,4 @@
-﻿TradesGenerator
+TradesGenerator
 ===============================================================
 
 .. currentmodule:: qf_lib.analysis.trade_analysis.trades_generator

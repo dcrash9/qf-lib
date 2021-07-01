@@ -1,4 +1,4 @@
-﻿SimpleReturnsDataFrame
+SimpleReturnsDataFrame
 ===========================================================================
 
 .. currentmodule:: qf_lib.containers.dataframe.simple_returns_dataframe

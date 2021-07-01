@@ -1,4 +1,4 @@
-﻿SimpleLegendItem
+SimpleLegendItem
 ==============================================================
 
 .. currentmodule:: qf_lib.plotting.decorators.simple_legend_item

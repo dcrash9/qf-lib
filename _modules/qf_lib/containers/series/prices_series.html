@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.containers.series.prices_series &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -175,7 +171,7 @@
 <span class="c1">#     limitations under the License.</span>
 
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">numpy.ma</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.qf_series</span> <span class="kn">import</span> <span class="n">QFSeries</span>
 
@@ -200,28 +196,23 @@
 <div class="viewcode-block" id="PricesSeries.to_log_returns"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries.to_log_returns">[docs]</a>    <span class="k">def</span> <span class="nf">to_log_returns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;LogReturnsSeries&quot;</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">qf_lib.containers.series.log_returns_series</span> <span class="kn">import</span> <span class="n">LogReturnsSeries</span>
 
-        <span class="n">return_values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">shifted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">rets</span> <span class="o">=</span> <span class="bp">self</span> <span class="o">/</span> <span class="n">shifted</span>
+        <span class="n">rets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">rets</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
-            <span class="n">return_value</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
-            <span class="n">return_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">return_value</span><span class="p">)</span>
-
-        <span class="n">dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">::]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">LogReturnsSeries</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">return_values</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">returns</span> <span class="o">=</span> <span class="n">rets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="n">LogReturnsSeries</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">returns</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PricesSeries.to_simple_returns"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries.to_simple_returns">[docs]</a>    <span class="k">def</span> <span class="nf">to_simple_returns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SimpleReturnsSeries&quot;</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">qf_lib.containers.series.simple_returns_series</span> <span class="kn">import</span> <span class="n">SimpleReturnsSeries</span>
 
-        <span class="n">return_values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">shifted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">rets</span> <span class="o">=</span> <span class="bp">self</span> <span class="o">/</span> <span class="n">shifted</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># type: PricesSeries</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
-            <span class="n">return_value</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="n">return_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">return_value</span><span class="p">)</span>
-
-        <span class="n">dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">::]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">SimpleReturnsSeries</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">return_values</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">returns</span> <span class="o">=</span> <span class="n">rets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="n">SimpleReturnsSeries</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">returns</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PricesSeries.to_prices"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries.to_prices">[docs]</a>    <span class="k">def</span> <span class="nf">to_prices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_price</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">suggested_initial_date</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> \
             <span class="o">-&gt;</span> <span class="p">[</span><span class="s2">&quot;PricesSeries&quot;</span><span class="p">]:</span>
@@ -238,25 +229,28 @@
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

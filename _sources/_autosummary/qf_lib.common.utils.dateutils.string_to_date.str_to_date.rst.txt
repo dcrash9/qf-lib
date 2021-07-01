@@ -1,4 +1,4 @@
-﻿str_to_date
+str_to_date
 ========================================================
 
 .. currentmodule:: qf_lib.common.utils.dateutils.string_to_date

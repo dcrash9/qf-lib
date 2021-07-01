@@ -1,4 +1,4 @@
-﻿AlphaModelStrategy
+AlphaModelStrategy
 ======================================================================
 
 .. currentmodule:: qf_lib.backtesting.alpha_model.alpha_model_strategy

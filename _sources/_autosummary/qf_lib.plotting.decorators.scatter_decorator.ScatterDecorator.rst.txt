@@ -1,4 +1,4 @@
-﻿ScatterDecorator
+ScatterDecorator
 =============================================================
 
 .. currentmodule:: qf_lib.plotting.decorators.scatter_decorator

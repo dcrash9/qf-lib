@@ -1,4 +1,4 @@
-﻿create_skewness_chart
+create_skewness_chart
 ===================================================================
 
 .. currentmodule:: qf_lib.plotting.helpers.create_skewness_chart

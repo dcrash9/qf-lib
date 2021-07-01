@@ -1,4 +1,4 @@
-﻿AlphaModel
+AlphaModel
 =====================================================
 
 .. currentmodule:: qf_lib.backtesting.alpha_model.alpha_model

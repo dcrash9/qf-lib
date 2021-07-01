@@ -1,4 +1,4 @@
-﻿TradingSession
+TradingSession
 =================================================================
 
 .. currentmodule:: qf_lib.backtesting.trading_session.trading_session

@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>PriceField &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -54,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> QF Lib
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
@@ -149,8 +148,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -164,7 +161,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -176,22 +173,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pricefield">
+  <section id="pricefield">
 <h1>PriceField<a class="headerlink" href="#pricefield" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.common.enums.price_field.PriceField">
 <em class="property">class </em><code class="sig-prename descclassname">qf_lib.common.enums.price_field.</code><code class="sig-name descname">PriceField</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/common/enums/price_field.html#PriceField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.enums.price_field.PriceField" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>Represents one of the data fields that corresponds to OHLC and Volume.</p>
-<p><strong>Attributes:</strong></p>
+<p><strong>Attributes</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.Close" title="qf_lib.common.enums.price_field.PriceField.Close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Close</span></code></a></p></td>
-<td><p>Close Price</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.Open" title="qf_lib.common.enums.price_field.PriceField.Open"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Open</span></code></a></p></td>
+<td><p>Open Price</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.High" title="qf_lib.common.enums.price_field.PriceField.High"><code class="xref py py-obj docutils literal notranslate"><span class="pre">High</span></code></a></p></td>
 <td><p>High Price</p></td>
@@ -199,15 +196,15 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.Low" title="qf_lib.common.enums.price_field.PriceField.Low"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Low</span></code></a></p></td>
 <td><p>Low Price</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.Open" title="qf_lib.common.enums.price_field.PriceField.Open"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Open</span></code></a></p></td>
-<td><p>Open Price</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.Close" title="qf_lib.common.enums.price_field.PriceField.Close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Close</span></code></a></p></td>
+<td><p>Close Price</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.Volume" title="qf_lib.common.enums.price_field.PriceField.Volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Volume</span></code></a></p></td>
 <td><p>Volume</p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Methods:</strong></p>
+<p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -215,6 +212,9 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.ohlcv" title="qf_lib.common.enums.price_field.PriceField.ohlcv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ohlcv</span></code></a>()</p></td>
+<td><p>Return a list of all possible price field values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField.ohlc" title="qf_lib.common.enums.price_field.PriceField.ohlc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ohlc</span></code></a>()</p></td>
 <td><p>Return a list of all possible price field values.</p></td>
 </tr>
 </tbody>
@@ -250,6 +250,20 @@
 </dd></dl>
 
 <dl class="py method">
+<dt id="qf_lib.common.enums.price_field.PriceField.ohlc">
+<em class="property">static </em><code class="sig-name descname">ohlc</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/common/enums/price_field.html#PriceField.ohlc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.enums.price_field.PriceField.ohlc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all possible price field values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of all price field values</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">PriceField</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="qf_lib.common.enums.price_field.PriceField.ohlcv">
 <em class="property">static </em><code class="sig-name descname">ohlcv</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference internal" href="#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/common/enums/price_field.html#PriceField.ohlcv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.enums.price_field.PriceField.ohlcv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of all possible price field values.</p>
@@ -265,36 +279,44 @@
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="qf_lib.common.exceptions.broker_exceptions.BrokerException.html" class="btn btn-neutral float-right" title="BrokerException" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="qf_lib.common.enums.frequency.Frequency.html" class="btn btn-neutral float-left" title="Frequency" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="qf_lib.common.exceptions.broker_exceptions.BrokerException.html" class="btn btn-neutral float-right" title="BrokerException" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qf_lib.common.enums.frequency.Frequency.html" class="btn btn-neutral float-left" title="Frequency" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

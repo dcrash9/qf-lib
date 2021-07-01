@@ -1,4 +1,4 @@
-﻿AnalyticalConeOOS
+AnalyticalConeOOS
 =============================================================================
 
 .. currentmodule:: qf_lib.common.utils.confidence_interval.analytical_cone_oos

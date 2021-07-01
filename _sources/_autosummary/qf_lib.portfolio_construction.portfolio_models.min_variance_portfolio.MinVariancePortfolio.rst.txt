@@ -1,4 +1,4 @@
-﻿MinVariancePortfolio
+MinVariancePortfolio
 ==========================================================================================
 
 .. currentmodule:: qf_lib.portfolio_construction.portfolio_models.min_variance_portfolio

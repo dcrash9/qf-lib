@@ -1,4 +1,4 @@
-﻿QFSeries
+QFSeries
 ===========================================
 
 .. currentmodule:: qf_lib.containers.series.qf_series

@@ -1,4 +1,4 @@
-﻿sorino_ratio
+sorino_ratio
 ====================================================
 
 .. currentmodule:: qf_lib.common.utils.ratios.sorino_ratio

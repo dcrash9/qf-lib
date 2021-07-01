@@ -1,4 +1,4 @@
-﻿create_qq_chart
+create_qq_chart
 =======================================================
 
 .. currentmodule:: qf_lib.plotting.helpers.create_qq_chart

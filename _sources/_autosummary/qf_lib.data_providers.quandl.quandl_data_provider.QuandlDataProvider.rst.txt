@@ -1,4 +1,4 @@
-﻿QuandlDataProvider
+QuandlDataProvider
 ====================================================================
 
 .. currentmodule:: qf_lib.data_providers.quandl.quandl_data_provider

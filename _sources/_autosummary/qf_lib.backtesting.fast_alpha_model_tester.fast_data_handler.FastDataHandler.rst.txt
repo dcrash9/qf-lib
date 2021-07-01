@@ -1,4 +1,4 @@
-﻿FastDataHandler
+FastDataHandler
 ============================================================================
 
 .. currentmodule:: qf_lib.backtesting.fast_alpha_model_tester.fast_data_handler

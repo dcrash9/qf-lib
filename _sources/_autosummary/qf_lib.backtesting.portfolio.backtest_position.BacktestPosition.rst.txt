@@ -1,4 +1,4 @@
-﻿BacktestPosition
+BacktestPosition
 ===============================================================
 
 .. currentmodule:: qf_lib.backtesting.portfolio.backtest_position

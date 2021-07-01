@@ -1,4 +1,4 @@
-﻿annualise_with_sqrt
+annualise_with_sqrt
 =========================================================================
 
 .. currentmodule:: qf_lib.common.utils.miscellaneous.annualise_with_sqrt

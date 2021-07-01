@@ -1,4 +1,4 @@
-﻿HistogramChart
+HistogramChart
 =====================================================
 
 .. currentmodule:: qf_lib.plotting.charts.histogram_chart

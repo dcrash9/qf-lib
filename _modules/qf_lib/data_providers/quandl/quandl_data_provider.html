@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.data_providers.quandl.quandl_data_provider &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -173,13 +169,12 @@
 <span class="c1">#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
 <span class="c1">#     See the License for the specific language governing permissions and</span>
 <span class="c1">#     limitations under the License.</span>
-
+<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">quandl</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.expiration_date_field</span> <span class="kn">import</span> <span class="n">ExpirationDateField</span>
 
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
@@ -198,6 +193,13 @@
 <span class="kn">from</span> <span class="nn">qf_lib.data_providers.data_provider</span> <span class="kn">import</span> <span class="n">DataProvider</span>
 <span class="kn">from</span> <span class="nn">qf_lib.settings</span> <span class="kn">import</span> <span class="n">Settings</span>
 
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">quandl</span>
+    <span class="n">is_quandl_installed</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">is_quandl_installed</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;No quandl installed. If you would like to use QuandlDataProvider first install the quandl library.&quot;</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="QuandlDataProvider"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider">[docs]</a><span class="k">class</span> <span class="nc">QuandlDataProvider</span><span class="p">(</span><span class="n">DataProvider</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -207,9 +209,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">:</span> <span class="n">Settings</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">quandl_key</span>
-        <span class="n">quandl</span><span class="o">.</span><span class="n">ApiConfig</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">qf_logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">quandl_key</span>
+            <span class="n">quandl</span><span class="o">.</span><span class="n">ApiConfig</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No quandl_key parameter found in Settings. If you want to use QuandlDataProvider, add &quot;</span>
+                                <span class="s2">&quot;quandl_key in the settings json file.&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="QuandlDataProvider.get_price"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.get_price">[docs]</a>    <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">QuandlTicker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">QuandlTicker</span><span class="p">]],</span>
                   <span class="n">fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">PriceField</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">PriceField</span><span class="p">]],</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -462,25 +469,28 @@
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

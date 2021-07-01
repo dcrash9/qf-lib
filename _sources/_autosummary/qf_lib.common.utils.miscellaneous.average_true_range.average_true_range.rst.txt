@@ -1,4 +1,4 @@
-﻿average_true_range
+average_true_range
 =======================================================================
 
 .. currentmodule:: qf_lib.common.utils.miscellaneous.average_true_range

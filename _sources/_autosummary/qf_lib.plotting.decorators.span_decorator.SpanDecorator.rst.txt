@@ -1,4 +1,4 @@
-﻿SpanDecorator
+SpanDecorator
 =======================================================
 
 .. currentmodule:: qf_lib.plotting.decorators.span_decorator

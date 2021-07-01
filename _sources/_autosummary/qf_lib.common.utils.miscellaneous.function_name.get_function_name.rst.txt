@@ -1,4 +1,4 @@
-﻿get_function_name
+get_function_name
 =================================================================
 
 .. currentmodule:: qf_lib.common.utils.miscellaneous.function_name

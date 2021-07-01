@@ -1,4 +1,4 @@
-﻿BacktestResult
+BacktestResult
 ============================================================
 
 .. currentmodule:: qf_lib.backtesting.monitoring.backtest_result

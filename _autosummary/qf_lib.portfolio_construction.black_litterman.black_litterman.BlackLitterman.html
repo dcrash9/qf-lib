@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>BlackLitterman &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -54,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> QF Lib
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
@@ -152,8 +151,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -167,7 +164,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -179,7 +176,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="blacklitterman">
+  <section id="blacklitterman">
 <h1>BlackLitterman<a class="headerlink" href="#blacklitterman" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman">
@@ -196,7 +193,7 @@
 </ul>
 </dd>
 </dl>
-<p><strong>Attributes:</strong></p>
+<p><strong>Attributes</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -214,7 +211,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Methods:</strong></p>
+<p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -225,16 +222,16 @@
 <td><p>Adds a new view that will be taken into account in calculating the posterior</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.add_relative_view" title="qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.add_relative_view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_relative_view</span></code></a>(outperforming_asset_index, …)</p></td>
-<td><p>Adds a new view that will be taken into account in calculating the posterior The investor believs that outperforming_asset will outperform the underperforming_asset by outperformance with the volatility of the view of  view_vol</p></td>
+<td><p>Adds a new view that will be taken into account in calculating the posterior</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_lambda" title="qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_lambda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_lambda</span></code></a>()</p></td>
-<td><p>Calculates lambda corresponding to risk aversion in the formula: max(w):  w’R - lambda/2 * w’ * Cov * w:</p></td>
+<td><p>Calculates lambda corresponding to risk aversion in the formula:</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_posterior" title="qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_posterior"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_posterior</span></code></a>()</p></td>
 <td><p>Calculate shape of posterior distribution including the views.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_prior" title="qf_lib.portfolio_construction.black_litterman.black_litterman.BlackLitterman.calculate_prior"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_prior</span></code></a>()</p></td>
-<td><p>Function calculates the prior for the BL model: - prior_mean = lambda * hist_cov * market_cap_weights - prior_cov = tau * hist_cov</p></td>
+<td><p>Function calculates the prior for the BL model:</p></td>
 </tr>
 </tbody>
 </table>
@@ -358,36 +355,44 @@ posterior_cov = (1 + tau) * hist_cov - tau^2 * hist_cov * P’ * (tau * P * hist
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="qf_lib.portfolio_construction.covariance_estimation.robust_covariance.RobustCovariance.html" class="btn btn-neutral float-right" title="RobustCovariance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../portfolio_construction.html" class="btn btn-neutral float-left" title="portfolio_construction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="qf_lib.portfolio_construction.covariance_estimation.robust_covariance.RobustCovariance.html" class="btn btn-neutral float-right" title="RobustCovariance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../portfolio_construction.html" class="btn btn-neutral float-left" title="portfolio_construction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

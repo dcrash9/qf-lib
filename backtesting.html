@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>backtesting &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -40,7 +39,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="AlphaModel" href="_autosummary/qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html" />
-    <link rel="prev" title="TradeAnalysisSheet" href="_autosummary/qf_lib.analysis.trade_analysis.trade_analysis_sheet.TradeAnalysisSheet.html" /> 
+    <link rel="prev" title="ExposureSettings" href="_autosummary/qf_lib.analysis.exposure_analysis.exposure_settings.ExposureSettings.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> QF Lib
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,19 +84,20 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="analysis.html">analysis</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">backtesting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#alpha-model">alpha_model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html">AlphaModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.futures_model.FuturesModel.html">FuturesModel</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy.html">AlphaModelStrategy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.signal.Signal.html">Signal</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#contract">contract</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract.Contract.html">Contract</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html">ContractTickerMapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper.SimulatedBloombergContractTickerMapper.html">SimulatedBloombergContractTickerMapper</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper.html">IB_Bloomberg_ContractTickerMapper</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper.html">DummyQuandlContractTickerMapper</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper.html">VolStrategyContractTickerMapper</a></li>
@@ -148,7 +148,6 @@
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.monitoring.abstract_monitor.AbstractMonitor.html">AbstractMonitor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.monitoring.backtest_monitor.BacktestMonitor.html">BacktestMonitor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.monitoring.backtest_result.BacktestResult.html">BacktestResult</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html">SignalsRegister</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#order">order</a><ul>
@@ -168,7 +167,14 @@
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.position_sizer.PositionSizer.html">PositionSizer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.simple_position_sizer.SimplePositionSizer.html">SimplePositionSizer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.initial_risk_position_sizer.InitialRiskPositionSizer.html">InitialRiskPositionSizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.initial_risk_with_volume_position_sizer.InitialRiskWithVolumePositionSizer.html">InitialRiskWithVolumePositionSizer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer.html">FixedPortfolioPercentagePositionSizer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#signals">signals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.signals.signal.Signal.html">Signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.signals.signals_register.SignalsRegister.html">SignalsRegister</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.signals.backtest_signals_register.BacktestSignalsRegister.html">BacktestSignalsRegister</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#trading-session">trading_session</a><ul>
@@ -226,8 +232,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -239,7 +243,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -251,9 +255,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="backtesting">
+  <section id="backtesting">
 <h1>backtesting<a class="headerlink" href="#backtesting" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="alpha-model">
+<section id="alpha-model">
 <h2>alpha_model<a class="headerlink" href="#alpha-model" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -264,16 +268,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html#qf_lib.backtesting.alpha_model.alpha_model.AlphaModel" title="qf_lib.backtesting.alpha_model.alpha_model.AlphaModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_model.AlphaModel</span></code></a></p></td>
 <td><p>Base class for all alpha models.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy.html#qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy" title="qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_model_strategy.AlphaModelStrategy</span></code></a></p></td>
-<td><p>Puts together models and all settings around it and generates orders on before market open.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.futures_model.FuturesModel.html#qf_lib.backtesting.alpha_model.futures_model.FuturesModel" title="qf_lib.backtesting.alpha_model.futures_model.FuturesModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">futures_model.FuturesModel</span></code></a></p></td>
+<td><p>Type of alpha model, which can be easily integrated with any type of Tickers (plain Ticker objects, as well as FutureTickers).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.signal.Signal.html#qf_lib.backtesting.alpha_model.signal.Signal" title="qf_lib.backtesting.alpha_model.signal.Signal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signal.Signal</span></code></a></p></td>
-<td><p>Objects of this class are used in the portfolio construction process.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy.html#qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy" title="qf_lib.backtesting.alpha_model.alpha_model_strategy.AlphaModelStrategy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_model_strategy.AlphaModelStrategy</span></code></a></p></td>
+<td><p>Puts together models and all settings around it and generates orders on before market open.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="contract">
+</section>
+<section id="contract">
 <h2>contract<a class="headerlink" href="#contract" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -287,19 +291,22 @@
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.base.ContractTickerMapper</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper.SimulatedBloombergContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper.SimulatedBloombergContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper.SimulatedBloombergContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.simulated_bloomberg_mapper.SimulatedBloombergContractTickerMapper</span></code></a></p></td>
+<td><p>BloombergTicker-Contract mapper to be used for backtesting purposes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper</span></code></a></p></td>
 <td><p>BloombergTicker - IB Contract mapper that can be used for live trading.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper</span></code></a></p></td>
 <td><p>Dummy QuandlTicker-Contract mapper.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper</span></code></a></p></td>
 <td><p>Contract Ticker Mapper that works only for one ticker - SVXY</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="data-handler">
+</section>
+<section id="data-handler">
 <h2>data_handler<a class="headerlink" href="#data-handler" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -318,8 +325,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="events">
+</section>
+<section id="events">
 <h2>events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -350,10 +357,10 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="execution-handler">
+</section>
+<section id="execution-handler">
 <h2>execution_handler<a class="headerlink" href="#execution-handler" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="commission-models">
+<section id="commission-models">
 <h3>commission_models<a class="headerlink" href="#commission-models" title="Permalink to this headline">¶</a></h3>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -375,8 +382,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="slippage">
+</section>
+<section id="slippage">
 <h3>slippage<a class="headerlink" href="#slippage" title="Permalink to this headline">¶</a></h3>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -398,9 +405,9 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="fast-alpha-model-tester">
+</section>
+</section>
+<section id="fast-alpha-model-tester">
 <h2>fast_alpha_model_tester<a class="headerlink" href="#fast-alpha-model-tester" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -425,8 +432,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="monitoring">
+</section>
+<section id="monitoring">
 <h2>monitoring<a class="headerlink" href="#monitoring" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -443,13 +450,10 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.monitoring.backtest_result.BacktestResult.html#qf_lib.backtesting.monitoring.backtest_result.BacktestResult" title="qf_lib.backtesting.monitoring.backtest_result.BacktestResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">backtest_result.BacktestResult</span></code></a></p></td>
 <td><p>BacktestResult is a class providing simple data model containing information about the backtest: for example it contains a portfolio with its timeseries and trades.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.monitoring.signals_register.SignalsRegister.html#qf_lib.backtesting.monitoring.signals_register.SignalsRegister" title="qf_lib.backtesting.monitoring.signals_register.SignalsRegister"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signals_register.SignalsRegister</span></code></a></p></td>
-<td><p>Used to save signals processed by the Position Sizer and to be able to later to analyze all signals generated by the model and to present them in a readable form.</p></td>
-</tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="order">
+</section>
+<section id="order">
 <h2>order<a class="headerlink" href="#order" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -468,8 +472,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="portfolio">
+</section>
+<section id="portfolio">
 <h2>portfolio<a class="headerlink" href="#portfolio" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -491,8 +495,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="position-sizer">
+</section>
+<section id="position-sizer">
 <h2>position_sizer<a class="headerlink" href="#position-sizer" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -501,7 +505,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.position_sizer.PositionSizer.html#qf_lib.backtesting.position_sizer.position_sizer.PositionSizer" title="qf_lib.backtesting.position_sizer.position_sizer.PositionSizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">position_sizer.PositionSizer</span></code></a></p></td>
-<td><p>The PositionSizer abstract class converts signals to orders with size specified</p></td>
+<td><p>The PositionSizer abstract class converts signals to orders with size specified.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.simple_position_sizer.SimplePositionSizer.html#qf_lib.backtesting.position_sizer.simple_position_sizer.SimplePositionSizer" title="qf_lib.backtesting.position_sizer.simple_position_sizer.SimplePositionSizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simple_position_sizer.SimplePositionSizer</span></code></a></p></td>
 <td><p>This SimplePositionSizer converts signals to orders which are the size of 100% of the current portfolio value</p></td>
@@ -509,13 +513,36 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.initial_risk_position_sizer.InitialRiskPositionSizer.html#qf_lib.backtesting.position_sizer.initial_risk_position_sizer.InitialRiskPositionSizer" title="qf_lib.backtesting.position_sizer.initial_risk_position_sizer.InitialRiskPositionSizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initial_risk_position_sizer.InitialRiskPositionSizer</span></code></a></p></td>
 <td><p>This PositionSizer converts signals to orders using Initial Risk value that is predefined in the position sizer.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer.html#qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer" title="qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.initial_risk_with_volume_position_sizer.InitialRiskWithVolumePositionSizer.html#qf_lib.backtesting.position_sizer.initial_risk_with_volume_position_sizer.InitialRiskWithVolumePositionSizer" title="qf_lib.backtesting.position_sizer.initial_risk_with_volume_position_sizer.InitialRiskWithVolumePositionSizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initial_risk_with_volume_position_sizer.InitialRiskWithVolumePositionSizer</span></code></a></p></td>
+<td><p>Variant of initial risk position sizer, which additionally controls the target size based on the mean daily volume.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer.html#qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer" title="qf_lib.backtesting.position_sizer.fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fixed_portfolio_percentage_position_sizer.FixedPortfolioPercentagePositionSizer</span></code></a></p></td>
 <td><p>This PositionSizer converts signals to orders using Fixed Percentage value.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="trading-session">
+</section>
+<section id="signals">
+<h2>signals<a class="headerlink" href="#signals" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.signals.signal.Signal.html#qf_lib.backtesting.signals.signal.Signal" title="qf_lib.backtesting.signals.signal.Signal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signal.Signal</span></code></a></p></td>
+<td><p>Objects of this class are used in the portfolio construction process.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.signals.signals_register.SignalsRegister.html#qf_lib.backtesting.signals.signals_register.SignalsRegister" title="qf_lib.backtesting.signals.signals_register.SignalsRegister"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signals_register.SignalsRegister</span></code></a></p></td>
+<td><p>Used to save signals processed by the Position Sizer and to be able to later to analyze all signals generated by the model and to present them in a readable form.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.signals.backtest_signals_register.BacktestSignalsRegister.html#qf_lib.backtesting.signals.backtest_signals_register.BacktestSignalsRegister" title="qf_lib.backtesting.signals.backtest_signals_register.BacktestSignalsRegister"><code class="xref py py-obj docutils literal notranslate"><span class="pre">backtest_signals_register.BacktestSignalsRegister</span></code></a></p></td>
+<td><p>In memory implementation of Signals Register.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="trading-session">
 <h2>trading_session<a class="headerlink" href="#trading-session" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -534,37 +561,45 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="_autosummary/qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html" class="btn btn-neutral float-right" title="AlphaModel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="_autosummary/qf_lib.analysis.trade_analysis.trade_analysis_sheet.TradeAnalysisSheet.html" class="btn btn-neutral float-left" title="TradeAnalysisSheet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="_autosummary/qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html" class="btn btn-neutral float-right" title="AlphaModel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="_autosummary/qf_lib.analysis.exposure_analysis.exposure_settings.ExposureSettings.html" class="btn btn-neutral float-left" title="ExposureSettings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

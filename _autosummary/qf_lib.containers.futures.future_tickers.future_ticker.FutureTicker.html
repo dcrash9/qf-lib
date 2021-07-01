@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>FutureTicker &mdash; QF Lib  documentation</title>
   
@@ -17,10 +18,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +31,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -54,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> QF Lib
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -85,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
@@ -150,8 +149,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -165,7 +162,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -177,7 +174,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="futureticker">
+  <section id="futureticker">
 <h1>FutureTicker<a class="headerlink" href="#futureticker" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker">
@@ -188,22 +185,7 @@
 which provides all of the standard Ticker functionalities (e.g. just as standard tickers, it can be used along with
 DataHandler functions get_price, get_last_available_price, get_current_price etc.), without the need to manually
 manage the rolling of the contracts or to select a certain specific Ticker.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – Field which contains a name (or a short description) of the FutureTicker.</p></li>
-<li><p><strong>family_id</strong> (<em>str</em>) – Identificator used to describe the whole family of future contracts. In case of specific Future Tickers
-its purpose is to build an identificator, used by the data provider to download the chain of corresponding
-Tickers, and to verify whether a specific Ticker belongs to a certain futures family.</p></li>
-<li><p><strong>N</strong> (<em>int</em>) – Used to identify which specific Ticker should be considered by the Backtester, while using the general
-Future Ticker class. For example N parameter set to 1, denotes the front future contract.</p></li>
-<li><p><strong>days_before_exp_date</strong> (<em>int</em>) – Number of days before the expiration day of each of the contract, when the “current” specific contract
-should be substituted with the next consecutive one.</p></li>
-<li><p><strong>point_value</strong> (<em>int</em>) – Used to define the size of the contract.</p></li>
-</ul>
-</dd>
-</dl>
-<p><strong>Methods:</strong></p>
+<p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -222,20 +204,41 @@ should be substituted with the next consecutive one.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.initialize_data_provider" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.initialize_data_provider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize_data_provider</span></code></a>(timer, data_provider)</p></td>
 <td><p>Initialize the future ticker with data provider and ticker.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.set_expiration_hour" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.set_expiration_hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_expiration_hour</span></code></a>(hour, minute, second, …)</p></td>
+<td><p>Sets the expiration hour.</p></td>
+</tr>
 </tbody>
 </table>
-<p><strong>Attributes:</strong></p>
+<p><strong>Attributes</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.ticker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.ticker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ticker</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.name" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>Returns the name of the future ticker.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.ticker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.ticker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ticker</span></code></a></p></td>
 <td><p>Property which returns the value of ‘ticker’ attribute of the currently valid, specific Ticker.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Field which contains a name (or a short description) of the FutureTicker.</p></li>
+<li><p><strong>family_id</strong> (<em>str</em>) – Identificator used to describe the whole family of future contracts. In case of specific Future Tickers
+its purpose is to build an identificator, used by the data provider to download the chain of corresponding
+Tickers, and to verify whether a specific Ticker belongs to a certain futures family.</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Used to identify which specific Ticker should be considered by the Backtester, while using the general
+Future Ticker class. For example N parameter set to 1, denotes the front future contract.</p></li>
+<li><p><strong>days_before_exp_date</strong> (<em>int</em>) – Number of days before the expiration day of each of the contract, when the “current” specific contract
+should be substituted with the next consecutive one.</p></li>
+<li><p><strong>point_value</strong> (<em>int</em>) – Used to define the size of the contract.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.belongs_to_family">
 <em class="property">abstract </em><code class="sig-name descname">belongs_to_family</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a></span></em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/future_ticker.html#FutureTicker.belongs_to_family"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.belongs_to_family" title="Permalink to this definition">¶</a></dt>
@@ -255,10 +258,10 @@ identified by the FutureTicker.</p>
 <dt id="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.get_current_specific_ticker">
 <code class="sig-name descname">get_current_specific_ticker</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/future_ticker.html#FutureTicker.get_current_specific_ticker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.get_current_specific_ticker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method which returns the currently valid, specific Ticker.</p>
-<p>In order to optimize the computation of ticker value, as the contracts are assumed not to expire within
-the day (they can expire only at 0:00 a.m.), the ticker value is being cached for a certain date.
-If the function will be called for a date, for which the ticker value was already computed once, the cached
-value is being returned.</p>
+<p>In order to optimize the computation of ticker value the ticker value is being cached.
+The ticker is assumed to expire at a given expiration hour (which can be adjusted using the set_expiration_hour,
+by default it points to midnight), which means that on the expiration date the old contract is returned till
+the expiration hour and the new contract is returned since the expiration hour (inclusive).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The current specific ticker.</p>
@@ -301,6 +304,32 @@ function is public and used by multiple other components).</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the future ticker.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.set_expiration_hour">
+<code class="sig-name descname">set_expiration_hour</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hour</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">minute</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">second</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">microsecond</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/future_ticker.html#FutureTicker.set_expiration_hour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.set_expiration_hour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the expiration hour. Expiration hour is used to compute the current specific ticker. By default the
+expiration hour is set to midnight, which means that within one day always the same current specific ticker is
+returned.</p>
+<p>In case if the expiration hour is set to 8:00 pm then if that day was the last day the contract was
+valid, then the new contract is returned since 8:00 pm that day (inclusive).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hour</strong> (<em>int</em>) – </p></li>
+<li><p><strong>minute</strong> (<em>int</em>) – </p></li>
+<li><p><strong>second</strong> (<em>int</em>) – </p></li>
+<li><p><strong>microsecond</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.ticker">
 <em class="property">property </em><code class="sig-name descname">ticker</code><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.ticker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Property which returns the value of ‘ticker’ attribute of the currently valid, specific Ticker.
@@ -318,36 +347,44 @@ the function will return the Ticker(“CTZ9 Comdty”).ticker string value.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html" class="btn btn-neutral float-right" title="BloombergFutureTicker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="qf_lib.containers.futures.future_contract.FutureContract.html" class="btn btn-neutral float-left" title="FutureContract" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html" class="btn btn-neutral float-right" title="BloombergFutureTicker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qf_lib.containers.futures.future_contract.FutureContract.html" class="btn btn-neutral float-left" title="FutureContract" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-﻿ConeChart
+ConeChart
 ===========================================
 
 .. currentmodule:: qf_lib.plotting.charts.cone_chart

@@ -1,4 +1,4 @@
-﻿Portfolio
+Portfolio
 ==================================================================
 
 .. currentmodule:: qf_lib.portfolio_construction.portfolio_models.portfolio

@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.containers.qf_data_array &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -176,11 +172,12 @@
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Hashable</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">xarray.core</span> <span class="kn">import</span> <span class="n">dtypes</span>
 
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.price_field</span> <span class="kn">import</span> <span class="n">PriceField</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">Ticker</span>
@@ -190,16 +187,20 @@
 
 <div class="viewcode-block" id="QFDataArray"><a class="viewcode-back" href="../../../_autosummary/qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray">[docs]</a><span class="k">class</span> <span class="nc">QFDataArray</span><span class="p">(</span><span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fastpath</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indexes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">fastpath</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Use the class method `create()` for creating QFDataArrays.</span>
 <span class="sd">        DO NOT CREATE QFDataArrays using __init__() method (don&#39;t create it like this: QFDataArray()).</span>
 <span class="sd">        The __init__ method should be used only by xr.DataArray internal methods.</span>
+
+<span class="sd">        Important: Regardless of the xarray warning message the __slots__ should not be implemented, as they result</span>
+<span class="sd">        in Recursion Error.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">fastpath</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_if_dimensions_are_correct</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">dims</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">encoding</span><span class="p">,</span> <span class="n">fastpath</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">fastpath</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="c1"># Makes it possible to set indices in this way: qf_data_array.fields = [&quot;OPEN&quot;, &quot;CLOSE&quot;].</span>
@@ -269,8 +270,8 @@
         <span class="k">return</span> <span class="n">qf_data_array</span></div>
 
 <div class="viewcode-block" id="QFDataArray.concat"><a class="viewcode-back" href="../../../_autosummary/qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray.concat">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">objs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s1">&#39;different&#39;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s1">&#39;equals&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">indexers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">concat_over</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QFDataArray&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">objs</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s1">&#39;different&#39;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s1">&#39;equals&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">fill_value</span><span class="o">=</span><span class="n">dtypes</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="o">=</span><span class="s1">&#39;override&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QFDataArray&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Concatenates different xr.DataArrays and then converts the result to QFDataArray.</span>
 
@@ -279,7 +280,7 @@
 <span class="sd">        xr.concat()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
-            <span class="n">objs</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">data_vars</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">compat</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">indexers</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">concat_over</span><span class="p">)</span>  <span class="c1"># type: xr.DataArray</span>
+            <span class="n">objs</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">data_vars</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">compat</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">join</span><span class="p">,</span> <span class="n">combine_attrs</span><span class="p">)</span>  <span class="c1"># type: xr.DataArray</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">QFDataArray</span><span class="o">.</span><span class="n">from_xr_data_array</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">result</span></div>
@@ -320,25 +321,28 @@
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

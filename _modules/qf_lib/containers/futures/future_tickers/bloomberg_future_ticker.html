@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>qf_lib.containers.futures.future_tickers.bloomberg_future_ticker &mdash; QF Lib  documentation</title>
   
@@ -17,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -33,6 +30,7 @@
         <script src="../../../../../_static/jquery.js"></script>
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
 
@@ -52,7 +50,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home"> QF Lib
+            <a href="../../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
           
 
           
@@ -83,7 +81,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../analysis.html">analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../backtesting.html">backtesting</a></li>
@@ -119,8 +117,6 @@
         <div class="rst-content">
         
           
-
-
 
 
 
@@ -175,7 +171,6 @@
 <span class="c1">#     limitations under the License.</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>
 
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.expiration_date_field</span> <span class="kn">import</span> <span class="n">ExpirationDateField</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">BloombergTicker</span>
@@ -191,11 +186,11 @@
 <span class="sd">    name: str</span>
 <span class="sd">        Field which contains a name (or a short description) of the FutureTicker.</span>
 <span class="sd">    family_id: str</span>
-<span class="sd">        Used to to verify if a specific BloombergTicker belongs to a certain futures family and to build a specific,</span>
-<span class="sd">        random Ticker, which can be further used by the data provider to download the chain of corresponding Tickers.</span>
+<span class="sd">        Used to to verify if a specific BloombergTicker belongs to a certain futures family and to the active</span>
+<span class="sd">        Ticker string, which can be further used by the data provider to download the chain of corresponding Tickers.</span>
 <span class="sd">        The family ID pattern - e.g. for Cotton, an exemplary ticker string is of the following</span>
-<span class="sd">        form: &quot;CTZ9 Comdty&quot;. The &quot;Z9&quot; part denotes the month and year codes - this is the only variable part of the ticker. Thus, in</span>
-<span class="sd">        order to verify if a ticker belongs to the cotton family, it should be in form of &quot;CT{} Comdty&quot;.</span>
+<span class="sd">        form: &quot;CTZ9 Comdty&quot;. The &quot;Z9&quot; part denotes the month and year codes - this is the only variable part of the</span>
+<span class="sd">        ticker. Thus, in order to verify if a ticker belongs to the cotton family, it should be in form of &quot;CT{} Comdty&quot;.</span>
 <span class="sd">        For all other ticker families, the family_id should be in the form of specific ticker with the month and</span>
 <span class="sd">        year codes replaced with the &quot;{}&quot; placeholder.</span>
 <span class="sd">    N: int</span>
@@ -221,22 +216,9 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">family_id</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">,</span> <span class="n">point_value</span><span class="p">)</span>
 
-        <span class="c1"># Used for the purpose of random specific ticker computation</span>
-        <span class="n">random_year_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;09&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="s1">&#39;99&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_random_contract_codes</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">([</span><span class="n">month</span> <span class="o">+</span> <span class="n">year</span> <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">designated_contracts</span><span class="p">))</span>
-                                             <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">random_year_codes</span><span class="p">])</span>
-
-<div class="viewcode-block" id="BloombergFutureTicker.get_random_specific_ticker"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.get_random_specific_ticker">[docs]</a>    <span class="k">def</span> <span class="nf">get_random_specific_ticker</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BloombergTicker</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns sample ticker from the family id that can be used in Bloomberg to get further data (future chain members</span>
-<span class="sd">        for example).</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        BloombergTicker</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">seed</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_random_contract_codes</span><span class="p">)</span>
-        <span class="n">specific_ticker_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<div class="viewcode-block" id="BloombergFutureTicker.get_active_ticker"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.get_active_ticker">[docs]</a>    <span class="k">def</span> <span class="nf">get_active_ticker</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BloombergTicker</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Returns the active ticker. &quot;&quot;&quot;</span>
+        <span class="n">specific_ticker_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">BloombergTicker</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">specific_ticker_string</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_get_futures_chain_tickers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -292,25 +274,28 @@
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2020.
+        
+        &copy; Copyright 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
