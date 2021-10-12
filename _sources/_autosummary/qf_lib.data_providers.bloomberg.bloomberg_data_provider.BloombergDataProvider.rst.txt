@@ -1,9 +1,0 @@
-BloombergDataProvider
-=============================================================================
-
-.. currentmodule:: qf_lib.data_providers.bloomberg.bloomberg_data_provider
-
-.. autoclass:: BloombergDataProvider
-	:show-inheritance:
-	:autosummary:
-	:members:
