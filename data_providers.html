@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="document_utils" href="document_utils.html" />
+    <link rel="next" title="DataProvider" href="_autosummary/qf_lib.data_providers.data_provider.DataProvider.html" />
     <link rel="prev" title="FuturesRollingOrdersGenerator" href="_autosummary/qf_lib.containers.futures.futures_rolling_orders_generator.FuturesRollingOrdersGenerator.html" /> 
 </head>
 
@@ -90,7 +90,19 @@
 <li class="toctree-l1"><a class="reference internal" href="backtesting.html">backtesting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="common.html">common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="containers.html">containers</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">data_providers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">data_providers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.data_provider.DataProvider.html">DataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.abstract_price_data_provider.AbstractPriceDataProvider.html">AbstractPriceDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html">BloombergDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.bloomberg_beap_hapi.bloomberg_beap_hapi_data_provider.BloombergBeapHapiDataProvider.html">BloombergBeapHapiDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.preset_data_provider.PresetDataProvider.html">PresetDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider.html">PrefetchingDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.general_price_provider.GeneralPriceProvider.html">GeneralPriceProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html">QuandlDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html">HaverDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html">CryptoCurrencyDataProvider</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="document_utils.html">document_utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotting.html">plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="indicators.html">indicators</a></li>
@@ -167,20 +179,38 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.data_provider.DataProvider.html#qf_lib.data_providers.data_provider.DataProvider" title="qf_lib.data_providers.data_provider.DataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_provider.DataProvider</span></code></a></p></td>
+<td><p>An interface for data providers (for example AbstractPriceDataProvider or GeneralPriceProvider).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.abstract_price_data_provider.AbstractPriceDataProvider.html#qf_lib.data_providers.abstract_price_data_provider.AbstractPriceDataProvider" title="qf_lib.data_providers.abstract_price_data_provider.AbstractPriceDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abstract_price_data_provider.AbstractPriceDataProvider</span></code></a></p></td>
+<td><p>An interface for data providers containing historical data of stocks, indices, futures and other asset classes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bloomberg.bloomberg_data_provider.BloombergDataProvider</span></code></a></p></td>
+<td><p>Data Provider which provides financial data from Bloomberg.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.bloomberg_beap_hapi.bloomberg_beap_hapi_data_provider.BloombergBeapHapiDataProvider.html#qf_lib.data_providers.bloomberg_beap_hapi.bloomberg_beap_hapi_data_provider.BloombergBeapHapiDataProvider" title="qf_lib.data_providers.bloomberg_beap_hapi.bloomberg_beap_hapi_data_provider.BloombergBeapHapiDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bloomberg_beap_hapi.bloomberg_beap_hapi_data_provider.BloombergBeapHapiDataProvider</span></code></a></p></td>
+<td><p>Data Provider which provides financial data from Bloomberg BEAP HAPI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.preset_data_provider.PresetDataProvider.html#qf_lib.data_providers.preset_data_provider.PresetDataProvider" title="qf_lib.data_providers.preset_data_provider.PresetDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">preset_data_provider.PresetDataProvider</span></code></a></p></td>
+<td><p>Wrapper on QFDataArray which makes it a DataProvider.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider.html#qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider" title="qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prefetching_data_provider.PrefetchingDataProvider</span></code></a></p></td>
+<td><p>Optimises running of the DataProvider by pre-fetching all the data at startup and then using the cached data instead of sending over-the-network requests every time the data is requested.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.general_price_provider.GeneralPriceProvider.html#qf_lib.data_providers.general_price_provider.GeneralPriceProvider" title="qf_lib.data_providers.general_price_provider.GeneralPriceProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">general_price_provider.GeneralPriceProvider</span></code></a></p></td>
+<td><p>The main class that should be used in order to access prices of financial instruments.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html#qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider" title="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quandl.quandl_data_provider.QuandlDataProvider</span></code></a></p></td>
+<td><p>Class providing the Quandl data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html#qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider" title="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">haver.haver_data_provider.HaverDataProvider</span></code></a></p></td>
+<td><p>Constructs a new <code class="docutils literal notranslate"><span class="pre">HaverDataProvider</span></code> instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html#qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider" title="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider</span></code></a></p></td>
+<td><p>Constructs a new <code class="docutils literal notranslate"><span class="pre">CryptoCurrencyDataProvider</span></code> instance</p></td>
+</tr>
 </tbody>
 </table>
-<dl class="simple">
-<dt>data_provider.DataProvider</dt><dd><p>abstract_price_data_provider.AbstractPriceDataProvider
-bloomberg.bloomberg_data_provider.BloombergDataProvider
-bloomberg_beap_hapi_data_provider.BloombergBeapHapiDataProvider
-preset_data_provider.PresetDataProvider
-prefetching_data_provider.PrefetchingDataProvider
-general_price_provider.GeneralPriceProvider
-quandl.quandl_data_provider.QuandlDataProvider
-haver.haver_data_provider.HaverDataProvider
-cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider</p>
-</dd>
-</dl>
 <span class="target" id="module-qf_lib.data_providers.helpers"></span><p><strong>Functions</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -257,7 +287,7 @@ otherwise return types are: QFSeries, QFDataFrame or QFDataArray</p></li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="document_utils.html" class="btn btn-neutral float-right" title="document_utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="_autosummary/qf_lib.data_providers.data_provider.DataProvider.html" class="btn btn-neutral float-right" title="DataProvider" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="_autosummary/qf_lib.containers.futures.futures_rolling_orders_generator.FuturesRollingOrdersGenerator.html" class="btn btn-neutral float-left" title="FuturesRollingOrdersGenerator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
