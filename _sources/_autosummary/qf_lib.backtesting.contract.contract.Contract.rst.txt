@@ -1,9 +1,0 @@
-Contract
-=============================================
-
-.. currentmodule:: qf_lib.backtesting.contract.contract
-
-.. autoclass:: Contract
-	:show-inheritance:
-	:autosummary:
-	:members:

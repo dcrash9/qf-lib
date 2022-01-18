@@ -171,9 +171,11 @@
 <span class="c1">#     limitations under the License.</span>
 <span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="kn">from</span> <span class="nn">qf_lib.common.enums.security_type</span> <span class="kn">import</span> <span class="n">SecurityType</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.exceptions.future_contracts_exceptions</span> <span class="kn">import</span> <span class="n">NoValidTickerException</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">Ticker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.dateutils.relative_delta</span> <span class="kn">import</span> <span class="n">RelativeDelta</span>
@@ -189,13 +191,14 @@
 <span class="sd">    DataHandler functions get_price, get_last_available_price, get_current_price etc.), without the need to manually</span>
 <span class="sd">    manage the rolling of the contracts or to select a certain specific Ticker.</span>
 
-<span class="sd">    .. note:</span>
-<span class="sd">        While downloading historical data (using for example get_price function) all of the prices would be provided for</span>
-<span class="sd">        the current specific ticker, e.g. in case of the family of Cotton future contracts, if on a certain day the</span>
-<span class="sd">        specific contract returned by the FutureTicker will be the December 2019 Cotton contract, all of the prices</span>
-<span class="sd">        returned by get_price will pertain to this specific December contract and no prices chaining will occur.</span>
-<span class="sd">        In order to use the get_price function along with futures contracts chaining (and eventual adjustments),</span>
-<span class="sd">        the FuturesChain object has to be used.</span>
+<span class="sd">    Notes</span>
+<span class="sd">    ------</span>
+<span class="sd">    While downloading historical data (using for example get_price function) all of the prices would be provided for</span>
+<span class="sd">    the current specific ticker, e.g. in case of the family of Cotton future contracts, if on a certain day the</span>
+<span class="sd">    specific contract returned by the FutureTicker will be the December 2019 Cotton contract, all of the prices</span>
+<span class="sd">    returned by get_price will pertain to this specific December contract and no prices chaining will occur.</span>
+<span class="sd">    In order to use the get_price function along with futures contracts chaining (and eventual adjustments),</span>
+<span class="sd">    the FuturesChain object has to be used.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>
@@ -206,26 +209,36 @@
 <span class="sd">        its purpose is to build an identificator, used by the data provider to download the chain of corresponding</span>
 <span class="sd">        Tickers, and to verify whether a specific Ticker belongs to a certain futures family.</span>
 <span class="sd">    N: int</span>
-<span class="sd">        Used to identify which specific Ticker should be considered by the Backtester, while using the general</span>
-<span class="sd">        Future Ticker class. For example N parameter set to 1, denotes the front future contract.</span>
+<span class="sd">        Since we chain individual contracts, we need to know which one to select. N determines which contract is used</span>
+<span class="sd">        at any given time when we have to select a specific contract. For example N parameter set to 1,</span>
+<span class="sd">        denotes the first (front) future contract. N set to 2 will be the second contract and so on.</span>
 <span class="sd">    days_before_exp_date: int</span>
 <span class="sd">        Number of days before the expiration day of each of the contract, when the “current” specific contract</span>
 <span class="sd">        should be substituted with the next consecutive one.</span>
 <span class="sd">    point_value: int</span>
 <span class="sd">        Used to define the size of the contract.</span>
+<span class="sd">    designated_contracts: str</span>
+<span class="sd">        It is a string, which represents all month codes, that are being downloaded and stored</span>
+<span class="sd">        in the chain of future contracts. Any specific order of letters is not required. E.g. providing this</span>
+<span class="sd">        parameter value equal to &quot;HMUZ&quot;, would restrict the future chain to only the contracts, which expire in</span>
+<span class="sd">        March, June, September and December, even if contracts for any other months exist and are returned by the</span>
+<span class="sd">        DataProvider get_futures_chain_tickers function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">family_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">point_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">family_id</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">family_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">point_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="n">designated_contracts</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">security_type</span><span class="p">:</span> <span class="n">SecurityType</span> <span class="o">=</span> <span class="n">SecurityType</span><span class="o">.</span><span class="n">FUTURE</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">family_id</span><span class="p">,</span> <span class="n">security_type</span><span class="p">,</span> <span class="n">point_value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span> <span class="o">=</span> <span class="n">family_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">point_value</span> <span class="o">=</span> <span class="n">point_value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">designated_contracts</span> <span class="o">=</span> <span class="n">designated_contracts</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_days_before_exp_date</span> <span class="o">=</span> <span class="n">days_before_exp_date</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_exp_dates</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: QFSeries</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: Timer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: &quot;DataProvider&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ticker_initialized</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ticker_initialized</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># type: bool</span>
 
         <span class="c1"># Date used for optimization purposes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ticker</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: Ticker</span>
@@ -243,12 +256,17 @@
 <span class="sd">            Data provider which is used to download symbols of tickers, belonging to the given future ticker family</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ticker_initialized</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;The FutureTicker </span><span class="si">{}</span><span class="s2"> has been already initialized with Timer and Data Provider. &quot;</span>
-                                <span class="s2">&quot;The previous Timer and Data Provider references will be overwritten&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The FutureTicker </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2"> has been already initialized with Timer and Data &quot;</span>
+                                <span class="sa">f</span><span class="s2">&quot;Provider. The previous Timer and Data Provider references will be overwritten&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span> <span class="o">=</span> <span class="n">data_provider</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span> <span class="o">=</span> <span class="n">timer</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_exp_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_futures_chain_tickers</span><span class="p">()</span>
+
+        <span class="c1"># Download and validate expiration dates for the future ticker</span>
+        <span class="n">exp_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_futures_chain_tickers</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_expiration_dates</span><span class="p">(</span><span class="n">exp_dates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exp_dates</span> <span class="o">=</span> <span class="n">exp_dates</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_ticker_initialized</span> <span class="o">=</span> <span class="kc">True</span></div>
 
     <span class="nd">@property</span>
@@ -289,8 +307,8 @@
 
         <span class="c1"># If the timer or data provider were not set</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ticker_initialized</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Set up the timer and data provider by calling initialize_data_provider() &quot;</span>
-                             <span class="s2">&quot;before using the future ticker </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set up the timer and data provider by calling initialize_data_provider() &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;before using the future ticker </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">def</span> <span class="nf">_get_current_specific_ticker</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Ticker</span><span class="p">:</span>
                 <span class="sd">&quot;&quot;&quot;</span>
@@ -337,11 +355,8 @@
             <span class="c1"># Function &quot;iloc&quot; may rise IndexError if the requested indexer is out-of-bonds (e.g. a high value of self.N)</span>
             <span class="c1"># Therefore, in case if the data with expiration dates is not available for the current date, the</span>
             <span class="c1"># _get_current_specific_ticker function will raise a LookupError.</span>
-
-            <span class="k">raise</span> <span class="n">NoValidTickerException</span><span class="p">(</span><span class="s2">&quot;No valid ticker for the FutureTicker </span><span class="si">{}</span><span class="s2"> found on </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-            <span class="p">))</span></div>
+            <span class="k">raise</span> <span class="n">NoValidTickerException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No valid ticker for the FutureTicker </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2"> found on &quot;</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span></div>
 
 <div class="viewcode-block" id="FutureTicker.get_expiration_dates"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.get_expiration_dates">[docs]</a>    <span class="k">def</span> <span class="nf">get_expiration_dates</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QFSeries</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -389,10 +404,36 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
+    <span class="k">def</span> <span class="nf">_validate_expiration_dates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expiration_dates</span><span class="p">:</span> <span class="n">QFSeries</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Raises an error in case if the expiration dates series is invalid. &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">expiration_dates</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()):</span>
+            <span class="n">duplicated_rows</span> <span class="o">=</span> <span class="n">expiration_dates</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">expiration_dates</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Expiration Dates for ticker </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> contain duplicated dates for the following &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;contracts: </span><span class="se">\n</span><span class="si">{</span><span class="n">duplicated_rows</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;In order to fix this issue you can skip some of the contract months using the &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;designated_contracts parameter of the </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Make sure that all the tickers have the correct point_value and security type</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">ticker</span><span class="o">.</span><span class="n">point_value</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_value</span> <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">expiration_dates</span><span class="o">.</span><span class="n">values</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not all tickers in the chain have the point_value set to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">point_value</span><span class="si">}</span><span class="s2"> as the &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;Future Ticker. Please make sure that correct values are inserted by the DataProvider &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;and _get_futures_chain_tickers() function.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">ticker</span><span class="o">.</span><span class="n">security_type</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">security_type</span> <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">expiration_dates</span><span class="o">.</span><span class="n">values</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not all tickers in the chain have the point_value set to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">point_value</span><span class="si">}</span><span class="s2"> as the &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;Future Ticker. Please make sure that correct values are inserted by the DataProvider &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;and _get_futures_chain_tickers() function.&quot;</span><span class="p">)</span>
+
     <span class="nd">@ticker</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">ticker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
         <span class="c1"># The purpose of this function is to enable the initial setting of ticker value, in the __init__ function.</span>
         <span class="k">pass</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Boolean providing information on whether the data provider and timer were set for this Future Ticker</span>
+<span class="sd">        instance or not. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ticker_initialized</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_str_repr</span><span class="p">()</span>
@@ -401,7 +442,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_str_repr</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_get_str_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">(&#39;</span><span class="si">{}</span><span class="s2">&#39;, &#39;</span><span class="si">{}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">family_id</span><span class="si">}</span><span class="s2">&#39;)&quot;</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">other</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
@@ -455,6 +496,14 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="FutureTicker.supported_ticker_type"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.supported_ticker_type">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">supported_ticker_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Ticker</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns class of specific tickers which are supported by this FutureTicker (e.g. it should return</span>
+<span class="sd">        BloombergTicker for the BloombergFutureTicker etc.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div></div>
 </pre></div>

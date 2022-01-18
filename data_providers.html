@@ -101,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html">QuandlDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html">HaverDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html">CryptoCurrencyDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.html">PortaraDataProvider</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="document_utils.html">document_utils</a></li>
@@ -209,6 +210,9 @@
 <tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html#qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider" title="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider</span></code></a></p></td>
 <td><p>Constructs a new <code class="docutils literal notranslate"><span class="pre">CryptoCurrencyDataProvider</span></code> instance</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.html#qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider" title="qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">portara.portara_data_provider.PortaraDataProvider</span></code></a></p></td>
+<td><p>Loads Portara data for futures contracts.</p></td>
+</tr>
 </tbody>
 </table>
 <span class="target" id="module-qf_lib.data_providers.helpers"></span><p><strong>Functions</strong></p>
@@ -218,14 +222,30 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.helpers.normalize_data_array" title="qf_lib.data_providers.helpers.normalize_data_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_data_array</span></code></a>(data_array, tickers, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.helpers.chain_tickers_within_range" title="qf_lib.data_providers.helpers.chain_tickers_within_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_tickers_within_range</span></code></a>(future_ticker, …)</p></td>
+<td><p>Returns only these tickers belonging to the chain of a given FutureTicker, which were valid only for the given time frame.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.helpers.normalize_data_array" title="qf_lib.data_providers.helpers.normalize_data_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_data_array</span></code></a>(data_array, tickers, …)</p></td>
 <td><p>Post-processes the result of some DataProviders so that it satisfies the format of a result expected from DataProviders.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.helpers.tickers_dict_to_data_array" title="qf_lib.data_providers.helpers.tickers_dict_to_data_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tickers_dict_to_data_array</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.helpers.tickers_dict_to_data_array" title="qf_lib.data_providers.helpers.tickers_dict_to_data_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tickers_dict_to_data_array</span></code></a>(…)</p></td>
 <td><p>Converts a dictionary mapping tickers to DateFrame onto a QFDataArray.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py function">
+<dt id="qf_lib.data_providers.helpers.chain_tickers_within_range">
+<code class="sig-prename descclassname">qf_lib.data_providers.helpers.</code><code class="sig-name descname">chain_tickers_within_range</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">future_ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="_autosummary/qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker">qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker</a></span></em>, <em class="sig-param"><span class="n">exp_dates</span><span class="p">:</span> <span class="n"><a class="reference internal" href="_autosummary/qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a></span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qf_lib/data_providers/helpers.html#chain_tickers_within_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.helpers.chain_tickers_within_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns only these tickers belonging to the chain of a given FutureTicker, which were valid only for the given
+time frame.</p>
+<p>As it is possible to select the contracts to be traded for a given future ticker (e.g. for Bloomberg
+future tickers we could specify only to trade “M” contracts), the end date is computed as the original end date
++ 1 year x contract number to trade.
+E.g. if we specify that we only want to trade “M” contracts and we always want to trade the front M contract,
+we add 1 year x 1. If instead of the front M, we would like to trade the second next M contract,
+we add 2 years to the end date etc.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt id="qf_lib.data_providers.helpers.normalize_data_array">
 <code class="sig-prename descclassname">qf_lib.data_providers.helpers.</code><code class="sig-name descname">normalize_data_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_array</span></em>, <em class="sig-param"><span class="n">tickers</span></em>, <em class="sig-param"><span class="n">fields</span></em>, <em class="sig-param"><span class="n">got_single_date</span></em>, <em class="sig-param"><span class="n">got_single_ticker</span></em>, <em class="sig-param"><span class="n">got_single_field</span></em>, <em class="sig-param"><span class="n">use_prices_types</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="_autosummary/qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="_autosummary/qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">, </span><a class="reference internal" href="_autosummary/qf_lib.containers.qf_data_array.QFDataArray.html#qf_lib.containers.qf_data_array.QFDataArray" title="qf_lib.containers.qf_data_array.QFDataArray">qf_lib.containers.qf_data_array.QFDataArray</a><span class="p">, </span><a class="reference internal" href="_autosummary/qf_lib.containers.series.prices_series.PricesSeries.html#qf_lib.containers.series.prices_series.PricesSeries" title="qf_lib.containers.series.prices_series.PricesSeries">qf_lib.containers.series.prices_series.PricesSeries</a><span class="p">, </span><a class="reference internal" href="_autosummary/qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame.html#qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame" title="qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame">qf_lib.containers.dataframe.prices_dataframe.PricesDataFrame</a><span class="p">]</span><a class="reference internal" href="_modules/qf_lib/data_providers/helpers.html#normalize_data_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.helpers.normalize_data_array" title="Permalink to this definition">¶</a></dt>

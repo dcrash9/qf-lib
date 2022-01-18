@@ -1,0 +1,9 @@
+PortaraDataProvider
+=======================================================================
+
+.. currentmodule:: qf_lib.data_providers.portara.portara_data_provider
+
+.. autoclass:: PortaraDataProvider
+	:show-inheritance:
+	:autosummary:
+	:members:

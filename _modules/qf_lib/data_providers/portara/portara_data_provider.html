@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>qf_lib.data_providers.portara.portara_data_provider &mdash; QF Lib  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../analysis.html">analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../backtesting.html">backtesting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../common.html">common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../containers.html">containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_providers.html">data_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../document_utils.html">document_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../plotting.html">plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../indicators.html">indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../portfolio_construction.html">portfolio_construction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">QF Lib</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>qf_lib.data_providers.portara.portara_data_provider</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for qf_lib.data_providers.portara.portara_data_provider</h1><div class="highlight"><pre>
+<span></span><span class="c1">#     Copyright 2016-present CERN – European Organization for Nuclear Research</span>
+<span class="c1">#</span>
+<span class="c1">#     Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#     you may not use this file except in compliance with the License.</span>
+<span class="c1">#     You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#         http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#     Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#     distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#     See the License for the specific language governing permissions and</span>
+<span class="c1">#     limitations under the License.</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">qf_lib.common.enums.expiration_date_field</span> <span class="kn">import</span> <span class="n">ExpirationDateField</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.enums.price_field</span> <span class="kn">import</span> <span class="n">PriceField</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">Ticker</span><span class="p">,</span> <span class="n">PortaraTicker</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.utils.logging.qf_parent_logger</span> <span class="kn">import</span> <span class="n">qf_logger</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.utils.miscellaneous.to_list_conversion</span> <span class="kn">import</span> <span class="n">convert_to_list</span>
+<span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.qf_dataframe</span> <span class="kn">import</span> <span class="n">QFDataFrame</span>
+<span class="kn">from</span> <span class="nn">qf_lib.containers.futures.future_tickers.future_ticker</span> <span class="kn">import</span> <span class="n">FutureTicker</span>
+<span class="kn">from</span> <span class="nn">qf_lib.containers.series.qf_series</span> <span class="kn">import</span> <span class="n">QFSeries</span>
+<span class="kn">from</span> <span class="nn">qf_lib.data_providers.helpers</span> <span class="kn">import</span> <span class="n">tickers_dict_to_data_array</span><span class="p">,</span> <span class="n">chain_tickers_within_range</span><span class="p">,</span> <span class="n">normalize_data_array</span>
+<span class="kn">from</span> <span class="nn">qf_lib.data_providers.preset_data_provider</span> <span class="kn">import</span> <span class="n">PresetDataProvider</span>
+
+
+<div class="viewcode-block" id="PortaraDataProvider"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.html#qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider">[docs]</a><span class="k">class</span> <span class="nc">PortaraDataProvider</span><span class="p">(</span><span class="n">PresetDataProvider</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads Portara data for futures contracts. When it comes to futures, this provider supports both continuous series</span>
+<span class="sd">    and working on individual contracts (tenors).</span>
+
+<span class="sd">    The required format is .csv for pricing data (with headers) and .txt for expiration dates data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    path: str</span>
+<span class="sd">        path to the exported Portara data</span>
+<span class="sd">    tickers: Ticker, Sequence[Ticker]</span>
+<span class="sd">        one or a list of tickers, used further to download the futures contracts related data.</span>
+<span class="sd">        The list can contain either Tickers or FutureTickers. In case of the Tickers, simply the given fields</span>
+<span class="sd">        are being downloaded and stored using the PresetDataProvider. In case of the FutureTickers, the future</span>
+<span class="sd">        chain tickers and their corresponding prices are being downloaded and stored.</span>
+<span class="sd">    fields: PriceField, Sequence[PriceField]</span>
+<span class="sd">        fields that should be downloaded</span>
+<span class="sd">    start_date: datetime</span>
+<span class="sd">        first date to be downloaded</span>
+<span class="sd">    end_date: datetime</span>
+<span class="sd">        last date to be downloaded</span>
+<span class="sd">    frequency: Frequency</span>
+<span class="sd">        frequency of the data (1-minute bar and daily frequencies are supported)</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">        - It is assumed that the names of files containing prices data match the names of the contracts (e.g.</span>
+<span class="sd">          SI1999Z.csv for SI1999Z).</span>
+<span class="sd">        - The naming convention used to generate the data in Portara should be the &quot;SymYYYYM&quot;.</span>
+<span class="sd">        - The date format should be set to &quot;YYYY-MM-DD&quot;.</span>
+<span class="sd">        - Currently the only supported data frequencies are daily frequency and 1-minute bar frequency. After preloading</span>
+<span class="sd">          1-minute bars, it is possible to aggregate them selecting a different frequency in the get price.</span>
+<span class="sd">        - In order to see exemplary files which may be used with the PortaraDataProvider (e.g. structure of expiration</span>
+<span class="sd">          dates file), check the mock files in the tests directory:</span>
+<span class="sd">          qf_lib_tests &gt; unit_tests &gt; data_providers &gt; portara &gt; input_data.</span>
+<span class="sd">        - To see examples using Portara data provider, check the demo scripts:</span>
+<span class="sd">          demo_scripts &gt; data_providers &gt; portara.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Ticker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Ticker</span><span class="p">]],</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">PriceField</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">PriceField</span><span class="p">]],</span>
+                 <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="n">Frequency</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">qf_logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">frequency</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">Frequency</span><span class="o">.</span><span class="n">DAILY</span><span class="p">,</span> <span class="n">Frequency</span><span class="o">.</span><span class="n">MIN_1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> supports only DAILY and MIN_1 bars loading&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+        <span class="n">fields</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">PriceField</span><span class="p">)</span>
+
+        <span class="c1"># Convert to list and remove duplicates</span>
+        <span class="n">tickers</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span> <span class="n">Ticker</span><span class="p">)</span>
+        <span class="n">tickers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">tickers</span><span class="p">))</span>
+
+        <span class="n">future_tickers</span> <span class="o">=</span> <span class="p">[</span><span class="n">ticker</span> <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">tickers</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">FutureTicker</span><span class="p">)]</span>
+        <span class="n">non_future_tickers</span> <span class="o">=</span> <span class="p">[</span><span class="n">ticker</span> <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">tickers</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">FutureTicker</span><span class="p">)]</span>
+
+        <span class="n">exp_dates</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">all_tickers</span> <span class="o">=</span> <span class="n">non_future_tickers</span>
+
+        <span class="k">if</span> <span class="n">future_tickers</span><span class="p">:</span>
+            <span class="n">exp_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_expiration_dates</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">future_tickers</span><span class="p">)</span>
+
+            <span class="c1"># Filter out all theses specific future contracts, which expired before start_date</span>
+            <span class="k">for</span> <span class="n">ft</span> <span class="ow">in</span> <span class="n">future_tickers</span><span class="p">:</span>
+                <span class="n">all_tickers</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">chain_tickers_within_range</span><span class="p">(</span><span class="n">ft</span><span class="p">,</span> <span class="n">exp_dates</span><span class="p">[</span><span class="n">ft</span><span class="p">],</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">))</span>
+
+        <span class="n">data_array</span><span class="p">,</span> <span class="n">contracts_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_price_and_contracts</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">all_tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span>
+                                                                 <span class="n">end_date</span><span class="p">,</span> <span class="n">frequency</span><span class="p">)</span>
+        <span class="n">normalized_data_array</span> <span class="o">=</span> <span class="n">normalize_data_array</span><span class="p">(</span><span class="n">data_array</span><span class="p">,</span> <span class="n">all_tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_contracts_df</span> <span class="o">=</span> <span class="n">contracts_df</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">normalized_data_array</span><span class="p">,</span>
+                         <span class="n">exp_dates</span><span class="o">=</span><span class="n">exp_dates</span><span class="p">,</span>
+                         <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span>
+                         <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span>
+                         <span class="n">frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PortaraDataProvider.get_contracts_df"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.html#qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.get_contracts_df">[docs]</a>    <span class="k">def</span> <span class="nf">get_contracts_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QFDataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Returns contracts information. A non empty data frame is returned only if the pricing data files contain</span>
+<span class="sd">        the &#39;Contract&#39; column. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contracts_df</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_expiration_dates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dir_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">future_tickers</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FutureTicker</span><span class="p">]):</span>
+        <span class="n">tickers_dates_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">future_ticker</span> <span class="ow">in</span> <span class="n">future_tickers</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/</span><span class="si">{}</span><span class="s1">.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">future_ticker</span><span class="o">.</span><span class="n">family_id</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)))):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">,</span> <span class="s1">&#39;Expiration Date&#39;</span><span class="p">],</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Expiration Date&#39;</span><span class="p">],</span>
+                                     <span class="n">date_parser</span><span class="o">=</span><span class="k">lambda</span> <span class="n">date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;Contract&quot;</span><span class="p">)</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Expiration Date&#39;</span><span class="p">:</span> <span class="n">ExpirationDateField</span><span class="o">.</span><span class="n">LastTradeableDate</span><span class="p">})</span>
+                    <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">PortaraTicker</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">security_type</span><span class="o">=</span><span class="n">future_ticker</span><span class="o">.</span><span class="n">security_type</span><span class="p">,</span>
+                                                         <span class="n">point_value</span><span class="o">=</span><span class="n">future_ticker</span><span class="o">.</span><span class="n">point_value</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">future_ticker</span><span class="o">.</span><span class="n">belongs_to_family</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+                        <span class="n">tickers_dates_dict</span><span class="p">[</span><span class="n">future_ticker</span><span class="p">]</span> <span class="o">=</span> <span class="n">QFDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not all tickers belong to family </span><span class="si">{</span><span class="n">future_ticker</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> does not contain valid expiration dates and therefore will be &quot;</span>
+                                      <span class="sa">f</span><span class="s2">&quot;excluded.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Log all the future tickers, which could not have been mapped correctly</span>
+        <span class="n">tickers_without_matching_files</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">future_tickers</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">tickers_dates_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">tickers_without_matching_files</span><span class="p">:</span>
+            <span class="n">tickers_dates_dict</span><span class="p">[</span><span class="n">ticker</span><span class="p">]</span> <span class="o">=</span> <span class="n">QFDataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">ExpirationDateField</span><span class="o">.</span><span class="n">LastTradeableDate</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No expiration dates were found for ticker </span><span class="si">{</span><span class="n">ticker</span><span class="si">}</span><span class="s2">. Check if file &quot;</span>
+                                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ticker</span><span class="o">.</span><span class="n">family_id</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.txt exists in the </span><span class="si">{</span><span class="n">dir_path</span><span class="si">}</span><span class="s2"> and if it contains&quot;</span>
+                                <span class="sa">f</span><span class="s2">&quot;valid expiration dates for the ticker.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">tickers_dates_dict</span>
+
+    <span class="k">def</span> <span class="nf">_get_price_and_contracts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Ticker</span><span class="p">],</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">PriceField</span><span class="p">],</span>
+                                 <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">freq</span><span class="p">:</span> <span class="n">Frequency</span><span class="p">):</span>
+
+        <span class="n">field_to_price_field_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;Open&#39;</span><span class="p">:</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
+            <span class="s1">&#39;High&#39;</span><span class="p">:</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">High</span><span class="p">,</span>
+            <span class="s1">&#39;Low&#39;</span><span class="p">:</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">Low</span><span class="p">,</span>
+            <span class="s1">&#39;Close&#39;</span><span class="p">:</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span>
+            <span class="s1">&#39;LastPrice&#39;</span><span class="p">:</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span>
+            <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;dates&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Date_Time&#39;</span><span class="p">:</span> <span class="s1">&#39;dates&#39;</span>
+        <span class="p">}</span>
+
+        <span class="c1"># it is required to distinguish intraday and daily volume</span>
+        <span class="k">if</span> <span class="n">freq</span> <span class="o">==</span> <span class="n">Frequency</span><span class="o">.</span><span class="n">MIN_1</span><span class="p">:</span>
+            <span class="n">field_to_price_field_dict</span><span class="p">[</span><span class="s1">&#39;TradeVolume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">Volume</span>  <span class="c1"># for intraday</span>
+        <span class="k">elif</span> <span class="n">freq</span> <span class="o">==</span> <span class="n">Frequency</span><span class="o">.</span><span class="n">DAILY</span><span class="p">:</span>
+            <span class="n">field_to_price_field_dict</span><span class="p">[</span><span class="s1">&#39;Volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">Volume</span>  <span class="c1"># for daily</span>
+
+        <span class="n">tickers_strings_to_tickers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">ticker</span><span class="o">.</span><span class="n">as_string</span><span class="p">():</span> <span class="n">ticker</span> <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">tickers</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">FutureTicker</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">tickers_paths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/</span><span class="si">{}</span><span class="s1">.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ticker_str</span><span class="p">)))</span>
+                         <span class="k">for</span> <span class="n">ticker_str</span> <span class="ow">in</span> <span class="n">tickers_strings_to_tickers</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        <span class="n">joined_tickers_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">tickers_paths</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+
+        <span class="n">tickers_prices_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">contracts_data</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">joined_tickers_paths</span><span class="p">:</span>
+            <span class="n">ticker_str</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">ticker</span> <span class="o">=</span> <span class="n">tickers_strings_to_tickers</span><span class="p">[</span><span class="n">ticker_str</span><span class="p">]</span>
+            <span class="c1"># It is important to save the Time and Date as strings, in order to correctly infer the date format</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">QFDataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Date&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Date_Time&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">}))</span>
+
+            <span class="k">if</span> <span class="s1">&#39;Time&#39;</span> <span class="ow">in</span> <span class="n">df</span> <span class="ow">and</span> <span class="n">freq</span> <span class="o">==</span> <span class="n">Frequency</span><span class="o">.</span><span class="n">MIN_1</span><span class="p">:</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="s1">&#39;Time&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span> <span class="ow">and</span> <span class="s1">&#39;Date&#39;</span> <span class="ow">in</span> <span class="n">df</span> <span class="ow">and</span> <span class="n">freq</span> <span class="o">==</span> <span class="n">Frequency</span><span class="o">.</span><span class="n">DAILY</span><span class="p">:</span>
+                <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ticker </span><span class="si">{</span><span class="n">ticker</span><span class="si">}</span><span class="s2"> does not satisfy timing requirements. File path: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">contracts_data</span><span class="p">[</span><span class="n">ticker</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;Contract&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="n">QFSeries</span><span class="p">()</span>
+
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">field_to_price_field_dict</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">fields</span><span class="p">)]</span>
+            <span class="n">fields_diff</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fields_diff</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Not all fields are available for </span><span class="si">{}</span><span class="s2">. Difference: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">fields_diff</span><span class="p">))</span>
+
+            <span class="n">tickers_prices_dict</span><span class="p">[</span><span class="n">ticker</span><span class="p">]</span> <span class="o">=</span> <span class="n">QFDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+        <span class="n">contracts_df</span> <span class="o">=</span> <span class="n">QFDataFrame</span><span class="p">(</span><span class="n">contracts_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tickers_dict_to_data_array</span><span class="p">(</span><span class="n">tickers_prices_dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">tickers_prices_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">fields</span><span class="p">),</span> <span class="n">contracts_df</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -171,24 +171,21 @@
 <span class="c1">#     limitations under the License.</span>
 
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">Ticker</span>
-<span class="kn">from</span> <span class="nn">qf_lib.containers.futures.future_tickers.future_ticker</span> <span class="kn">import</span> <span class="n">FutureTicker</span>
 
 
 <div class="viewcode-block" id="ContractTickerMapper"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper">[docs]</a><span class="k">class</span> <span class="nc">ContractTickerMapper</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <div class="viewcode-block" id="ContractTickerMapper.contract_to_ticker"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.contract_to_ticker">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">contract_to_ticker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">strictly_to_specific_ticker</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Ticker</span><span class="p">,</span> <span class="n">FutureTicker</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Maps Contract object onto corresponding Ticker.</span>
+    <span class="k">def</span> <span class="nf">contract_to_ticker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Ticker</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; Maps Broker specific contract objects onto corresponding Tickers.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        contract: Contract</span>
-<span class="sd">            contract that should be mapped</span>
-<span class="sd">        strictly_to_specific_ticker: bool</span>
-<span class="sd">            allows to map a Future contract to either Ticker (default) or FutureTicker</span>
+<span class="sd">        contract: Any</span>
+<span class="sd">            broker specific object, which is used to identify an asset (e.g. Contracts for Interactive Brokers,</span>
+<span class="sd">            Tickers for Bloomberg EMSX etc.)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -198,7 +195,7 @@
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="ContractTickerMapper.ticker_to_contract"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.ticker_to_contract">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">ticker_to_contract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="n">Ticker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Contract</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">ticker_to_contract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="n">Ticker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Maps ticker to corresponding ticker.</span>
 
 <span class="sd">        Parameters</span>
@@ -208,8 +205,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Contract</span>
-<span class="sd">            corresponding contract</span>
+<span class="sd">        Any</span>
+<span class="sd">            corresponding broker specific object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 

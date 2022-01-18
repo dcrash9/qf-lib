@@ -240,6 +240,10 @@
 <span class="sd">        PricesDataFrame, PricesSeries</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_future_ticker</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The future ticker </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_future_ticker</span><span class="si">}</span><span class="s2"> is not initialized with Data Provider and &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;Timer. At first you need to setup them using initialize_data_provider() function.&quot;</span><span class="p">)</span>
+
         <span class="c1"># 1 - Check if the chain was generated at least once, if not - preload the necessary data using the</span>
         <span class="c1"># self._preload_data_and_generate_chain function, and then generate the chain of prices,</span>
         <span class="c1"># otherwise - store the last and first available dates from the chain</span>

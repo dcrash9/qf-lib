@@ -198,7 +198,7 @@
 <div class="viewcode-block" id="DataProvider.get_price"><a class="viewcode-back" href="../../../_autosummary/qf_lib.data_providers.data_provider.DataProvider.html#qf_lib.data_providers.data_provider.DataProvider.get_price">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Ticker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Ticker</span><span class="p">]],</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">PriceField</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">PriceField</span><span class="p">]],</span>
                   <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="n">Frequency</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">PricesSeries</span><span class="p">,</span> <span class="n">PricesDataFrame</span><span class="p">,</span> <span class="n">QFDataArray</span><span class="p">]:</span>
+                        <span class="kc">None</span><span class="p">,</span> <span class="n">PricesSeries</span><span class="p">,</span> <span class="n">PricesDataFrame</span><span class="p">,</span> <span class="n">QFDataArray</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets adjusted historical Prices (Open, High, Low, Close) and Volume</span>
 
@@ -230,9 +230,9 @@
 
 <div class="viewcode-block" id="DataProvider.get_history"><a class="viewcode-back" href="../../../_autosummary/qf_lib.data_providers.data_provider.DataProvider.html#qf_lib.data_providers.data_provider.DataProvider.get_history">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_history</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Ticker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Ticker</span><span class="p">]],</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
-        <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="n">Frequency</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span>
-            <span class="n">QFSeries</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">,</span> <span class="n">QFDataArray</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Ticker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Ticker</span><span class="p">]],</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+            <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="n">Frequency</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span>
+                <span class="n">QFSeries</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">,</span> <span class="n">QFDataArray</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets historical attributes (fields) of different securities (tickers).</span>
 
@@ -287,7 +287,7 @@
             <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">FutureTicker</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">QFSeries</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns tickers of futures contracts, which belong to the same futures contract chain as the provided ticker</span>
-<span class="sd">        (tickers), along with their expiration dates in form of a QFSeries.</span>
+<span class="sd">        (tickers), along with their expiration dates in form of a QFSeries or QFDataFrame.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -300,9 +300,9 @@
 <span class="sd">        -------</span>
 <span class="sd">        Dict[FutureTicker, Union[QFSeries, QFDataFrame]]</span>
 <span class="sd">            Returns a dictionary, which maps Tickers to QFSeries, consisting of the expiration dates of Future</span>
-<span class="sd">            Contracts: Dict[FutureTicker, QFSeries]. The QFSeries contain the specific Tickers, which belong to the</span>
-<span class="sd">            corresponding futures family, same as the FutureTicker, and are indexed by the expiration dates of</span>
-<span class="sd">            the specific future contracts.</span>
+<span class="sd">            Contracts: Dict[FutureTicker, Union[QFSeries, QFDataFrame]]]. The QFSeries&#39; / QFDataFrames contain the</span>
+<span class="sd">            specific Tickers, which belong to the corresponding futures family, same as the FutureTicker, and are</span>
+<span class="sd">            indexed by the expiration dates of the specific future contracts.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
@@ -361,9 +361,8 @@
                 <span class="n">tickers_as_strings</span> <span class="o">=</span> <span class="n">tickers</span><span class="o">.</span><span class="n">as_string</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">tickers_as_strings</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">as_string</span><span class="p">()</span> <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">tickers</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not enough data points for </span><span class="se">\n</span><span class="s2">tickers: </span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">date: </span><span class="si">{}</span><span class="s2">.&quot;</span>
-                             <span class="s2">&quot;</span><span class="se">\n</span><span class="si">{}</span><span class="s2"> Data points requested, </span><span class="se">\n</span><span class="si">{}</span><span class="s2"> Data points available.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                                <span class="n">tickers_as_strings</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">nr_of_bars</span><span class="p">,</span> <span class="n">num_of_dates_available</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not enough data points for </span><span class="se">\n</span><span class="s2">tickers: </span><span class="si">{</span><span class="n">tickers_as_strings</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">date: </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">.&quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">nr_of_bars</span><span class="si">}</span><span class="s2"> Data points requested, </span><span class="se">\n</span><span class="si">{</span><span class="n">num_of_dates_available</span><span class="si">}</span><span class="s2"> Data points available.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">QFDataArray</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">container</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">dates</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="n">nr_of_bars</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>

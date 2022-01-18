@@ -174,9 +174,8 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.broker.backtest_broker</span> <span class="kn">import</span> <span class="n">BacktestBroker</span>
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract_to_ticker_conversion.base</span> <span class="kn">import</span> <span class="n">ContractTickerMapper</span>
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper</span> <span class="kn">import</span> \
-    <span class="n">SimulatedBloombergContractTickerMapper</span>
+<span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_contract_ticker_mapper</span> <span class="kn">import</span> \
+    <span class="n">SimulatedContractTickerMapper</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.data_handler.daily_data_handler</span> <span class="kn">import</span> <span class="n">DailyDataHandler</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.data_handler.intraday_data_handler</span> <span class="kn">import</span> <span class="n">IntradayDataHandler</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.events.event_manager</span> <span class="kn">import</span> <span class="n">EventManager</span>
@@ -221,7 +220,7 @@
 
 <span class="sd">    - backtest name is set to &quot;Backtest Results&quot;</span>
 <span class="sd">    - initial cash is set to 10000000</span>
-<span class="sd">    - SimulatedBloombergContractTickerMapper is used to map contracts to tickers</span>
+<span class="sd">    - SimulatedContractTickerMapper is used to map contracts to tickers</span>
 <span class="sd">    - no commissions are introduced (FixedCommissionModel(0.0))</span>
 <span class="sd">    - no slippage is introduced (PriceBasedSlippage(0.0))</span>
 <span class="sd">    - SimplePositionSizer is used</span>
@@ -252,7 +251,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_benchmark_tms</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_settings</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span> <span class="o">=</span> <span class="n">SimulatedBloombergContractTickerMapper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span> <span class="o">=</span> <span class="n">SimulatedContractTickerMapper</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_type</span> <span class="o">=</span> <span class="n">FixedCommissionModel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;commission&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
@@ -381,17 +380,6 @@
 <span class="sd">            timeseries of the benchmark</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_benchmark_tms</span> <span class="o">=</span> <span class="n">benchmark_tms</span></div>
-
-    <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
-    <span class="k">def</span> <span class="nf">set_contract_ticker_mapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract_ticker_mapper</span><span class="p">:</span> <span class="n">ContractTickerMapper</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the mapping between contracts and tickers.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        -----------</span>
-<span class="sd">        contract_ticker_mapper: ContractTickerMapper</span>
-<span class="sd">            mapping between contracts and tickers</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span> <span class="o">=</span> <span class="n">contract_ticker_mapper</span>
 
     <span class="nd">@ConfigExporter</span><span class="o">.</span><span class="n">update_config</span>
     <span class="k">def</span> <span class="nf">set_commission_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commission_model_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">CommissionModel</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -545,7 +533,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_data_handler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">)</span>
         <span class="n">signals_register</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_signals_register</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_signals_register</span> <span class="k">else</span> <span class="n">BacktestSignalsRegister</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_cash</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_result</span> <span class="o">=</span> <span class="n">BacktestResult</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span>
                                                <span class="n">end_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_risk</span><span class="p">)</span>
@@ -555,15 +543,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_setup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_execution_handler</span> <span class="o">=</span> <span class="n">SimulatedExecutionHandler</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_notifiers</span><span class="o">.</span><span class="n">scheduler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model</span><span class="p">,</span>
             <span class="n">scheduling_time_delay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_scheduling_time_delay</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_frequency</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_time_flow_controller</span> <span class="o">=</span> <span class="n">BacktestTimeFlowController</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_notifiers</span><span class="o">.</span><span class="n">scheduler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events_manager</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_notifiers</span><span class="o">.</span><span class="n">empty_queue_event_notifier</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_broker</span> <span class="o">=</span> <span class="n">BacktestBroker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execution_handler</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span> <span class="o">=</span> <span class="n">OrderFactory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_broker</span> <span class="o">=</span> <span class="n">BacktestBroker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_portfolio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execution_handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span> <span class="o">=</span> <span class="n">OrderFactory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_setup</span><span class="p">(</span><span class="n">signals_register</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filter_setup</span><span class="p">()</span>
 
@@ -572,7 +560,6 @@
                 <span class="s2">&quot;Creating Backtest Trading Session.&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Backtest Name: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backtest_name</span><span class="p">),</span>
                 <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Data Provider: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span>
-                <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Contract - Ticker Mapper: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span>
                 <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Start Date: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">start_date</span><span class="p">),</span>
                 <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">End Date: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end_date</span><span class="p">),</span>
                 <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Trading frequency:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frequency</span><span class="p">),</span>
@@ -622,20 +609,17 @@
 
     <span class="k">def</span> <span class="nf">_position_sizer_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">:</span> <span class="n">SignalsRegister</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_type</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">,</span>
-            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_broker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span><span class="p">,</span> <span class="n">signals_register</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_position_sizer_kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_orders_filter_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">orders_filters</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">orders_filter_type</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orders_filter_types_params</span><span class="p">:</span>
-            <span class="n">orders_filter</span> <span class="o">=</span> <span class="n">orders_filter_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">orders_filter</span> <span class="o">=</span> <span class="n">orders_filter_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_handler</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">orders_filters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">orders_filter</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">orders_filters</span>
 
     <span class="k">def</span> <span class="nf">_slippage_model_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_type</span><span class="p">(</span><span class="n">data_provider</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span><span class="p">,</span>
-                                         <span class="n">contract_ticker_mapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="p">,</span>
-                                         <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_type</span><span class="p">(</span><span class="n">data_provider</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_slippage_model_kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_commission_model_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_type</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_commission_model_kwargs</span><span class="p">)</span></div>

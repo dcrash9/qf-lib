@@ -178,8 +178,11 @@
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.price_field</span> <span class="kn">import</span> <span class="n">PriceField</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">Ticker</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.utils.miscellaneous.to_list_conversion</span> <span class="kn">import</span> <span class="n">convert_to_list</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.cast_dataframe</span> <span class="kn">import</span> <span class="n">cast_dataframe</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.prices_dataframe</span> <span class="kn">import</span> <span class="n">PricesDataFrame</span>
+<span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.qf_dataframe</span> <span class="kn">import</span> <span class="n">QFDataFrame</span>
+<span class="kn">from</span> <span class="nn">qf_lib.containers.futures.future_tickers.future_ticker</span> <span class="kn">import</span> <span class="n">FutureTicker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.qf_data_array</span> <span class="kn">import</span> <span class="n">QFDataArray</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.cast_series</span> <span class="kn">import</span> <span class="n">cast_series</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.prices_series</span> <span class="kn">import</span> <span class="n">PricesSeries</span>
@@ -264,6 +267,46 @@
 <span class="sd">             mapping between ExpirationDateField and corresponding strings</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AbstractPriceDataProvider.get_futures_chain_tickers"><a class="viewcode-back" href="../../../_autosummary/qf_lib.data_providers.abstract_price_data_provider.AbstractPriceDataProvider.html#qf_lib.data_providers.abstract_price_data_provider.AbstractPriceDataProvider.get_futures_chain_tickers">[docs]</a>    <span class="k">def</span> <span class="nf">get_futures_chain_tickers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">FutureTicker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FutureTicker</span><span class="p">]],</span>
+                                  <span class="n">expiration_date_fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ExpirationDateField</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">ExpirationDateField</span><span class="p">]])</span> \
+            <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">FutureTicker</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]:</span>
+
+        <span class="n">expiration_date_fields</span><span class="p">,</span> <span class="n">got_single_expiration_date_field</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">expiration_date_fields</span><span class="p">,</span>
+                                                                                   <span class="n">ExpirationDateField</span><span class="p">)</span>
+        <span class="n">mapping_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expiration_date_field_str_map</span><span class="p">()</span>
+        <span class="n">expiration_date_fields_str</span> <span class="o">=</span> <span class="p">[</span><span class="n">mapping_dict</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">expiration_date_fields</span><span class="p">]</span>
+        <span class="n">exp_dates_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_futures_chain_dict</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span> <span class="n">expiration_date_fields_str</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">future_ticker</span><span class="p">,</span> <span class="n">exp_dates</span> <span class="ow">in</span> <span class="n">exp_dates_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">exp_dates</span> <span class="o">=</span> <span class="n">exp_dates</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">str_to_expiration_date_field_map</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">exp_dates</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+                <span class="n">ticker</span><span class="o">.</span><span class="n">security_type</span> <span class="o">=</span> <span class="n">future_ticker</span><span class="o">.</span><span class="n">security_type</span>
+                <span class="n">ticker</span><span class="o">.</span><span class="n">point_value</span> <span class="o">=</span> <span class="n">future_ticker</span><span class="o">.</span><span class="n">point_value</span>
+                <span class="n">ticker</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">future_ticker</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">got_single_expiration_date_field</span><span class="p">:</span>
+                <span class="n">exp_dates</span> <span class="o">=</span> <span class="n">exp_dates</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+            <span class="n">exp_dates_dict</span><span class="p">[</span><span class="n">future_ticker</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp_dates</span>
+
+        <span class="k">return</span> <span class="n">exp_dates_dict</span></div>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">_get_futures_chain_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">FutureTicker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">FutureTicker</span><span class="p">]],</span>
+                                <span class="n">expiration_date_fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">FutureTicker</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a dictionary, which maps Tickers to QFSeries, consisting of the expiration dates of Future</span>
+<span class="sd">        Contracts: Dict[FutureTicker, Union[QFSeries, QFDataFrame]]].</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tickers: Ticker, Sequence[Ticker]</span>
+<span class="sd">            tickers for securities which should be retrieved</span>
+<span class="sd">        expiration_date_fields: str, Sequence[str]</span>
+<span class="sd">            expiration date fields of securities which should be retrieved. Specific for each data provider,</span>
+<span class="sd">            the mapping between strings and corresponding ExpirationDateField enum values should be implemented as</span>
+<span class="sd">            str_to_expiration_date_field_map function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
 
 <div class="viewcode-block" id="AbstractPriceDataProvider.str_to_expiration_date_field_map"><a class="viewcode-back" href="../../../_autosummary/qf_lib.data_providers.abstract_price_data_provider.AbstractPriceDataProvider.html#qf_lib.data_providers.abstract_price_data_provider.AbstractPriceDataProvider.str_to_expiration_date_field_map">[docs]</a>    <span class="k">def</span> <span class="nf">str_to_expiration_date_field_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="n">Ticker</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ExpirationDateField</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>

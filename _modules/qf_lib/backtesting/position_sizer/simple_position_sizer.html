@@ -186,13 +186,8 @@
 
     <span class="k">def</span> <span class="nf">_generate_market_orders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signals</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Signal</span><span class="p">],</span> <span class="n">time_in_force</span><span class="p">:</span> <span class="n">TimeInForce</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="n">Frequency</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> \
             <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">Order</span><span class="p">]]:</span>
-
-        <span class="k">def</span> <span class="nf">signal_to_contract</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span>
-            <span class="c1"># Map signal to contract</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="o">.</span><span class="n">ticker_to_contract</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">ticker</span><span class="p">)</span>
-
         <span class="n">target_percentages</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">signal_to_contract</span><span class="p">(</span><span class="n">signal</span><span class="p">):</span> <span class="n">signal</span><span class="o">.</span><span class="n">suggested_exposure</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">signal</span> <span class="ow">in</span> <span class="n">signals</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_specific_ticker</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">ticker</span><span class="p">):</span> <span class="n">signal</span><span class="o">.</span><span class="n">suggested_exposure</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">signal</span> <span class="ow">in</span> <span class="n">signals</span>
         <span class="p">}</span>
         <span class="n">market_order_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order_factory</span><span class="o">.</span><span class="n">target_percent_orders</span><span class="p">(</span>
             <span class="n">target_percentages</span><span class="p">,</span> <span class="n">MarketOrder</span><span class="p">(),</span> <span class="n">time_in_force</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">frequency</span>

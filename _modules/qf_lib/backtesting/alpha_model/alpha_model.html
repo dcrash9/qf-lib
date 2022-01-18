@@ -174,11 +174,14 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">nan</span>
+
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.alpha_model.exposure_enum</span> <span class="kn">import</span> <span class="n">Exposure</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.signals.signal</span> <span class="kn">import</span> <span class="n">Signal</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.price_field</span> <span class="kn">import</span> <span class="n">PriceField</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">Ticker</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.utils.logging.qf_parent_logger</span> <span class="kn">import</span> <span class="n">qf_logger</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.miscellaneous.average_true_range</span> <span class="kn">import</span> <span class="n">average_true_range</span>
 <span class="kn">from</span> <span class="nn">qf_lib.data_providers.data_provider</span> <span class="kn">import</span> <span class="n">DataProvider</span>
 
@@ -200,6 +203,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">risk_estimation_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">data_provider</span><span class="p">:</span> <span class="n">DataProvider</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">risk_estimation_factor</span> <span class="o">=</span> <span class="n">risk_estimation_factor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_provider</span> <span class="o">=</span> <span class="n">data_provider</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">qf_logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
 <div class="viewcode-block" id="AlphaModel.get_signal"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.html#qf_lib.backtesting.alpha_model.alpha_model.AlphaModel.get_signal">[docs]</a>    <span class="k">def</span> <span class="nf">get_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="n">Ticker</span><span class="p">,</span> <span class="n">current_exposure</span><span class="p">:</span> <span class="n">Exposure</span><span class="p">,</span> <span class="n">current_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                    <span class="n">frequency</span><span class="p">:</span> <span class="n">Frequency</span> <span class="o">=</span> <span class="n">Frequency</span><span class="o">.</span><span class="n">DAILY</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Signal</span><span class="p">:</span>
@@ -288,15 +292,20 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
+<span class="sd">        float</span>
 <span class="sd">            fraction_at_risk value for an AlphaModel and a Ticker, calculated as Normalized Average True Range</span>
 <span class="sd">            multiplied by the risk_estimation_factor, being a property of each AlphaModel:</span>
 <span class="sd">            fraction_at_risk = ATR / last_close * risk_estimation_factor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">num_of_bars_needed</span> <span class="o">=</span> <span class="n">time_period</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">PriceField</span><span class="o">.</span><span class="n">High</span><span class="p">,</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">Low</span><span class="p">,</span> <span class="n">PriceField</span><span class="o">.</span><span class="n">Close</span><span class="p">]</span>
-        <span class="n">prices_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_provider</span><span class="o">.</span><span class="n">historical_price</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">num_of_bars_needed</span><span class="p">)</span>
-        <span class="n">fraction_at_risk</span> <span class="o">=</span> <span class="n">average_true_range</span><span class="p">(</span><span class="n">prices_df</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">risk_estimation_factor</span>
-        <span class="k">return</span> <span class="n">fraction_at_risk</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">prices_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_provider</span><span class="o">.</span><span class="n">historical_price</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">num_of_bars_needed</span><span class="p">)</span>
+            <span class="n">fraction_at_risk</span> <span class="o">=</span> <span class="n">average_true_range</span><span class="p">(</span><span class="n">prices_df</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">risk_estimation_factor</span>
+            <span class="k">return</span> <span class="n">fraction_at_risk</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not calculate the fraction_at_risk for the ticker </span><span class="si">{</span><span class="n">ticker</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">nan</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>

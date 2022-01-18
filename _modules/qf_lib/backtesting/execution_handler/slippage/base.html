@@ -177,7 +177,6 @@
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract_to_ticker_conversion.base</span> <span class="kn">import</span> <span class="n">ContractTickerMapper</span>
 <span class="kn">from</span> <span class="nn">qf_lib.backtesting.order.order</span> <span class="kn">import</span> <span class="n">Order</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.price_field</span> <span class="kn">import</span> <span class="n">PriceField</span>
@@ -187,7 +186,7 @@
 <span class="kn">from</span> <span class="nn">qf_lib.data_providers.data_provider</span> <span class="kn">import</span> <span class="n">DataProvider</span>
 
 
-<div class="viewcode-block" id="Slippage"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.backtesting.execution_handler.slippage.base.Slippage.html#qf_lib.backtesting.execution_handler.slippage.base.Slippage">[docs]</a><span class="k">class</span> <span class="nc">Slippage</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<div class="viewcode-block" id="Slippage"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.backtesting.execution_handler.slippage.base.Slippage.html#qf_lib.backtesting.execution_handler.slippage.base.Slippage">[docs]</a><span class="k">class</span> <span class="nc">Slippage</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for slippage models.</span>
 <span class="sd">    It can limit the Order&#39;s volume. This model needs to know the daily volume of the traded asset, thus it uses the</span>
@@ -197,19 +196,14 @@
 <span class="sd">    ----------</span>
 <span class="sd">    data_provider: DataProvider</span>
 <span class="sd">        DataProvider component</span>
-<span class="sd">    contract_ticker_mapper: ContractTickerMapper</span>
-<span class="sd">        ContractTickerMapper component</span>
 <span class="sd">    max_volume_share_limit: float, None</span>
 <span class="sd">        number from range [0,1] which denotes how big (volume-wise) the Order can be i.e. if it&#39;s 0.5 and a daily</span>
 <span class="sd">        volume for a given asset is 1,000,000 USD, then max volume of the Order can be 500,000 USD. If not provided, no</span>
 <span class="sd">        volume checks are performed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_provider</span><span class="p">:</span> <span class="n">DataProvider</span><span class="p">,</span> <span class="n">contract_ticker_mapper</span><span class="p">:</span> <span class="n">ContractTickerMapper</span><span class="p">,</span>
-                 <span class="n">max_volume_share_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_provider</span><span class="p">:</span> <span class="n">DataProvider</span><span class="p">,</span> <span class="n">max_volume_share_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_volume_share_limit</span> <span class="o">=</span> <span class="n">max_volume_share_limit</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span> <span class="o">=</span> <span class="n">contract_ticker_mapper</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span> <span class="o">=</span> <span class="n">data_provider</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">qf_logger</span><span class="o">.</span><span class="n">getChild</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
@@ -241,7 +235,7 @@
 
         <span class="c1"># Compute the fill volumes for orders</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_volume_share_limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">tickers</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_contract_ticker_mapper</span><span class="o">.</span><span class="n">contract_to_ticker</span><span class="p">(</span><span class="n">order</span><span class="o">.</span><span class="n">contract</span><span class="p">)</span> <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">]</span>
+            <span class="n">tickers</span> <span class="o">=</span> <span class="p">[</span><span class="n">order</span><span class="o">.</span><span class="n">ticker</span> <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">]</span>
             <span class="n">market_daily_volumes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_volumes_traded_today</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">tickers</span><span class="p">)</span>
             <span class="n">fill_volumes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_fill_volumes</span><span class="p">(</span><span class="n">order_volumes</span><span class="p">,</span> <span class="n">market_daily_volumes</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -290,11 +284,11 @@
         <span class="k">return</span> <span class="n">real_fill_volumes</span>
 
     <span class="k">def</span> <span class="nf">_check_for_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">orders</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Order</span><span class="p">]):</span>
-        <span class="n">sorted_orders</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">order</span><span class="p">:</span> <span class="n">order</span><span class="o">.</span><span class="n">contract</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">contract</span><span class="p">,</span> <span class="n">orders_group</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">sorted_orders</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">order</span><span class="p">:</span> <span class="n">order</span><span class="o">.</span><span class="n">contract</span><span class="o">.</span><span class="n">symbol</span><span class="p">):</span>
+        <span class="n">sorted_orders</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">order</span><span class="p">:</span> <span class="n">order</span><span class="o">.</span><span class="n">ticker</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">orders_group</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">sorted_orders</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">order</span><span class="p">:</span> <span class="n">order</span><span class="o">.</span><span class="n">ticker</span><span class="p">):</span>
             <span class="n">orders_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">orders_group</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">orders_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> More than one order for ticker </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">contract</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> More than one order for ticker </span><span class="si">{}</span><span class="s2">:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">ticker</span><span class="p">))</span>
                 <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="n">orders_list</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">order</span><span class="p">)</span></div>
 </pre></div>

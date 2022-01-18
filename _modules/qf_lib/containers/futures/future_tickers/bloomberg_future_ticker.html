@@ -169,11 +169,14 @@
 <span class="c1">#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
 <span class="c1">#     See the License for the specific language governing permissions and</span>
 <span class="c1">#     limitations under the License.</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
+
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">to_datetime</span>
 
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.expiration_date_field</span> <span class="kn">import</span> <span class="n">ExpirationDateField</span>
-<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">BloombergTicker</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.enums.security_type</span> <span class="kn">import</span> <span class="n">SecurityType</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">BloombergTicker</span><span class="p">,</span> <span class="n">Ticker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.futures.future_tickers.future_ticker</span> <span class="kn">import</span> <span class="n">FutureTicker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.qf_series</span> <span class="kn">import</span> <span class="n">QFSeries</span>
 
@@ -194,32 +197,38 @@
 <span class="sd">        For all other ticker families, the family_id should be in the form of specific ticker with the month and</span>
 <span class="sd">        year codes replaced with the &quot;{}&quot; placeholder.</span>
 <span class="sd">    N: int</span>
-<span class="sd">        Used to identify which specific Ticker should be considered by the Backtester, while using the general</span>
-<span class="sd">        Future Ticker class. For example N parameter set to 1, denotes the front future contract.</span>
+<span class="sd">        Since we chain individual contracts, we need to know which one to select. N determines which contract is used</span>
+<span class="sd">        at any given time when we have to select a specific contract. For example N parameter set to 1,</span>
+<span class="sd">        denotes the first (front) future contract. N set to 2 will be the second contract and so on.</span>
 <span class="sd">    days_before_exp_date: int</span>
 <span class="sd">        Number of days before the expiration day of each of the contract, when the “current” specific contract</span>
 <span class="sd">        should be substituted with the next consecutive one.</span>
 <span class="sd">    point_value: int</span>
 <span class="sd">        Used to define the size of the contract.</span>
-<span class="sd">    designated_contracts: str</span>
+<span class="sd">        designated_contracts: str</span>
 <span class="sd">        It is a string, which represents all month codes, that are being downloaded and stored</span>
 <span class="sd">        in the chain of future contracts. Any specific order of letters is not required. E.g. providing this</span>
 <span class="sd">        parameter value equal to &quot;HMUZ&quot;, would restrict the future chain to only the contracts, which expire in</span>
 <span class="sd">        March, June, September and December, even if contracts for any other months exist and are returned by the</span>
 <span class="sd">        BloombergDataProvider get_futures_chain_tickers function.</span>
+<span class="sd">    designated_contracts: str</span>
+<span class="sd">        It is a string, which represents all month codes, that are being downloaded and stored</span>
+<span class="sd">        in the chain of future contracts. Any specific order of letters is not required. E.g. providing this</span>
+<span class="sd">        parameter value equal to &quot;HMUZ&quot;, would restrict the future chain to only the contracts, which expire in</span>
+<span class="sd">        March, June, September and December, even if contracts for any other months exist and are returned by the</span>
+<span class="sd">        DataProvider get_futures_chain_tickers function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">family_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">point_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-                 <span class="n">designated_contracts</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;FGHJKMNQUVXZ&quot;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">designated_contracts</span> <span class="o">=</span> <span class="n">designated_contracts</span>
+                 <span class="n">designated_contracts</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;FGHJKMNQUVXZ&quot;</span><span class="p">,</span> <span class="n">security_type</span><span class="p">:</span> <span class="n">SecurityType</span> <span class="o">=</span> <span class="n">SecurityType</span><span class="o">.</span><span class="n">FUTURE</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">designated_contracts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;At least one month code should be provided.&quot;</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">family_id</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">,</span> <span class="n">point_value</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">family_id</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">days_before_exp_date</span><span class="p">,</span> <span class="n">point_value</span><span class="p">,</span> <span class="n">designated_contracts</span><span class="p">,</span> <span class="n">security_type</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BloombergFutureTicker.get_active_ticker"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.get_active_ticker">[docs]</a>    <span class="k">def</span> <span class="nf">get_active_ticker</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BloombergTicker</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; Returns the active ticker. &quot;&quot;&quot;</span>
         <span class="n">specific_ticker_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">BloombergTicker</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">specific_ticker_string</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">BloombergTicker</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">specific_ticker_string</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">security_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_value</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_get_futures_chain_tickers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -230,44 +239,30 @@
         <span class="n">futures_chain_tickers_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_provider</span><span class="o">.</span><span class="n">get_futures_chain_tickers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                                                                  <span class="n">ExpirationDateField</span><span class="o">.</span><span class="n">all_dates</span><span class="p">())[</span><span class="bp">self</span><span class="p">]</span>
         <span class="c1"># Get the minimum date</span>
-        <span class="n">futures_chain_tickers</span> <span class="o">=</span> <span class="n">futures_chain_tickers_df</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">futures_chain_tickers</span> <span class="o">=</span> <span class="n">QFSeries</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">futures_chain_tickers</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">futures_chain_tickers</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-        <span class="n">futures_chain_tickers</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">futures_chain_tickers</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">futures_chain_tickers_series</span> <span class="o">=</span> <span class="n">futures_chain_tickers_df</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># Filter out the non-designated contracts</span>
-        <span class="n">seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">designated_contracts_seeds</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">seed</span> <span class="o">+</span> <span class="n">month_code</span> <span class="k">for</span> <span class="n">month_code</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">designated_contracts</span><span class="p">)</span>
-        <span class="n">futures_chain_tickers</span> <span class="o">=</span> <span class="n">futures_chain_tickers</span><span class="p">[</span><span class="n">futures_chain_tickers</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-            <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">designated_contracts_seeds</span><span class="p">)</span>
-        <span class="p">)]</span>
+        <span class="n">month_codes</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">designated_contracts</span><span class="p">)</span>
+        <span class="n">contracts_pattern</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">month_codes</span><span class="si">}</span><span class="s2">)</span><span class="se">\\</span><span class="s2">d</span><span class="se">{{</span><span class="s2">1,2</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">designated_contracts</span> <span class="o">=</span> <span class="n">futures_chain_tickers_series</span><span class="o">.</span><span class="n">index</span><span class="p">[</span>
+            <span class="n">futures_chain_tickers_series</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;^</span><span class="si">{</span><span class="n">contracts_pattern</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">as_string</span><span class="p">())))]</span>
+        <span class="n">futures_chain_tickers_series</span> <span class="o">=</span> <span class="n">futures_chain_tickers_series</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">designated_contracts</span><span class="p">]</span>
+
+        <span class="n">futures_chain_tickers</span> <span class="o">=</span> <span class="n">QFSeries</span><span class="p">(</span><span class="n">futures_chain_tickers_series</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">futures_chain_tickers_series</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="n">futures_chain_tickers</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">to_datetime</span><span class="p">(</span><span class="n">futures_chain_tickers</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">futures_chain_tickers</span>
 
-<div class="viewcode-block" id="BloombergFutureTicker.belongs_to_family"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family">[docs]</a>    <span class="k">def</span> <span class="nf">belongs_to_family</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specific_ticker</span><span class="p">:</span> <span class="n">BloombergTicker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="BloombergFutureTicker.belongs_to_family"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family">[docs]</a>    <span class="k">def</span> <span class="nf">belongs_to_family</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="n">BloombergTicker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Function, which takes a specific BloombergTicker, and verifies if it belongs to the family of futures contracts,</span>
-<span class="sd">        identified by the FutureTicker.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        bool</span>
+<span class="sd">        Function, which takes a specific BloombergTicker, verifies if it belongs to the family of futures contracts,</span>
+<span class="sd">        identified by the BloombergFutureTicker and returns true if that is the case (false otherwise).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">def</span> <span class="nf">ticker_to_family_id</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">BloombergTicker</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns a custom ID, used to identify futures contracts families.</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;[A-Z]</span><span class="se">\\</span><span class="s2">d{1,2}&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;^</span><span class="si">{</span><span class="n">pattern</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">ticker</span><span class="o">.</span><span class="n">ticker</span><span class="p">))</span> <span class="ow">and</span> \
+            <span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">point_value</span><span class="p">,</span> <span class="n">ticker</span><span class="o">.</span><span class="n">security_type</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">point_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">security_type</span><span class="p">)</span></div>
 
-<span class="sd">            The function parses the contract symbol string and substitutes the characters which identify the month</span>
-<span class="sd">            (1 letter) and year of contract expiration (1-2 digits at the end of the first word in the string) with the</span>
-<span class="sd">            {} placeholder, e.g. in case of &#39;CTH16 Comdty&#39;, it returns &#39;CT{} Comdty&#39;.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="n">groups</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^.+([A-Z]\d{1,2}) \.*&#39;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">ticker</span><span class="p">)</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
-            <span class="n">month_year_part</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">month_year_part</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">family_id</span> <span class="o">=</span> <span class="n">ticker_to_family_id</span><span class="p">(</span><span class="n">specific_ticker</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">family_id</span> <span class="o">==</span> <span class="n">family_id</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span></div></div>
+<div class="viewcode-block" id="BloombergFutureTicker.supported_ticker_type"><a class="viewcode-back" href="../../../../../_autosummary/qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.supported_ticker_type">[docs]</a>    <span class="k">def</span> <span class="nf">supported_ticker_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Ticker</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">BloombergTicker</span></div></div>
 </pre></div>
 
            </div>

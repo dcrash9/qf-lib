@@ -178,7 +178,7 @@
 <h1>BloombergFutureTicker<a class="headerlink" href="#bloombergfutureticker" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.</code><code class="sig-name descname">BloombergFutureTicker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">family_id</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">days_before_exp_date</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">point_value</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">designated_contracts</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'FGHJKMNQUVXZ'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/bloomberg_future_ticker.html#BloombergFutureTicker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.</code><code class="sig-name descname">BloombergFutureTicker</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">family_id: str</em>, <em class="sig-param">N: int</em>, <em class="sig-param">days_before_exp_date: int</em>, <em class="sig-param">point_value: int = 1</em>, <em class="sig-param">designated_contracts: str = 'FGHJKMNQUVXZ'</em>, <em class="sig-param">security_type: qf_lib.common.enums.security_type.SecurityType = &lt;SecurityType.FUTURE: 'FUT'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/bloomberg_future_ticker.html#BloombergFutureTicker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker</span></code></a>, <a class="reference internal" href="qf_lib.common.tickers.tickers.BloombergTicker.html#qf_lib.common.tickers.tickers.BloombergTicker" title="qf_lib.common.tickers.tickers.BloombergTicker"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.common.tickers.tickers.BloombergTicker</span></code></a></p>
 <p>Representation of a Future Ticker, designed to be used by the BloombergDataProvider.</p>
 <dl class="field-list simple">
@@ -192,16 +192,23 @@ form: “CTZ9 Comdty”. The “Z9” part denotes the month and year codes - th
 ticker. Thus, in order to verify if a ticker belongs to the cotton family, it should be in form of “CT{} Comdty”.
 For all other ticker families, the family_id should be in the form of specific ticker with the month and
 year codes replaced with the “{}” placeholder.</p></li>
-<li><p><strong>N</strong> (<em>int</em>) – Used to identify which specific Ticker should be considered by the Backtester, while using the general
-Future Ticker class. For example N parameter set to 1, denotes the front future contract.</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Since we chain individual contracts, we need to know which one to select. N determines which contract is used
+at any given time when we have to select a specific contract. For example N parameter set to 1,
+denotes the first (front) future contract. N set to 2 will be the second contract and so on.</p></li>
 <li><p><strong>days_before_exp_date</strong> (<em>int</em>) – Number of days before the expiration day of each of the contract, when the “current” specific contract
 should be substituted with the next consecutive one.</p></li>
-<li><p><strong>point_value</strong> (<em>int</em>) – Used to define the size of the contract.</p></li>
-<li><p><strong>designated_contracts</strong> (<em>str</em>) – It is a string, which represents all month codes, that are being downloaded and stored
+<li><p><strong>point_value</strong> (<em>int</em>) – Used to define the size of the contract.
+designated_contracts: str
+It is a string, which represents all month codes, that are being downloaded and stored
 in the chain of future contracts. Any specific order of letters is not required. E.g. providing this
 parameter value equal to “HMUZ”, would restrict the future chain to only the contracts, which expire in
 March, June, September and December, even if contracts for any other months exist and are returned by the
 BloombergDataProvider get_futures_chain_tickers function.</p></li>
+<li><p><strong>designated_contracts</strong> (<em>str</em>) – It is a string, which represents all month codes, that are being downloaded and stored
+in the chain of future contracts. Any specific order of letters is not required. E.g. providing this
+parameter value equal to “HMUZ”, would restrict the future chain to only the contracts, which expire in
+March, June, September and December, even if contracts for any other months exist and are returned by the
+DataProvider get_futures_chain_tickers function.</p></li>
 </ul>
 </dd>
 </dl>
@@ -212,33 +219,35 @@ BloombergDataProvider get_futures_chain_tickers function.</p></li>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family"><code class="xref py py-obj docutils literal notranslate"><span class="pre">belongs_to_family</span></code></a>(specific_ticker)</p></td>
-<td><p>Function, which takes a specific BloombergTicker, and verifies if it belongs to the family of futures contracts, identified by the FutureTicker.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family"><code class="xref py py-obj docutils literal notranslate"><span class="pre">belongs_to_family</span></code></a>(ticker)</p></td>
+<td><p>Function, which takes a specific BloombergTicker, verifies if it belongs to the family of futures contracts, identified by the BloombergFutureTicker and returns true if that is the case (false otherwise).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.get_active_ticker" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.get_active_ticker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_active_ticker</span></code></a>()</p></td>
 <td><p>Returns the active ticker.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.supported_ticker_type" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.supported_ticker_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supported_ticker_type</span></code></a>()</p></td>
+<td><p>Returns class of specific tickers which are supported by this FutureTicker (e.g.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt id="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family">
-<code class="sig-name descname">belongs_to_family</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">specific_ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.BloombergTicker.html#qf_lib.common.tickers.tickers.BloombergTicker" title="qf_lib.common.tickers.tickers.BloombergTicker">qf_lib.common.tickers.tickers.BloombergTicker</a></span></em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/bloomberg_future_ticker.html#BloombergFutureTicker.belongs_to_family"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function, which takes a specific BloombergTicker, and verifies if it belongs to the family of futures contracts,
-identified by the FutureTicker.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p></p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>bool</p>
-</dd>
-</dl>
+<code class="sig-name descname">belongs_to_family</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.BloombergTicker.html#qf_lib.common.tickers.tickers.BloombergTicker" title="qf_lib.common.tickers.tickers.BloombergTicker">qf_lib.common.tickers.tickers.BloombergTicker</a></span></em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/bloomberg_future_ticker.html#BloombergFutureTicker.belongs_to_family"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.belongs_to_family" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function, which takes a specific BloombergTicker, verifies if it belongs to the family of futures contracts,
+identified by the BloombergFutureTicker and returns true if that is the case (false otherwise).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.get_active_ticker">
 <code class="sig-name descname">get_active_ticker</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.common.tickers.tickers.BloombergTicker.html#qf_lib.common.tickers.tickers.BloombergTicker" title="qf_lib.common.tickers.tickers.BloombergTicker">qf_lib.common.tickers.tickers.BloombergTicker</a><a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/bloomberg_future_ticker.html#BloombergFutureTicker.get_active_ticker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.get_active_ticker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the active ticker.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.supported_ticker_type">
+<code class="sig-name descname">supported_ticker_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Type<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/bloomberg_future_ticker.html#BloombergFutureTicker.supported_ticker_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.supported_ticker_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns class of specific tickers which are supported by this FutureTicker (e.g. it should return
+BloombergTicker for the BloombergFutureTicker etc.</p>
 </dd></dl>
 
 </dd></dl>

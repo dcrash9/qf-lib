@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="SimulatedBloombergContractTickerMapper" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper.SimulatedBloombergContractTickerMapper.html" />
-    <link rel="prev" title="Contract" href="qf_lib.backtesting.contract.contract.Contract.html" /> 
+    <link rel="next" title="DataHandler" href="qf_lib.backtesting.data_handler.data_handler.DataHandler.html" />
+    <link rel="prev" title="FuturesModel" href="qf_lib.backtesting.alpha_model.futures_model.FuturesModel.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,12 +90,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../backtesting.html">backtesting</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../backtesting.html#alpha-model">alpha_model</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../backtesting.html#contract">contract</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html">Contract</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ContractTickerMapper</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper.SimulatedBloombergContractTickerMapper.html">SimulatedBloombergContractTickerMapper</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_bloomberg_mapper.IB_Bloomberg_ContractTickerMapper.html">IB_Bloomberg_ContractTickerMapper</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper.DummyQuandlContractTickerMapper.html">DummyQuandlContractTickerMapper</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qf_lib.backtesting.contract.contract_to_ticker_conversion.vol_strategy_mapper.VolStrategyContractTickerMapper.html">VolStrategyContractTickerMapper</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../backtesting.html#data-handler">data_handler</a></li>
@@ -197,8 +192,8 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.contract_to_ticker" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.contract_to_ticker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker</span></code></a>(contract[, …])</p></td>
-<td><p>Maps Contract object onto corresponding Ticker.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.contract_to_ticker" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.contract_to_ticker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker</span></code></a>(contract)</p></td>
+<td><p>Maps Broker specific contract objects onto corresponding Tickers.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.ticker_to_contract" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.ticker_to_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ticker_to_contract</span></code></a>(ticker)</p></td>
 <td><p>Maps ticker to corresponding ticker.</p></td>
@@ -207,14 +202,12 @@
 </table>
 <dl class="py method">
 <dt id="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.contract_to_ticker">
-<em class="property">abstract </em><code class="sig-name descname">contract_to_ticker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contract</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a></span></em>, <em class="sig-param"><span class="n">strictly_to_specific_ticker</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker">qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/backtesting/contract/contract_to_ticker_conversion/base.html#ContractTickerMapper.contract_to_ticker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.contract_to_ticker" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maps Contract object onto corresponding Ticker.</p>
+<em class="property">abstract </em><code class="sig-name descname">contract_to_ticker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contract</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><a class="reference internal" href="../_modules/qf_lib/backtesting/contract/contract_to_ticker_conversion/base.html#ContractTickerMapper.contract_to_ticker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.contract_to_ticker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps Broker specific contract objects onto corresponding Tickers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>contract</strong> (<a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract"><em>Contract</em></a>) – contract that should be mapped</p></li>
-<li><p><strong>strictly_to_specific_ticker</strong> (<em>bool</em>) – allows to map a Future contract to either Ticker (default) or FutureTicker</p></li>
-</ul>
+<dd class="field-odd"><p><strong>contract</strong> (<em>Any</em>) – broker specific object, which is used to identify an asset (e.g. Contracts for Interactive Brokers,
+Tickers for Bloomberg EMSX etc.)</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>corresponding ticker</p>
@@ -227,17 +220,17 @@
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.ticker_to_contract">
-<em class="property">abstract </em><code class="sig-name descname">ticker_to_contract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a><a class="reference internal" href="../_modules/qf_lib/backtesting/contract/contract_to_ticker_conversion/base.html#ContractTickerMapper.ticker_to_contract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.ticker_to_contract" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">ticker_to_contract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a></span></em><span class="sig-paren">)</span> &#x2192; Any<a class="reference internal" href="../_modules/qf_lib/backtesting/contract/contract_to_ticker_conversion/base.html#ContractTickerMapper.ticker_to_contract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.ticker_to_contract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maps ticker to corresponding ticker.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>ticker</strong> (<a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker"><em>Ticker</em></a>) – ticker that should be mapped</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>corresponding contract</p>
+<dd class="field-even"><p>corresponding broker specific object</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">Contract</a></p>
+<dd class="field-odd"><p>Any</p>
 </dd>
 </dl>
 </dd></dl>
@@ -254,10 +247,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_bloomberg_mapper.SimulatedBloombergContractTickerMapper.html" class="btn btn-neutral float-right" title="SimulatedBloombergContractTickerMapper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="qf_lib.backtesting.data_handler.data_handler.DataHandler.html" class="btn btn-neutral float-right" title="DataHandler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="qf_lib.backtesting.contract.contract.Contract.html" class="btn btn-neutral float-left" title="Contract" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="qf_lib.backtesting.alpha_model.futures_model.FuturesModel.html" class="btn btn-neutral float-left" title="FuturesModel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

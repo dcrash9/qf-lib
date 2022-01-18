@@ -186,7 +186,7 @@
 <h1>BacktestPosition<a class="headerlink" href="#backtestposition" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.portfolio.backtest_position.</code><code class="sig-name descname">BacktestPosition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">contract</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.backtesting.contract.contract.Contract.html#qf_lib.backtesting.contract.contract.Contract" title="qf_lib.backtesting.contract.contract.Contract">qf_lib.backtesting.contract.contract.Contract</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.portfolio.backtest_position.</code><code class="sig-name descname">BacktestPosition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.backtesting.portfolio.position.Position</span></code></p>
 <p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
@@ -281,12 +281,12 @@ Negative value corresponds to a Short position.</p>
 
 <dl class="py method">
 <dt id="qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_exposure">
-<code class="sig-name descname">total_exposure</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition.total_exposure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_exposure" title="Permalink to this definition">¶</a></dt>
+<em class="property">abstract </em><code class="sig-name descname">total_exposure</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="../_modules/qf_lib/backtesting/portfolio/backtest_position.html#BacktestPosition.total_exposure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.portfolio.backtest_position.BacktestPosition.total_exposure" title="Permalink to this definition">¶</a></dt>
 <dd><p>It tells us what is the total exposure of the position to the market in currency units</p>
 <dl class="simple">
 <dt>For cash securities (Equities, Bonds, ETFs, etc)</dt><dd><p>It represents the value of the position (quantity * price)</p>
 </dd>
-<dt>For margin securities (Futures, Options)</dt><dd><p>It represents Notional of the position (quantity * price * contract_size)</p>
+<dt>For margin securities (Futures, Options)</dt><dd><p>It represents Notional of the position (quantity * price * contract size)</p>
 </dd>
 </dl>
 </dd></dl>

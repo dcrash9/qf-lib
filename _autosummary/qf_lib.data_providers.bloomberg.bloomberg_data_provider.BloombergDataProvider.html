@@ -101,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html">QuandlDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html">HaverDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html">CryptoCurrencyDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.html">PortaraDataProvider</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../document_utils.html">document_utils</a></li>
@@ -195,16 +196,13 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_current_values" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_current_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_values</span></code></a>(tickers, …)</p></td>
 <td><p>Gets the current values of fields for given tickers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_futures_chain_tickers" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_futures_chain_tickers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_futures_chain_tickers</span></code></a>(tickers, …)</p></td>
-<td><p>Returns tickers of futures contracts, which belong to the same futures contract chain as the provided ticker (tickers), along with their expiration dates.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_history" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_history</span></code></a>(tickers, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_history" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_history</span></code></a>(tickers, …)</p></td>
 <td><p>Gets historical data from Bloomberg from the (start_date - end_date) time range.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tabular_data" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tabular_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tabular_data</span></code></a>(ticker, field, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tabular_data" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tabular_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tabular_data</span></code></a>(ticker, field, …)</p></td>
 <td><p>Provides current tabular data from Bloomberg.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tickers_universe" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tickers_universe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tickers_universe</span></code></a>(universe_ticker, date)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tickers_universe" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_tickers_universe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tickers_universe</span></code></a>(universe_ticker, date)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param universe_ticker</dt>
 <dd class="field-odd"><p>ticker that describes a specific universe, which members will be returned</p>
@@ -212,13 +210,13 @@
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_unique_tickers" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_unique_tickers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_unique_tickers</span></code></a>(universe_ticker)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_unique_tickers" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_unique_tickers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_unique_tickers</span></code></a>(universe_ticker)</p></td>
 <td><p>Returns the unique list of Tickers belonging to a specified universe regardless of the date.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.price_field_to_str_map" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.price_field_to_str_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">price_field_to_str_map</span></code></a>(ticker)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.price_field_to_str_map" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.price_field_to_str_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">price_field_to_str_map</span></code></a>(ticker)</p></td>
 <td><p>Method has to be implemented in each data provider in order to be able to use get_price.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.supported_ticker_types" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.supported_ticker_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supported_ticker_types</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.supported_ticker_types" title="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.supported_ticker_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supported_ticker_types</span></code></a>()</p></td>
 <td><p>Returns classes of tickers which are supported by this DataProvider.</p></td>
 </tr>
 </tbody>
@@ -266,31 +264,6 @@ by get_futures_chain_tickers method.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>QFDataFrame/QFSeries</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>BloombergError</strong> – When couldn’t get the data from Bloomberg Service</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_futures_chain_tickers">
-<code class="sig-name descname">get_futures_chain_tickers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker">qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker">qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">expiration_date_fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.expiration_date_field.ExpirationDateField.html#qf_lib.common.enums.expiration_date_field.ExpirationDateField" title="qf_lib.common.enums.expiration_date_field.ExpirationDateField">qf_lib.common.enums.expiration_date_field.ExpirationDateField</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.expiration_date_field.ExpirationDateField.html#qf_lib.common.enums.expiration_date_field.ExpirationDateField" title="qf_lib.common.enums.expiration_date_field.ExpirationDateField">qf_lib.common.enums.expiration_date_field.ExpirationDateField</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference internal" href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker">qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker</a><span class="p">, </span>Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/data_providers/bloomberg/bloomberg_data_provider.html#BloombergDataProvider.get_futures_chain_tickers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_futures_chain_tickers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns tickers of futures contracts, which belong to the same futures contract chain as the provided ticker
-(tickers), along with their expiration dates.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>tickers</strong> (<a class="reference internal" href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker"><em>BloombergFutureTicker</em></a><em>, </em><em>Sequence</em><em>[</em><a class="reference internal" href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker"><em>BloombergFutureTicker</em></a><em>]</em>) – future tickers for which future chains should be retrieved</p></li>
-<li><p><strong>expiration_date_fields</strong> (<a class="reference internal" href="qf_lib.common.enums.expiration_date_field.ExpirationDateField.html#qf_lib.common.enums.expiration_date_field.ExpirationDateField" title="qf_lib.common.enums.expiration_date_field.ExpirationDateField"><em>ExpirationDateField</em></a><em>, </em><em>Sequence</em><em>[</em><a class="reference internal" href="qf_lib.common.enums.expiration_date_field.ExpirationDateField.html#qf_lib.common.enums.expiration_date_field.ExpirationDateField" title="qf_lib.common.enums.expiration_date_field.ExpirationDateField"><em>ExpirationDateField</em></a><em>]</em>) – field that should be downloaded as the expiration date field</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Dictionary mapping each BloombergFutureTicker to a QFSeries or QFDataFrame, containing specific future
-contracts tickers (BloombergTickers), indexed by these tickers</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Dict[<a class="reference internal" href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html#qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker" title="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker">BloombergFutureTicker</a>, Union[<a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">QFSeries</a>, <a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">QFDataFrame</a>]]</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>BloombergError</strong> – When couldn’t get the data from Bloomberg Service</p>

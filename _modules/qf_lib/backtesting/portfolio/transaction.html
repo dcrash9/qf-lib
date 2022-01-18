@@ -172,11 +172,11 @@
 
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">qf_lib.backtesting.contract.contract</span> <span class="kn">import</span> <span class="n">Contract</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">Ticker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.dateutils.date_to_string</span> <span class="kn">import</span> <span class="n">date_to_str</span>
 
 
-<div class="viewcode-block" id="Transaction"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.portfolio.transaction.Transaction.html#qf_lib.backtesting.portfolio.transaction.Transaction">[docs]</a><span class="k">class</span> <span class="nc">Transaction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Transaction"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.backtesting.portfolio.transaction.Transaction.html#qf_lib.backtesting.portfolio.transaction.Transaction">[docs]</a><span class="k">class</span> <span class="nc">Transaction</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Encapsulates the notion of a filled Order, as returned from a Brokerage. Stores the quantity of an instrument</span>
 <span class="sd">    actually filled and at what price. In addition, stores the commission of the trade from the Brokerage.</span>
@@ -185,8 +185,8 @@
 <span class="sd">    ----------</span>
 <span class="sd">    time: datetime</span>
 <span class="sd">        time when the order was filled</span>
-<span class="sd">    contract: Contract</span>
-<span class="sd">        contract identifying the asset</span>
+<span class="sd">    ticker: Ticker</span>
+<span class="sd">        ticker identifying the asset</span>
 <span class="sd">    quantity: int</span>
 <span class="sd">        filled quantity, positive for assets bought and negative for assets sold</span>
 <span class="sd">    price: float</span>
@@ -195,29 +195,21 @@
 <span class="sd">        brokerage commission for carrying out the trade. It is always a positive number</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">Contract</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">price</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">commission</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">ticker</span><span class="p">:</span> <span class="n">Ticker</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">price</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">commission</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="k">assert</span> <span class="n">commission</span> <span class="o">&gt;=</span> <span class="mf">0.0</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">contract</span> <span class="o">=</span> <span class="n">contract</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticker</span> <span class="o">=</span> <span class="n">ticker</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span> <span class="o">=</span> <span class="n">quantity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">commission</span> <span class="o">=</span> <span class="n">commission</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">string_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{class_name:s}</span><span class="s2"> (</span><span class="si">{datetime_str:s}</span><span class="s2">) -&gt; &quot;</span> \
-                          <span class="s2">&quot;Quantity: </span><span class="si">{quantity:&gt;8}</span><span class="s2">, &quot;</span> \
-                          <span class="s2">&quot;Price: </span><span class="si">{price:&gt;10.2f}</span><span class="s2">, &quot;</span> \
-                          <span class="s2">&quot;Commission: </span><span class="si">{commission:&gt;7.2f}</span><span class="s2">, &quot;</span> \
-                          <span class="s2">&quot;Contract: </span><span class="si">{contract_str:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">class_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-                                                             <span class="n">datetime_str</span><span class="o">=</span><span class="n">date_to_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">),</span>
-                                                             <span class="n">quantity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span>
-                                                             <span class="n">price</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">,</span>
-                                                             <span class="n">commission</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">commission</span><span class="p">,</span>
-                                                             <span class="n">contract_str</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contract</span><span class="p">)</span>
-                                                             <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">string_template</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">date_to_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">)</span><span class="si">}</span><span class="s2">) -&gt; &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;Quantity: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">quantity</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;Price: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="si">:</span><span class="s2">&gt;10.2f</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;Commission: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">commission</span><span class="si">:</span><span class="s2">&gt;7.2f</span><span class="si">}</span><span class="s2">, &quot;</span> \
+               <span class="sa">f</span><span class="s2">&quot;Ticker: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticker</span><span class="p">)</span><span class="si">:}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">other</span><span class="p">:</span>
@@ -226,8 +218,8 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Transaction</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contract</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">commission</span><span class="p">)</span> <span class="o">==</span> \
-               <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">contract</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">price</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">commission</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">commission</span><span class="p">)</span> <span class="o">==</span> \
+               <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">ticker</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">quantity</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">price</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">commission</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

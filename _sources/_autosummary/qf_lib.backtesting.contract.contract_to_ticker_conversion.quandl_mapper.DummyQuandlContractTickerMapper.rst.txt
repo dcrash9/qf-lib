@@ -1,9 +1,0 @@
-DummyQuandlContractTickerMapper
-=======================================================================================================
-
-.. currentmodule:: qf_lib.backtesting.contract.contract_to_ticker_conversion.quandl_mapper
-
-.. autoclass:: DummyQuandlContractTickerMapper
-	:show-inheritance:
-	:autosummary:
-	:members:

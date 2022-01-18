@@ -450,7 +450,7 @@
                 <span class="n">base</span><span class="o">=</span><span class="n">base_data_array_1</span><span class="p">,</span>
                 <span class="n">label</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
                 <span class="n">skipna</span><span class="o">=</span><span class="kc">True</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aggregate_data_array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">))</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aggregate_data_array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_array_2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">base_data_array_2</span> <span class="o">=</span> <span class="n">MarketOpenEvent</span><span class="o">.</span><span class="n">trigger_time</span><span class="p">()</span><span class="o">.</span><span class="n">minute</span>
@@ -459,7 +459,7 @@
                 <span class="n">base</span><span class="o">=</span><span class="n">base_data_array_2</span><span class="p">,</span>
                 <span class="n">label</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
                 <span class="n">skipna</span><span class="o">=</span><span class="kc">True</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aggregate_data_array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">))</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aggregate_data_array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">))</span>
 
         <span class="n">data_array</span> <span class="o">=</span> <span class="n">QFDataArray</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data_array_1</span><span class="p">,</span> <span class="n">data_array_2</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="n">DATES</span><span class="p">)</span>
 

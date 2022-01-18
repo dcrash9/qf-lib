@@ -179,12 +179,17 @@
 <h1>Ticker<a class="headerlink" href="#ticker" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.common.tickers.tickers.Ticker">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.common.tickers.tickers.</code><code class="sig-name descname">Ticker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/common/tickers/tickers.html#Ticker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.tickers.tickers.Ticker" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.common.tickers.tickers.</code><code class="sig-name descname">Ticker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">security_type</span><span class="p">:</span> <span class="n">qf_lib.common.enums.security_type.SecurityType</span></em>, <em class="sig-param"><span class="n">point_value</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/common/tickers/tickers.html#Ticker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.tickers.tickers.Ticker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Representation of a security.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ticker</strong> (<em>str</em>) – identifier of the security in a specific database</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ticker</strong> (<em>str</em>) – identifier of the security in a specific database</p></li>
+<li><p><strong>security_type</strong> (<em>SecurityType</em>) – denotes the type of the security, that the ticker is representing e.g. SecurityType.STOCK for a stock,
+SecurityType.FUTURE for a futures contract etc.</p></li>
+<li><p><strong>point_value</strong> (<em>int</em>) – size of the contract as given by the ticker’s Data Provider.</p></li>
+</ul>
 </dd>
 </dl>
 <p><strong>Methods</strong></p>
@@ -198,7 +203,10 @@
 <td><p>Returns a string representation of a ticker</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.common.tickers.tickers.Ticker.from_string" title="qf_lib.common.tickers.tickers.Ticker.from_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_string</span></code></a>(ticker_str, Sequence[str]])</p></td>
-<td><p>allows creation of a ticker from a string</p></td>
+<td><p>Allows creation of a ticker from a string</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.common.tickers.tickers.Ticker.set_name" title="qf_lib.common.tickers.tickers.Ticker.set_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_name</span></code></a>(name)</p></td>
+<td><p>Sets the name of the ticker.</p></td>
 </tr>
 </tbody>
 </table>
@@ -223,7 +231,7 @@
 <dl class="py method">
 <dt id="qf_lib.common.tickers.tickers.Ticker.from_string">
 <em class="property">abstract </em><code class="sig-name descname">from_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker_str</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span><a class="reference internal" href="#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/common/tickers/tickers.html#Ticker.from_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.tickers.tickers.Ticker.from_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>allows creation of a ticker from a string</p>
+<dd><p>Allows creation of a ticker from a string</p>
 </dd></dl>
 
 <dl class="py method">
@@ -232,6 +240,15 @@
 <dd><p>Returns a name of the ticker.
 The property should be adjusted for different Ticker classes to provide a string representation of a Ticker,
 which in some cases could be more understandable than the output of as_string() function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qf_lib.common.tickers.tickers.Ticker.set_name">
+<code class="sig-name descname">set_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/common/tickers/tickers.html#Ticker.set_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.tickers.tickers.Ticker.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the name of the ticker. Name should be used for different Ticker classes to provide a readable string
+representation of a Ticker. For example, for tickers of security type FUTURE it is a good idea to set the name
+to point to the name of the asset (e.g. Cotton, Corn) to faciliate the further analysis of the tickers in
+transactions, portfolio etc.</p>
 </dd></dl>
 
 </dd></dl>

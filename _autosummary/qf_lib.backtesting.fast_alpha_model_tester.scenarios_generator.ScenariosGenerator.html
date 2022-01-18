@@ -189,8 +189,7 @@
 <dt id="qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator">
 <em class="property">class </em><code class="sig-prename descclassname">qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.</code><code class="sig-name descname">ScenariosGenerator</code><a class="reference internal" href="../_modules/qf_lib/backtesting/fast_alpha_model_tester/scenarios_generator.html#ScenariosGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Class used for generating different scenarios for Trades. Scenarios are series of returns on Trades for a given
-investment strategy.</p>
+<p>Class used for generating different scenarios for Trades.</p>
 <p><strong>Methods</strong></p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -198,16 +197,62 @@ investment strategy.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_scenarios" title="qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_scenarios"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_scenarios</span></code></a>(trade_rets, scenarios_length, …)</p></td>
-<td><p>Creates a number of scenarios of a given length by randomly choosing (with replacement) returns from the original sequence of Trade’s returns.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_exposure_scenarios" title="qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_exposure_scenarios"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_exposure_scenarios</span></code></a>(start_date, …)</p></td>
+<td><p>Creates a random series, which contains information about the exposure of a certain asset for the given dates range.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_scenarios" title="qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_scenarios"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_scenarios</span></code></a>(trade_rets, scenarios_length, …)</p></td>
+<td><p>Utility function to generate different trades scenarios, where each scenario is a series of returns for a given investment strategy.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
+<dt id="qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_exposure_scenarios">
+<code class="sig-name descname">make_exposure_scenarios</code><span class="sig-paren">(</span><em class="sig-param">start_date: datetime.datetime</em>, <em class="sig-param">end_date: datetime.datetime</em>, <em class="sig-param">number_of_trades: int</em>, <em class="sig-param">time_in_the_market: float</em>, <em class="sig-param">exposure: qf_lib.backtesting.alpha_model.exposure_enum.Exposure = &lt;Exposure.LONG: 1.0&gt;</em>, <em class="sig-param">frequency: qf_lib.common.enums.frequency.Frequency = &lt;Frequency.DAILY: 252&gt;</em>, <em class="sig-param">seed: int = None</em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><a class="reference internal" href="../_modules/qf_lib/backtesting/fast_alpha_model_tester/scenarios_generator.html#ScenariosGenerator.make_exposure_scenarios"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_exposure_scenarios" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a random series, which contains information about the exposure of a certain asset for the given dates
+range. Based on a.o. the total desired number of trades and average holding time of the trades, the function
+generates random trades and fills the rows for corresponding dates with the desired exposure.
+In case if the number of trades provided is too high to create non-adjacent trades, which will together occupy
+&lt;time_in_the_market&gt;% percentage of time, the time span between some of the consecutive trades may be set to 0.
+In that case it may seem as if the returned number of trades was smaller than the expected number of trades.</p>
+<p>Exemplary output for daily trading, 2 trades, time in the market = 60% and desired exposure = LONG:</p>
+<p>2021-10-01     Exposure.OUT
+2021-10-02    Exposure.LONG
+2021-10-03    Exposure.LONG
+2021-10-04    Exposure.LONG
+2021-10-05    Exposure.LONG
+2021-10-06     Exposure.OUT
+2021-10-07     Exposure.OUT
+2021-10-08    Exposure.LONG
+2021-10-09    Exposure.LONG
+2021-10-10     Exposure.OUT</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> (<em>datetime</em>) – first date considered in the returned series</p></li>
+<li><p><strong>end_date</strong> (<em>datetime</em>) – last date considered in the returned series</p></li>
+<li><p><strong>number_of_trades</strong> (<em>int</em>) – total number of trades, which should be generated</p></li>
+<li><p><strong>time_in_the_market</strong> (<em>float</em>) – total time of the ticker in the market (should be a percentage value, between 0.0 and 1.0)</p></li>
+<li><p><strong>exposure</strong> (<em>Exposure</em>) – the desired exposure (either short or long)</p></li>
+<li><p><strong>frequency</strong> (<a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency"><em>Frequency</em></a>) – frequency of the trading</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – seed used to make the scenarios deterministic</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Series indexed by dates between start_date and end_date with the given frequency</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">QFSeries</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_scenarios">
 <code class="sig-name descname">make_scenarios</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trade_rets</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>float<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">scenarios_length</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">100</span></em>, <em class="sig-param"><span class="n">num_of_scenarios</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">10000</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.containers.dataframe.simple_returns_dataframe.SimpleReturnsDataFrame.html#qf_lib.containers.dataframe.simple_returns_dataframe.SimpleReturnsDataFrame" title="qf_lib.containers.dataframe.simple_returns_dataframe.SimpleReturnsDataFrame">qf_lib.containers.dataframe.simple_returns_dataframe.SimpleReturnsDataFrame</a><a class="reference internal" href="../_modules/qf_lib/backtesting/fast_alpha_model_tester/scenarios_generator.html#ScenariosGenerator.make_scenarios"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.backtesting.fast_alpha_model_tester.scenarios_generator.ScenariosGenerator.make_scenarios" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a number of scenarios of a given length by randomly choosing (with replacement) returns from
-the original sequence of Trade’s returns. The result is the pandas DataFrame which is indexed by the Trade’s
+<dd><p>Utility function to generate different trades scenarios, where each scenario is a series of returns for a given
+investment strategy.
+The scenarios of a given length are created by randomly choosing (with replacement) returns from the original
+sequence of a Trade’s returns. The result is the SimpleReturnsDataFrame which is indexed by the Trade’s
 ordinal number and has a scenario in each column.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -218,7 +263,7 @@ ordinal number and has a scenario in each column.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>DataFrame of size scenarios_length (rows) by num_of_scenarios (columns). It contains float numbers.</p>
+<dd class="field-even"><p>data frame of size scenarios_length (rows) by num_of_scenarios (columns). It contains float numbers.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="qf_lib.containers.dataframe.simple_returns_dataframe.SimpleReturnsDataFrame.html#qf_lib.containers.dataframe.simple_returns_dataframe.SimpleReturnsDataFrame" title="qf_lib.containers.dataframe.simple_returns_dataframe.SimpleReturnsDataFrame">SimpleReturnsDataFrame</a></p>

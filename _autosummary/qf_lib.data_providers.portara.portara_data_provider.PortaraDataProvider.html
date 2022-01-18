@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PrefetchingDataProvider &mdash; QF Lib  documentation</title>
+  <title>PortaraDataProvider &mdash; QF Lib  documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="GeneralPriceProvider" href="qf_lib.data_providers.general_price_provider.GeneralPriceProvider.html" />
-    <link rel="prev" title="PresetDataProvider" href="qf_lib.data_providers.preset_data_provider.PresetDataProvider.html" /> 
+    <link rel="next" title="document_utils" href="../document_utils.html" />
+    <link rel="prev" title="CryptoCurrencyDataProvider" href="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,12 +96,12 @@
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html">BloombergDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.bloomberg_beap_hapi.bloomberg_beap_hapi_data_provider.BloombergBeapHapiDataProvider.html">BloombergBeapHapiDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.preset_data_provider.PresetDataProvider.html">PresetDataProvider</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">PrefetchingDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider.html">PrefetchingDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.general_price_provider.GeneralPriceProvider.html">GeneralPriceProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html">QuandlDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html">HaverDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html">CryptoCurrencyDataProvider</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.html">PortaraDataProvider</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PortaraDataProvider</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../document_utils.html">document_utils</a></li>
@@ -156,7 +156,7 @@
         
           <li><a href="../data_providers.html">data_providers</a> &raquo;</li>
         
-      <li>PrefetchingDataProvider</li>
+      <li>PortaraDataProvider</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -173,19 +173,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="prefetchingdataprovider">
-<h1>PrefetchingDataProvider<a class="headerlink" href="#prefetchingdataprovider" title="Permalink to this headline">¶</a></h1>
+  <section id="portaradataprovider">
+<h1>PortaraDataProvider<a class="headerlink" href="#portaradataprovider" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.data_providers.prefetching_data_provider.</code><code class="sig-name descname">PrefetchingDataProvider</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_provider</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.data_providers.data_provider.DataProvider.html#qf_lib.data_providers.data_provider.DataProvider" title="qf_lib.data_providers.data_provider.DataProvider">qf_lib.data_providers.data_provider.DataProvider</a></span></em>, <em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/data_providers/prefetching_data_provider.html#PrefetchingDataProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.prefetching_data_provider.PrefetchingDataProvider" title="Permalink to this definition">¶</a></dt>
+<dt id="qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider">
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.data_providers.portara.portara_data_provider.</code><code class="sig-name descname">PortaraDataProvider</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">, </span>List<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField">qf_lib.common.enums.price_field.PriceField</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">start_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">end_date</span><span class="p">:</span> <span class="n">datetime.datetime</span></em>, <em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency">qf_lib.common.enums.frequency.Frequency</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/data_providers/portara/portara_data_provider.html#PortaraDataProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="qf_lib.data_providers.preset_data_provider.PresetDataProvider.html#qf_lib.data_providers.preset_data_provider.PresetDataProvider" title="qf_lib.data_providers.preset_data_provider.PresetDataProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.data_providers.preset_data_provider.PresetDataProvider</span></code></a></p>
-<p>Optimises running of the DataProvider by pre-fetching all the data at startup and then using the cached data
-instead of sending over-the-network requests every time the data is requested. If not all data requested
-is available the ValueError will be raised.</p>
+<p>Loads Portara data for futures contracts. When it comes to futures, this provider supports both continuous series
+and working on individual contracts (tenors).</p>
+<p>The required format is .csv for pricing data (with headers) and .txt for expiration dates data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_provider</strong> (<a class="reference internal" href="qf_lib.data_providers.data_provider.DataProvider.html#qf_lib.data_providers.data_provider.DataProvider" title="qf_lib.data_providers.data_provider.DataProvider"><em>DataProvider</em></a>) – data provider used to download the data</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – path to the exported Portara data</p></li>
 <li><p><strong>tickers</strong> (<a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker"><em>Ticker</em></a><em>, </em><em>Sequence</em><em>[</em><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker"><em>Ticker</em></a><em>]</em>) – one or a list of tickers, used further to download the futures contracts related data.
 The list can contain either Tickers or FutureTickers. In case of the Tickers, simply the given fields
 are being downloaded and stored using the PresetDataProvider. In case of the FutureTickers, the future
@@ -193,10 +193,43 @@ chain tickers and their corresponding prices are being downloaded and stored.</p
 <li><p><strong>fields</strong> (<a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField"><em>PriceField</em></a><em>, </em><em>Sequence</em><em>[</em><a class="reference internal" href="qf_lib.common.enums.price_field.PriceField.html#qf_lib.common.enums.price_field.PriceField" title="qf_lib.common.enums.price_field.PriceField"><em>PriceField</em></a><em>]</em>) – fields that should be downloaded</p></li>
 <li><p><strong>start_date</strong> (<em>datetime</em>) – first date to be downloaded</p></li>
 <li><p><strong>end_date</strong> (<em>datetime</em>) – last date to be downloaded</p></li>
-<li><p><strong>frequency</strong> (<a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency"><em>Frequency</em></a>) – frequency of the data</p></li>
+<li><p><strong>frequency</strong> (<a class="reference internal" href="qf_lib.common.enums.frequency.Frequency.html#qf_lib.common.enums.frequency.Frequency" title="qf_lib.common.enums.frequency.Frequency"><em>Frequency</em></a>) – frequency of the data (1-minute bar and daily frequencies are supported)</p></li>
 </ul>
 </dd>
 </dl>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.get_contracts_df" title="qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.get_contracts_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_contracts_df</span></code></a>()</p></td>
+<td><p>Returns contracts information.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>It is assumed that the names of files containing prices data match the names of the contracts (e.g.
+SI1999Z.csv for SI1999Z).</p></li>
+<li><p>The naming convention used to generate the data in Portara should be the “SymYYYYM”.</p></li>
+<li><p>The date format should be set to “YYYY-MM-DD”.</p></li>
+<li><p>Currently the only supported data frequencies are daily frequency and 1-minute bar frequency. After preloading
+1-minute bars, it is possible to aggregate them selecting a different frequency in the get price.</p></li>
+<li><p>In order to see exemplary files which may be used with the PortaraDataProvider (e.g. structure of expiration
+dates file), check the mock files in the tests directory:
+qf_lib_tests &gt; unit_tests &gt; data_providers &gt; portara &gt; input_data.</p></li>
+<li><p>To see examples using Portara data provider, check the demo scripts:
+demo_scripts &gt; data_providers &gt; portara.</p></li>
+</ul>
+<dl class="py method">
+<dt id="qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.get_contracts_df">
+<code class="sig-name descname">get_contracts_df</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><a class="reference internal" href="../_modules/qf_lib/data_providers/portara/portara_data_provider.html#PortaraDataProvider.get_contracts_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.get_contracts_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns contracts information. A non empty data frame is returned only if the pricing data files contain
+the ‘Contract’ column.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -209,10 +242,10 @@ chain tickers and their corresponding prices are being downloaded and stored.</p
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="qf_lib.data_providers.general_price_provider.GeneralPriceProvider.html" class="btn btn-neutral float-right" title="GeneralPriceProvider" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../document_utils.html" class="btn btn-neutral float-right" title="document_utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="qf_lib.data_providers.preset_data_provider.PresetDataProvider.html" class="btn btn-neutral float-left" title="PresetDataProvider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html" class="btn btn-neutral float-left" title="CryptoCurrencyDataProvider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -169,17 +169,19 @@
 <span class="c1">#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
 <span class="c1">#     See the License for the specific language governing permissions and</span>
 <span class="c1">#     limitations under the License.</span>
-
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">Ticker</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.utils.dateutils.relative_delta</span> <span class="kn">import</span> <span class="n">RelativeDelta</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.miscellaneous.to_list_conversion</span> <span class="kn">import</span> <span class="n">convert_to_list</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.cast_dataframe</span> <span class="kn">import</span> <span class="n">cast_dataframe</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.prices_dataframe</span> <span class="kn">import</span> <span class="n">PricesDataFrame</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.qf_dataframe</span> <span class="kn">import</span> <span class="n">QFDataFrame</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dimension_names</span> <span class="kn">import</span> <span class="n">DATES</span><span class="p">,</span> <span class="n">TICKERS</span><span class="p">,</span> <span class="n">FIELDS</span>
+<span class="kn">from</span> <span class="nn">qf_lib.containers.futures.future_tickers.future_ticker</span> <span class="kn">import</span> <span class="n">FutureTicker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.qf_data_array</span> <span class="kn">import</span> <span class="n">QFDataArray</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.cast_series</span> <span class="kn">import</span> <span class="n">cast_series</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.series.prices_series</span> <span class="kn">import</span> <span class="n">PricesSeries</span>
@@ -344,6 +346,24 @@
 
     <span class="n">fields</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fields</span>
+
+
+<div class="viewcode-block" id="chain_tickers_within_range"><a class="viewcode-back" href="../../../data_providers.html#qf_lib.data_providers.helpers.chain_tickers_within_range">[docs]</a><span class="k">def</span> <span class="nf">chain_tickers_within_range</span><span class="p">(</span><span class="n">future_ticker</span><span class="p">:</span> <span class="n">FutureTicker</span><span class="p">,</span> <span class="n">exp_dates</span><span class="p">:</span> <span class="n">QFDataFrame</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span>
+                               <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns only these tickers belonging to the chain of a given FutureTicker, which were valid only for the given</span>
+<span class="sd">    time frame.</span>
+
+<span class="sd">    As it is possible to select the contracts to be traded for a given future ticker (e.g. for Bloomberg</span>
+<span class="sd">    future tickers we could specify only to trade &quot;M&quot; contracts), the end date is computed as the original end date</span>
+<span class="sd">    + 1 year x contract number to trade.</span>
+<span class="sd">    E.g. if we specify that we only want to trade &quot;M&quot; contracts and we always want to trade the front M contract,</span>
+<span class="sd">    we add 1 year x 1. If instead of the front M, we would like to trade the second next M contract,</span>
+<span class="sd">    we add 2 years to the end date etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">exp_dates</span> <span class="o">=</span> <span class="n">exp_dates</span><span class="p">[</span><span class="n">exp_dates</span> <span class="o">&gt;=</span> <span class="n">start_date</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">exp_dates</span> <span class="o">=</span> <span class="n">exp_dates</span><span class="p">[</span><span class="n">exp_dates</span> <span class="o">&lt;=</span> <span class="n">end_date</span> <span class="o">+</span> <span class="n">RelativeDelta</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">future_ticker</span><span class="o">.</span><span class="n">N</span><span class="p">)]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">exp_dates</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span></div>
 </pre></div>
 
            </div>

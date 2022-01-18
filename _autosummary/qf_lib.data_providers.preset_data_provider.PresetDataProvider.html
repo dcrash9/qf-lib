@@ -101,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.quandl.quandl_data_provider.QuandlDataProvider.html">QuandlDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.haver.haver_data_provider.HaverDataProvider.html">HaverDataProvider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.cryptocurrency.cryptocurrency_data_provider.CryptoCurrencyDataProvider.html">CryptoCurrencyDataProvider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qf_lib.data_providers.portara.portara_data_provider.PortaraDataProvider.html">PortaraDataProvider</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../document_utils.html">document_utils</a></li>
@@ -199,7 +200,7 @@ future ticker family</p></li>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.data_providers.preset_data_provider.PresetDataProvider.get_futures_chain_tickers" title="qf_lib.data_providers.preset_data_provider.PresetDataProvider.get_futures_chain_tickers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_futures_chain_tickers</span></code></a>(tickers, …)</p></td>
-<td><p>Returns tickers of futures contracts, which belong to the same futures contract chain as the provided ticker (tickers), along with their expiration dates in form of a QFSeries.</p></td>
+<td><p>Returns tickers of futures contracts, which belong to the same futures contract chain as the provided ticker (tickers), along with their expiration dates in form of a QFSeries or QFDataFrame.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.data_providers.preset_data_provider.PresetDataProvider.get_history" title="qf_lib.data_providers.preset_data_provider.PresetDataProvider.get_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_history</span></code></a>(tickers, …)</p></td>
 <td><p>Gets historical attributes (fields) of different securities (tickers).</p></td>
@@ -216,7 +217,7 @@ future ticker family</p></li>
 <dt id="qf_lib.data_providers.preset_data_provider.PresetDataProvider.get_futures_chain_tickers">
 <code class="sig-name descname">get_futures_chain_tickers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tickers</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker">qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker">qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker</a><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">expiration_date_fields</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.expiration_date_field.ExpirationDateField.html#qf_lib.common.enums.expiration_date_field.ExpirationDateField" title="qf_lib.common.enums.expiration_date_field.ExpirationDateField">qf_lib.common.enums.expiration_date_field.ExpirationDateField</a><span class="p">, </span>Sequence<span class="p">[</span><a class="reference internal" href="qf_lib.common.enums.expiration_date_field.ExpirationDateField.html#qf_lib.common.enums.expiration_date_field.ExpirationDateField" title="qf_lib.common.enums.expiration_date_field.ExpirationDateField">qf_lib.common.enums.expiration_date_field.ExpirationDateField</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference internal" href="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker">qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker</a><span class="p">, </span>Union<span class="p">[</span><a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">qf_lib.containers.series.qf_series.QFSeries</a><span class="p">, </span><a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">qf_lib.containers.dataframe.qf_dataframe.QFDataFrame</a><span class="p">]</span><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/data_providers/preset_data_provider.html#PresetDataProvider.get_futures_chain_tickers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.data_providers.preset_data_provider.PresetDataProvider.get_futures_chain_tickers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns tickers of futures contracts, which belong to the same futures contract chain as the provided ticker
-(tickers), along with their expiration dates in form of a QFSeries.</p>
+(tickers), along with their expiration dates in form of a QFSeries or QFDataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -226,9 +227,9 @@ future ticker family</p></li>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Returns a dictionary, which maps Tickers to QFSeries, consisting of the expiration dates of Future
-Contracts: Dict[FutureTicker, QFSeries]. The QFSeries contain the specific Tickers, which belong to the
-corresponding futures family, same as the FutureTicker, and are indexed by the expiration dates of
-the specific future contracts.</p>
+Contracts: Dict[FutureTicker, Union[QFSeries, QFDataFrame]]]. The QFSeries’ / QFDataFrames contain the
+specific Tickers, which belong to the corresponding futures family, same as the FutureTicker, and are
+indexed by the expiration dates of the specific future contracts.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Dict[<a class="reference internal" href="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker">FutureTicker</a>, Union[<a class="reference internal" href="qf_lib.containers.series.qf_series.QFSeries.html#qf_lib.containers.series.qf_series.QFSeries" title="qf_lib.containers.series.qf_series.QFSeries">QFSeries</a>, <a class="reference internal" href="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame.html#qf_lib.containers.dataframe.qf_dataframe.QFDataFrame" title="qf_lib.containers.dataframe.qf_dataframe.QFDataFrame">QFDataFrame</a>]]</p>

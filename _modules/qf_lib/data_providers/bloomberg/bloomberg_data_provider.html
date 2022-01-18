@@ -178,7 +178,7 @@
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.expiration_date_field</span> <span class="kn">import</span> <span class="n">ExpirationDateField</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.frequency</span> <span class="kn">import</span> <span class="n">Frequency</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.enums.price_field</span> <span class="kn">import</span> <span class="n">PriceField</span>
-<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">BloombergTicker</span><span class="p">,</span> <span class="n">tickers_as_strings</span><span class="p">,</span> <span class="n">Ticker</span>
+<span class="kn">from</span> <span class="nn">qf_lib.common.tickers.tickers</span> <span class="kn">import</span> <span class="n">BloombergTicker</span><span class="p">,</span> <span class="n">Ticker</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.logging.qf_parent_logger</span> <span class="kn">import</span> <span class="n">qf_logger</span>
 <span class="kn">from</span> <span class="nn">qf_lib.common.utils.miscellaneous.to_list_conversion</span> <span class="kn">import</span> <span class="n">convert_to_list</span>
 <span class="kn">from</span> <span class="nn">qf_lib.containers.dataframe.qf_dataframe</span> <span class="kn">import</span> <span class="n">QFDataFrame</span>
@@ -261,9 +261,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="BloombergDataProvider.get_futures_chain_tickers"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_futures_chain_tickers">[docs]</a>    <span class="k">def</span> <span class="nf">get_futures_chain_tickers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BloombergFutureTicker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BloombergFutureTicker</span><span class="p">]],</span>
-                                  <span class="n">expiration_date_fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ExpirationDateField</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">ExpirationDateField</span><span class="p">]])</span> \
-            <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">BloombergFutureTicker</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">QFSeries</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]]:</span>
+    <span class="k">def</span> <span class="nf">_get_futures_chain_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BloombergFutureTicker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BloombergFutureTicker</span><span class="p">]],</span>
+                                <span class="n">expiration_date_fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">BloombergFutureTicker</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns tickers of futures contracts, which belong to the same futures contract chain as the provided ticker</span>
 <span class="sd">        (tickers), along with their expiration dates.</span>
@@ -277,8 +276,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Dict[BloombergFutureTicker, Union[QFSeries, QFDataFrame]]</span>
-<span class="sd">            Dictionary mapping each BloombergFutureTicker to a QFSeries or QFDataFrame, containing specific future</span>
+<span class="sd">        Dict[BloombergFutureTicker, QFDataFrame]</span>
+<span class="sd">            Dictionary mapping each BloombergFutureTicker to a QFDataFrame, containing specific future</span>
 <span class="sd">            contracts tickers (BloombergTickers), indexed by these tickers</span>
 
 <span class="sd">        Raises</span>
@@ -290,8 +289,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_assert_is_connected</span><span class="p">()</span>
 
         <span class="n">tickers</span><span class="p">,</span> <span class="n">got_single_ticker</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span> <span class="n">BloombergFutureTicker</span><span class="p">)</span>
-        <span class="n">expiration_date_fields</span><span class="p">,</span> <span class="n">got_single_expiration_date_field</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">expiration_date_fields</span><span class="p">,</span>
-                                                                                   <span class="n">ExpirationDateField</span><span class="p">)</span>
+        <span class="n">expiration_date_fields</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">expiration_date_fields</span><span class="p">,</span> <span class="n">ExpirationDateField</span><span class="p">)</span>
 
         <span class="c1"># Create a dictionary, which is mapping BloombergFutureTickers to lists of tickers related to specific future</span>
         <span class="c1"># contracts belonging to the chain, e.g. it will map Cotton Bloomberg future ticker into:</span>
@@ -303,8 +301,8 @@
         <span class="k">def</span> <span class="nf">get_futures_expiration_dates</span><span class="p">(</span><span class="n">specific_tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BloombergTicker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BloombergTicker</span><span class="p">]])</span> <span class="o">-&gt;</span> \
                 <span class="n">Union</span><span class="p">[</span><span class="n">QFSeries</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            For a ticker (tickers) it returns a QFSeries or QFDataFrame consisting of the expiration dates fields of</span>
-<span class="sd">            Future Contracts, that are defined by the given tickers.</span>
+<span class="sd">            For a ticker (tickers) it returns a QFDataFrame consisting of the expiration dates fields of Future</span>
+<span class="sd">            Contracts, that are defined by the given tickers.</span>
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
@@ -313,22 +311,13 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">            QFSeries, QFDataFrame</span>
+<span class="sd">            QFDataFrame</span>
 <span class="sd">                Container containing all the dates, indexed by tickers</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-
-            <span class="c1"># Download the expiration dates for each of the future contracts</span>
-            <span class="n">mapping_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expiration_date_field_str_map</span><span class="p">()</span>
-            <span class="n">expiration_date_fields_str</span> <span class="o">=</span> <span class="p">[</span><span class="n">mapping_dict</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">expiration_date_fields</span><span class="p">]</span>
-            <span class="n">exp_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_current_values</span><span class="p">(</span><span class="n">specific_tickers</span><span class="p">,</span>
-                                                <span class="n">expiration_date_fields_str</span><span class="p">)</span>  <span class="c1"># type: Union[QFSeries, QFDataFrame]</span>
+            <span class="n">exp_dates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_current_values</span><span class="p">(</span><span class="n">specific_tickers</span><span class="p">,</span> <span class="n">expiration_date_fields</span><span class="p">)</span>  <span class="c1"># type: QFDataFrame</span>
 
             <span class="c1"># Drop these futures, for which no expiration date was found and cast all string dates into datetime</span>
-            <span class="n">exp_dates</span> <span class="o">=</span> <span class="n">exp_dates</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
-            <span class="n">exp_dates</span> <span class="o">=</span> <span class="n">exp_dates</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[ns]&#39;</span><span class="p">)</span>
-            <span class="n">exp_dates</span> <span class="o">=</span> <span class="n">exp_dates</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">str_to_expiration_date_field_map</span><span class="p">())</span>
-
-            <span class="k">return</span> <span class="n">exp_dates</span>
+            <span class="k">return</span> <span class="n">exp_dates</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[ns]&#39;</span><span class="p">)</span>
 
         <span class="n">all_specific_tickers</span> <span class="o">=</span> <span class="p">[</span><span class="n">ticker</span> <span class="k">for</span> <span class="n">specific_tickers_list</span> <span class="ow">in</span> <span class="n">future_ticker_to_chain_tickers_list</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
                                 <span class="k">for</span> <span class="n">ticker</span> <span class="ow">in</span> <span class="n">specific_tickers_list</span><span class="p">]</span>
@@ -347,7 +336,7 @@
             <span class="k">for</span> <span class="n">future_ticker</span> <span class="ow">in</span> <span class="n">tickers</span>
         <span class="p">}</span>
 
-        <span class="k">return</span> <span class="n">ticker_to_future_expiration_dates</span></div>
+        <span class="k">return</span> <span class="n">ticker_to_future_expiration_dates</span>
 
 <div class="viewcode-block" id="BloombergDataProvider.get_current_values"><a class="viewcode-back" href="../../../../_autosummary/qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.html#qf_lib.data_providers.bloomberg.bloomberg_data_provider.BloombergDataProvider.get_current_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_current_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tickers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BloombergTicker</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BloombergTicker</span><span class="p">]],</span>
                            <span class="n">fields</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">QFSeries</span><span class="p">,</span> <span class="n">QFDataFrame</span><span class="p">]:</span>
@@ -378,8 +367,7 @@
         <span class="n">tickers</span><span class="p">,</span> <span class="n">got_single_ticker</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span> <span class="n">BloombergTicker</span><span class="p">)</span>
         <span class="n">fields</span><span class="p">,</span> <span class="n">got_single_field</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="p">(</span><span class="n">PriceField</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
 
-        <span class="n">tickers_str</span> <span class="o">=</span> <span class="n">tickers_as_strings</span><span class="p">(</span><span class="n">tickers</span><span class="p">)</span>
-        <span class="n">data_frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reference_data_provider</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tickers_str</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+        <span class="n">data_frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reference_data_provider</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
 
         <span class="c1"># to keep the order of tickers and fields we reindex the data frame</span>
         <span class="n">data_frame</span> <span class="o">=</span> <span class="n">data_frame</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">tickers</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
@@ -389,7 +377,8 @@
         <span class="n">fields_indices</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">got_single_field</span> <span class="k">else</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
         <span class="n">squeezed_result</span> <span class="o">=</span> <span class="n">data_frame</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">tickers_indices</span><span class="p">,</span> <span class="n">fields_indices</span><span class="p">]</span>
 
-        <span class="n">casted_result</span> <span class="o">=</span> <span class="n">cast_dataframe_to_proper_type</span><span class="p">(</span><span class="n">squeezed_result</span><span class="p">)</span>
+        <span class="n">casted_result</span> <span class="o">=</span> <span class="n">cast_dataframe_to_proper_type</span><span class="p">(</span><span class="n">squeezed_result</span><span class="p">)</span> <span class="k">if</span> <span class="n">tickers_indices</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">fields_indices</span> <span class="o">!=</span> <span class="mi">0</span> \
+            <span class="k">else</span> <span class="n">squeezed_result</span>
 
         <span class="k">return</span> <span class="n">casted_result</span></div>
 
@@ -446,20 +435,13 @@
         <span class="n">tickers</span><span class="p">,</span> <span class="n">got_single_ticker</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span> <span class="n">BloombergTicker</span><span class="p">)</span>
         <span class="n">fields</span><span class="p">,</span> <span class="n">got_single_field</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="p">(</span><span class="n">PriceField</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
 
-        <span class="n">tickers_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">BloombergTicker</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">as_string</span><span class="p">()):</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tickers</span><span class="p">}</span>
-        <span class="n">tickers_str</span> <span class="o">=</span> <span class="n">tickers_as_strings</span><span class="p">(</span><span class="n">tickers</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">current_ticker</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">BloombergTicker</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">get_current_specific_ticker</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">BloombergFutureTicker</span><span class="p">)</span> <span class="k">else</span> <span class="n">t</span>
 
+        <span class="n">tickers_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">current_ticker</span><span class="p">(</span><span class="n">t</span><span class="p">):</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tickers</span><span class="p">}</span>
         <span class="n">data_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_historical_data_provider</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="n">tickers_str</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">currency</span><span class="p">,</span> <span class="n">override_name</span><span class="p">,</span> <span class="n">override_value</span><span class="p">)</span>
-
-        <span class="c1"># Map each of the tickers in data array with corresponding ticker from tickers_mapping dictionary</span>
-        <span class="k">def</span> <span class="nf">_map_ticker</span><span class="p">(</span><span class="n">ticker</span><span class="p">):</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">tickers_mapping</span><span class="p">[</span><span class="n">ticker</span><span class="p">]</span>
-            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">ticker</span>
-
-        <span class="n">data_array</span> <span class="o">=</span> <span class="n">data_array</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">tickers</span><span class="o">=</span><span class="p">[</span><span class="n">_map_ticker</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">data_array</span><span class="o">.</span><span class="n">tickers</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+            <span class="n">tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">currency</span><span class="p">,</span> <span class="n">override_name</span><span class="p">,</span> <span class="n">override_value</span><span class="p">)</span>
+        <span class="n">data_array</span> <span class="o">=</span> <span class="n">data_array</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">tickers</span><span class="o">=</span><span class="p">[</span><span class="n">tickers_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">data_array</span><span class="o">.</span><span class="n">tickers</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
 
         <span class="n">normalized_result</span> <span class="o">=</span> <span class="n">normalize_data_array</span><span class="p">(</span>
             <span class="n">data_array</span><span class="p">,</span> <span class="n">tickers</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">got_single_date</span><span class="p">,</span> <span class="n">got_single_ticker</span><span class="p">,</span> <span class="n">got_single_field</span><span class="p">)</span>
@@ -534,7 +516,7 @@
         <span class="n">tickers</span><span class="p">,</span> <span class="n">got_single_ticker</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">BloombergTicker</span><span class="p">)</span>
         <span class="n">fields</span><span class="p">,</span> <span class="n">got_single_field</span> <span class="o">=</span> <span class="n">convert_to_list</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="p">(</span><span class="n">PriceField</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
 
-        <span class="n">tickers_str</span> <span class="o">=</span> <span class="n">tickers_as_strings</span><span class="p">(</span><span class="n">tickers</span><span class="p">)</span>
+        <span class="n">tickers_str</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">as_string</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tickers</span><span class="p">]</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tabular_data_provider</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tickers_str</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">override_names</span><span class="p">,</span> <span class="n">override_values</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">result</span></div>
