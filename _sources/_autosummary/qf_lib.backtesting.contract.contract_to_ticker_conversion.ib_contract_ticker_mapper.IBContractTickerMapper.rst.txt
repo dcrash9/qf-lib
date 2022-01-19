@@ -1,0 +1,9 @@
+IBContractTickerMapper
+==========================================================================================================
+
+.. currentmodule:: qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_contract_ticker_mapper
+
+.. autoclass:: IBContractTickerMapper
+	:show-inheritance:
+	:autosummary:
+	:members:

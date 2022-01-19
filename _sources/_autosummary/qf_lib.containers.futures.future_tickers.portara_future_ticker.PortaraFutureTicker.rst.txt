@@ -1,0 +1,9 @@
+PortaraFutureTicker
+==================================================================================
+
+.. currentmodule:: qf_lib.containers.futures.future_tickers.portara_future_ticker
+
+.. autoclass:: PortaraFutureTicker
+	:show-inheritance:
+	:autosummary:
+	:members:

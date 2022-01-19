@@ -1,0 +1,9 @@
+ExecutionStyle
+=======================================================
+
+.. currentmodule:: qf_lib.backtesting.order.execution_style
+
+.. autoclass:: ExecutionStyle
+	:show-inheritance:
+	:autosummary:
+	:members:

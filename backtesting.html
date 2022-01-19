@@ -95,6 +95,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#contract">contract</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html">ContractTickerMapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_contract_ticker_mapper.SimulatedContractTickerMapper.html">SimulatedContractTickerMapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_contract_ticker_mapper.IBContractTickerMapper.html">IBContractTickerMapper</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#data-handler">data_handler</a><ul>
@@ -145,6 +147,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#order">order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.execution_style.ExecutionStyle.html">ExecutionStyle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.execution_style.MarketOrder.html">MarketOrder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.execution_style.MarketOnCloseOrder.html">MarketOnCloseOrder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.execution_style.StopOrder.html">StopOrder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.order_factory.OrderFactory.html">OrderFactory</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.order.Order.html">Order</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.time_in_force.TimeInForce.html">TimeInForce</a></li>
@@ -289,6 +295,12 @@
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.base.ContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.base.ContractTickerMapper</span></code></a></p></td>
 <td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_contract_ticker_mapper.SimulatedContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_contract_ticker_mapper.SimulatedContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_contract_ticker_mapper.SimulatedContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.simulated_contract_ticker_mapper.SimulatedContractTickerMapper</span></code></a></p></td>
+<td><p>Simulated contract to ticker mapper, which should be used for backtesting purposes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_contract_ticker_mapper.IBContractTickerMapper.html#qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_contract_ticker_mapper.IBContractTickerMapper" title="qf_lib.backtesting.contract.contract_to_ticker_conversion.ib_contract_ticker_mapper.IBContractTickerMapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contract_to_ticker_conversion.ib_contract_ticker_mapper.IBContractTickerMapper</span></code></a></p></td>
+<td><p>IB IBContract mapper that can be used for live trading.</p></td>
 </tr>
 </tbody>
 </table>
@@ -448,6 +460,18 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.execution_style.ExecutionStyle.html#qf_lib.backtesting.order.execution_style.ExecutionStyle" title="qf_lib.backtesting.order.execution_style.ExecutionStyle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execution_style.ExecutionStyle</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.execution_style.MarketOrder.html#qf_lib.backtesting.order.execution_style.MarketOrder" title="qf_lib.backtesting.order.execution_style.MarketOrder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execution_style.MarketOrder</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.execution_style.MarketOnCloseOrder.html#qf_lib.backtesting.order.execution_style.MarketOnCloseOrder" title="qf_lib.backtesting.order.execution_style.MarketOnCloseOrder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execution_style.MarketOnCloseOrder</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.execution_style.StopOrder.html#qf_lib.backtesting.order.execution_style.StopOrder" title="qf_lib.backtesting.order.execution_style.StopOrder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execution_style.StopOrder</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/qf_lib.backtesting.order.order_factory.OrderFactory.html#qf_lib.backtesting.order.order_factory.OrderFactory" title="qf_lib.backtesting.order.order_factory.OrderFactory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">order_factory.OrderFactory</span></code></a></p></td>
 <td><p>Creates Orders.</p></td>
 </tr>

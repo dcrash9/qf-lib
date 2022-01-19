@@ -98,6 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.common.tickers.tickers.HaverTicker.html">HaverTicker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.common.tickers.tickers.QuandlTicker.html">QuandlTicker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.common.tickers.tickers.CcyTicker.html">CcyTicker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.common.tickers.tickers.PortaraTicker.html">PortaraTicker</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../common.html#timeseries-analysis">timeseries_analysis</a></li>
@@ -179,14 +180,14 @@
 <h1>Ticker<a class="headerlink" href="#ticker" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="qf_lib.common.tickers.tickers.Ticker">
-<em class="property">class </em><code class="sig-prename descclassname">qf_lib.common.tickers.tickers.</code><code class="sig-name descname">Ticker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">security_type</span><span class="p">:</span> <span class="n">qf_lib.common.enums.security_type.SecurityType</span></em>, <em class="sig-param"><span class="n">point_value</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/common/tickers/tickers.html#Ticker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.tickers.tickers.Ticker" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.common.tickers.tickers.</code><code class="sig-name descname">Ticker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">security_type</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.enums.security_type.SecurityType.html#qf_lib.common.enums.security_type.SecurityType" title="qf_lib.common.enums.security_type.SecurityType">qf_lib.common.enums.security_type.SecurityType</a></span></em>, <em class="sig-param"><span class="n">point_value</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/common/tickers/tickers.html#Ticker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.common.tickers.tickers.Ticker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Representation of a security.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ticker</strong> (<em>str</em>) – identifier of the security in a specific database</p></li>
-<li><p><strong>security_type</strong> (<em>SecurityType</em>) – denotes the type of the security, that the ticker is representing e.g. SecurityType.STOCK for a stock,
+<li><p><strong>security_type</strong> (<a class="reference internal" href="qf_lib.common.enums.security_type.SecurityType.html#qf_lib.common.enums.security_type.SecurityType" title="qf_lib.common.enums.security_type.SecurityType"><em>SecurityType</em></a>) – denotes the type of the security, that the ticker is representing e.g. SecurityType.STOCK for a stock,
 SecurityType.FUTURE for a futures contract etc.</p></li>
 <li><p><strong>point_value</strong> (<em>int</em>) – size of the contract as given by the ticker’s Data Provider.</p></li>
 </ul>

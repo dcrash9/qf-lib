@@ -1,0 +1,9 @@
+QuandlDBType
+===============================================
+
+.. currentmodule:: qf_lib.common.enums.quandl_db_type
+
+.. autoclass:: QuandlDBType
+	:show-inheritance:
+	:autosummary:
+	:members:

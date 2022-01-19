@@ -1,0 +1,9 @@
+StopOrder
+==================================================
+
+.. currentmodule:: qf_lib.backtesting.order.execution_style
+
+.. autoclass:: StopOrder
+	:show-inheritance:
+	:autosummary:
+	:members:

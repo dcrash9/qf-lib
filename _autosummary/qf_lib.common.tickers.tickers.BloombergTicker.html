@@ -98,6 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.common.tickers.tickers.HaverTicker.html">HaverTicker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.common.tickers.tickers.QuandlTicker.html">QuandlTicker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qf_lib.common.tickers.tickers.CcyTicker.html">CcyTicker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.common.tickers.tickers.PortaraTicker.html">PortaraTicker</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../common.html#timeseries-analysis">timeseries_analysis</a></li>
@@ -186,7 +187,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ticker</strong> (<em>str</em>) – identifier of the security, e.g. ‘CTZ9 Comdty’ or ‘MSFT US Equity’</p></li>
-<li><p><strong>security_type</strong> (<em>SecurityType</em>) – denotes the type of the security, that the ticker is representing e.g. SecurityType.STOCK for a stock,
+<li><p><strong>security_type</strong> (<a class="reference internal" href="qf_lib.common.enums.security_type.SecurityType.html#qf_lib.common.enums.security_type.SecurityType" title="qf_lib.common.enums.security_type.SecurityType"><em>SecurityType</em></a>) – denotes the type of the security, that the ticker is representing e.g. SecurityType.STOCK for a stock,
 SecurityType.FUTURE for a futures contract etc. By default equals SecurityType.STOCK.</p></li>
 <li><p><strong>point_value</strong> (<em>int</em>) – size of the contract as given by the ticker’s Data Provider. Used mostly by tickers of security_type FUTURE and
 by default equals 1.</p></li>

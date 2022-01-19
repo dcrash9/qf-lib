@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PortaraFutureTicker &mdash; QF Lib  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FuturesAdjustmentMethod" href="qf_lib.containers.futures.futures_adjustment_method.FuturesAdjustmentMethod.html" />
+    <link rel="prev" title="BloombergFutureTicker" href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QF Lib
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../analysis.html">analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backtesting.html">backtesting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">common</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../containers.html">containers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#series">Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#dataframes">DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#dataarrays">DataArrays</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../containers.html#futures">Futures</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.containers.futures.futures_chain.FuturesChain.html">FuturesChain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.containers.futures.future_contract.FutureContract.html">FutureContract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html">FutureTicker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html">BloombergFutureTicker</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PortaraFutureTicker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.containers.futures.futures_adjustment_method.FuturesAdjustmentMethod.html">FuturesAdjustmentMethod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qf_lib.containers.futures.futures_rolling_orders_generator.FuturesRollingOrdersGenerator.html">FuturesRollingOrdersGenerator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_providers.html">data_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../document_utils.html">document_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indicators.html">indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../portfolio_construction.html">portfolio_construction</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QF Lib</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../containers.html">containers</a> &raquo;</li>
+        
+      <li>PortaraFutureTicker</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="portarafutureticker">
+<h1>PortaraFutureTicker<a class="headerlink" href="#portarafutureticker" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker">
+<em class="property">class </em><code class="sig-prename descclassname">qf_lib.containers.futures.future_tickers.portara_future_ticker.</code><code class="sig-name descname">PortaraFutureTicker</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">family_id: str</em>, <em class="sig-param">N: int</em>, <em class="sig-param">days_before_exp_date: int</em>, <em class="sig-param">point_value: int = 1</em>, <em class="sig-param">designated_contracts: str = 'FGHJKMNQUVXZ'</em>, <em class="sig-param">security_type: qf_lib.common.enums.security_type.SecurityType = &lt;SecurityType.FUTURE: 'FUT'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/portara_future_ticker.html#PortaraFutureTicker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker.html#qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker" title="qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.containers.futures.future_tickers.future_ticker.FutureTicker</span></code></a>, <a class="reference internal" href="qf_lib.common.tickers.tickers.PortaraTicker.html#qf_lib.common.tickers.tickers.PortaraTicker" title="qf_lib.common.tickers.tickers.PortaraTicker"><code class="xref py py-class docutils literal notranslate"><span class="pre">qf_lib.common.tickers.tickers.PortaraTicker</span></code></a></p>
+<p>Representation of a Future Ticker, designed to be used by the PortaraDataProvider.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Field which contains a name (or a short description) of the FutureTicker, for example ‘Cotton’ or
+‘Brent Crude Oil’. This does not need to be a ticker code.</p></li>
+<li><p><strong>family_id</strong> (<em>str</em>) – Used to identify a given futures family. It should match the name of the file, which contains expiration dates
+for a chain of the futures contracts. For example, in case of Silver, the name of the file with
+expiration dates should be equal to ‘SIA.txt’ and the family_id should be equal to ‘SIA{}’. The ‘{}’ part of
+the family_id points to this part of the symbol, which should be filled with the month and year code in case
+of individual tickers. In case of Silver the following tickers will belong to the Futures family: SIA2021H,
+SIA2021K, SIA2021N, SIA2021U, SIA2021Z etc.</p></li>
+<li><p><strong>N</strong> (<em>int</em>) – Since we chain individual tenors, we need to know which contract to select. N determines which contract is used
+at any given time when we have to select a specific contract (tenor). For example N parameter set to 1,
+denotes the first (front) future contract. N set to 2 will be the second contract and so on.</p></li>
+<li><p><strong>days_before_exp_date</strong> (<em>int</em>) – Number of days before the expiration day of each of the contract, when the “current” specific contract
+should be substituted with the next consecutive one.</p></li>
+<li><p><strong>point_value</strong> (<em>int</em>) – Used to define the size of the contract.</p></li>
+<li><p><strong>designated_contracts</strong> (<em>str</em>) – It is a string, which represents all month codes, that are being downloaded and stored
+in the chain of future contracts. Any specific order of letters is not required. E.g. providing this
+parameter value equal to “HMUZ”, would restrict the future chain to only the contracts, which expire in
+March, June, September and December, even if contracts for any other months exist and are returned by the
+DataProvider get_futures_chain_tickers function.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Methods</strong></p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker.belongs_to_family" title="qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker.belongs_to_family"><code class="xref py py-obj docutils literal notranslate"><span class="pre">belongs_to_family</span></code></a>(ticker)</p></td>
+<td><p>Function, which takes a specific PortaraTicker, and verifies if it belongs to the family of futures contracts, identified by the PortaraFutureTicker and returns true if that is the case (false otherwise).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker.supported_ticker_type" title="qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker.supported_ticker_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supported_ticker_type</span></code></a>()</p></td>
+<td><p>Returns class of specific tickers which are supported by this FutureTicker (e.g.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker.belongs_to_family">
+<code class="sig-name descname">belongs_to_family</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ticker</span><span class="p">:</span> <span class="n"><a class="reference internal" href="qf_lib.common.tickers.tickers.PortaraTicker.html#qf_lib.common.tickers.tickers.PortaraTicker" title="qf_lib.common.tickers.tickers.PortaraTicker">qf_lib.common.tickers.tickers.PortaraTicker</a></span></em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/portara_future_ticker.html#PortaraFutureTicker.belongs_to_family"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker.belongs_to_family" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function, which takes a specific PortaraTicker, and verifies if it belongs to the family of futures contracts,
+identified by the PortaraFutureTicker and returns true if that is the case (false otherwise).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker.supported_ticker_type">
+<code class="sig-name descname">supported_ticker_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Type<span class="p">[</span><a class="reference internal" href="qf_lib.common.tickers.tickers.Ticker.html#qf_lib.common.tickers.tickers.Ticker" title="qf_lib.common.tickers.tickers.Ticker">qf_lib.common.tickers.tickers.Ticker</a><span class="p">]</span><a class="reference internal" href="../_modules/qf_lib/containers/futures/future_tickers/portara_future_ticker.html#PortaraFutureTicker.supported_ticker_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#qf_lib.containers.futures.future_tickers.portara_future_ticker.PortaraFutureTicker.supported_ticker_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns class of specific tickers which are supported by this FutureTicker (e.g. it should return
+BloombergTicker for the BloombergFutureTicker etc.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="qf_lib.containers.futures.futures_adjustment_method.FuturesAdjustmentMethod.html" class="btn btn-neutral float-right" title="FuturesAdjustmentMethod" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="qf_lib.containers.futures.future_tickers.bloomberg_future_ticker.BloombergFutureTicker.html" class="btn btn-neutral float-left" title="BloombergFutureTicker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

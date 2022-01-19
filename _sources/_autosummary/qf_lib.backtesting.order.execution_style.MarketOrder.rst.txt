@@ -1,0 +1,9 @@
+MarketOrder
+====================================================
+
+.. currentmodule:: qf_lib.backtesting.order.execution_style
+
+.. autoclass:: MarketOrder
+	:show-inheritance:
+	:autosummary:
+	:members:

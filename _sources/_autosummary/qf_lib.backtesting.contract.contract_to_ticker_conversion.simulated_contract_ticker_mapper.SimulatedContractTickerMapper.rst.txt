@@ -1,0 +1,9 @@
+SimulatedContractTickerMapper
+========================================================================================================================
+
+.. currentmodule:: qf_lib.backtesting.contract.contract_to_ticker_conversion.simulated_contract_ticker_mapper
+
+.. autoclass:: SimulatedContractTickerMapper
+	:show-inheritance:
+	:autosummary:
+	:members:

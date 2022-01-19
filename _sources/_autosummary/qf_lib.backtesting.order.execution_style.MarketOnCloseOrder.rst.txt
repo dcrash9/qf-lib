@@ -1,0 +1,9 @@
+MarketOnCloseOrder
+===========================================================
+
+.. currentmodule:: qf_lib.backtesting.order.execution_style
+
+.. autoclass:: MarketOnCloseOrder
+	:show-inheritance:
+	:autosummary:
+	:members:

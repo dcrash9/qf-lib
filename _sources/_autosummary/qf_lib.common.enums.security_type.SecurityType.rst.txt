@@ -1,0 +1,9 @@
+SecurityType
+==============================================
+
+.. currentmodule:: qf_lib.common.enums.security_type
+
+.. autoclass:: SecurityType
+	:show-inheritance:
+	:autosummary:
+	:members:
